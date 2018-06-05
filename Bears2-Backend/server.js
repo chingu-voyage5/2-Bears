@@ -16,6 +16,14 @@ server.listen(PORT, (err) => {
     console.log('There was an error connecting to the Server ', err);
   } else {
     console.log('You have connected to the server on PORT: ', PORT);
+    console.log('╔═══════════════════╗');
+    console.log('║                   ║');
+    console.log('║  Hi!              ║');
+    console.log('║    Server         ║');
+    console.log('║          is       ║');
+    console.log('║            up     ║');
+    console.log('╚═══════════════════╝');
+    console.log('Bears Backend!!');
   }
 });
 
