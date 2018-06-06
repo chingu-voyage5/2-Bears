@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-  libraries: () => []
+  // change child reducers here
+  childReducer: () => []
+  //
 });
