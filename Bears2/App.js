@@ -25,7 +25,7 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Bear Team 02 Project
+          Bear Team 02 Project!
         </Text>
         <Text style={styles.instructions}>
           
