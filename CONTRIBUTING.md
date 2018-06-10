@@ -27,4 +27,4 @@ For any specific questions or suggestions, feel free to create a new issue with 
 2. Pull (or fetch and merge) down code from the `master` branch of the original repository.
 3. Resolve any merge conflicts.
 4. Create a pull request from your forked repository into the `development` branch of the original repository.
-5. Please follow the pull request template and include specific details about your pull request.
+5. Please follow the [pull request template](https://github.com/chingu-voyage5/2-Bears/blob/master/PULL_REQUEST_TEMPLATE.md) and include specific details about your pull request.
