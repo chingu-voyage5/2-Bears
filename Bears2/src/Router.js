@@ -1,14 +1,20 @@
 import React from 'react';
 import { Stack, Scene, Router } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
-import CategoryList from './components/CategoryList'
+import CategoriesList from './components/CategoriesList'
+import CategoryXList from './components/CategoryXList'
 
 const RouterComponent = () => {
   return (
     <Router>
-      <Stack key="root">
-        <Scene key="login" component={LoginForm} title="Please Login" initial={true} />
-        <Scene key="CategoryList" component={ CategoryList } title="food categories" />
+      <Stack key="root" hideNavBar>
+        <Scene key="auth">
+          <Scene key="login" component={LoginForm} hideNavBar initial />
+        </Scene>
+        <Scene key="main">
+          <Scene key="categoriesList" component={ CategoriesList } title="Food Categories" initial />
+          <Scene key="categoryXList" component={ CategoryXList } />
+        </Scene>
       </Stack>
     </Router>
   );

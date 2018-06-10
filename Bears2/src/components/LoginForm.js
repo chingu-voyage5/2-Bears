@@ -24,7 +24,7 @@ class LoginForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Button onPress={Actions.CategoryList}>
+          <Button onPress={Actions.main}>
           Login
           </Button>
         </CardSection>

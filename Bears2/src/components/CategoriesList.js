@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View
+} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const data = [
   { key: 'Category1' }, { key: 'Category2' }, { key: 'Category3' }, { key: 'Category4' }, { key: 'Category5' }, { key: 'Category6' }, { key: 'Category7' }, { key: 'Category8' }, { key: 'Category9' }, { key: 'Category10' }, { key: 'Category11' }, { key: 'Category12' }, { key: 'category13' },
@@ -18,17 +27,49 @@ const formatData = (data, numColumns) => {
 
 const numColumns = 3
 
-class CategoryList extends Component {
+class CategoryXList extends Component {
+  constructor(props) {
+    super(props);
+    this.handlePressIn = this.handlePressIn.bind(this);
+    this.handlePressOut = this.handlePressOut.bind(this);
+  }
+
+  componentWillMount() {
+    this.animatedValue = new Animated.Value(1);
+  }
+
+  handlePressIn() {
+    Animated.spring(this.animatedValue, {
+      toValue: .5
+    }).start()
+  }
+
+  handlePressOut() {
+    Animated.spring(this.animatedValue, {
+      toValue: 1,
+      friction: 3,
+      tension: 40
+    }).start()
+    Actions.categoryXList();
+  }
+
   renderItem = ({ item, index }) => {
+    const animatedStyle = {
+      transform: [{ scale: this.animatedValue }]
+    }
+
     if (item.empty === true) {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
     return (
-      <View
-      style={styles.item}
+      <TouchableWithoutFeedback
+        onPressIn={this.handlePressIn}
+        onPressOut={this.handlePressOut}
       >
+      <Animated.View style={[styles.item, animatedStyle]}>
         <Text style={styles.itemText}>{item.key}</Text>
-      </View>
+      </Animated.View>
+      </TouchableWithoutFeedback>
     );
   };
 
@@ -65,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default(CategoryList);
+export default(CategoryXList);
