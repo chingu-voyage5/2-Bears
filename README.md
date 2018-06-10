@@ -1,5 +1,5 @@
 # 2 Bear App
-> a non-profit mobile food ordering app
+> A Non-Profit Mobile Food Ordering App
 
 ## Table of Contents
 * [About](#about)
@@ -33,9 +33,9 @@ See link below for instructions on how to get your development environment setup
 * [Node](https://nodejs.org/en/)
 * [NPM](https://www.npmjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
-and either:
+* and either:
 * [Xcode](https://developer.apple.com/xcode/)
-or
+* or
 * [Android Studio](https://developer.android.com/studio/)
 * [Java SDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
@@ -74,8 +74,8 @@ or
 [Jason Kim](https://github.com/jtk3068)  
 [Lucas Taboada](https://github.com/LucasTaboada)  
 [Oliver De La Via](https://github.com/odelavia)  
-[Tyrese ](https://github.com/ty893777)  
+[Tyrese Wills](https://github.com/ty893777)  
 
 ## License
 This project was created in association with [Chingu Coders](https://github.com/chingu-voyage5) through [Chingu](https://chingu.io/).    
-[License](#)  
+[License](https://github.com/chingu-voyage5/2-Bears/blob/master/LICENSE.md)  
