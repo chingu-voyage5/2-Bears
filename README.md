@@ -14,7 +14,7 @@
 
 
 ## About
-2 Bears is a free food ordering mobile app to sort through and order food! We worked hard to provide you an immersive experience for your viewing pleasure. The APIs used were provided by [Stripe](https://stripe.com/docs) and [QR API (TBD)](#)
+2 Bears is a free mobile food ordering app that generates a QR Code as a ticket that a server can then pickup and scan to associate your order with you! As an Admin, you can login and change the category names, order items, their price, and more! We worked hard to provide you an immersive experience for your viewing pleasure. The APIs used were provided by [Stripe](https://stripe.com/docs) and [QR Code Generator API (TBD)](#)
 
 
 ## Live Demo
