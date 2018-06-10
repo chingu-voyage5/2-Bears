@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Dimensions,
   FlatList,
-  Platform,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     borderRadius: 15,
-    width: '60%',
+    width: '70%',
     margin:15,
     height: Dimensions.get('window').width / numColumns,
     shadowOffset:{  width: 3,  height: 3,  },
@@ -76,6 +75,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     top: -22,
+    left: -35,
     color: '#000',
   },
   plateText: {
