@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Dimensions,
   FlatList,
-  Platform,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -26,7 +25,7 @@ class CategoryXList extends Component {
         </View>
         <TouchableWithoutFeedback>
           <View style={styles.addCart}>
-            <Text style={styles.cardText}>+</Text>
+            <Text style={styles.addCartText}>+</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -55,41 +54,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     borderRadius: 15,
-    width: '60%',
-    // margin:15,
+    width: '70%',
+    elevation: 2,
     height: Dimensions.get('window').width / numColumns,
-    ...Platform.select({
-      android: {
-        elevation: 2,
-      },
-      ios: {
-        shadowOffset:{  width: 3,  height: 3,  },
-        shadowColor: '#000',
-        shadowOpacity: .05,
-      },
-    }),
   },
   plate: {
     position: 'absolute',
-    left: 60,
+    left: 40,
     width: 70,
     height: 70,
     borderRadius: 25,
     backgroundColor:'#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    ...Platform.select({
-      android: {
-        elevation: 3,
-      },
-      ios: {
-        shadowOffset:{  width: 5,  height: 5,  },
-        shadowColor: '#000',
-        shadowOpacity: .05,
-      },
-    }),
+    elevation: 3,
   },
   cardText: {
+    left: -45,
     color: '#000',
   },
   plateText: {
@@ -97,23 +78,17 @@ const styles = StyleSheet.create({
   },
   addCart: {
     position: 'absolute',
-    right: 65,
+    right: 45,
     width: 40,
     height: 40,
     borderRadius: 25,
     backgroundColor:'white',
     justifyContent: 'center',
     alignItems: 'center',
-    ...Platform.select({
-      android: {
-        elevation: 3,
-      },
-      ios: {
-        shadowOffset:{  width: -1,  height: 5,  },
-        shadowColor: '#000',
-        shadowOpacity: .05,
-      },
-    }),
+    elevation: 3,
+  },
+  addCartText: {
+    color: '#000',
   },
   fakeOverflowCard: {
     // fakes overflow but requires more markup
