@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
- StyleSheet,
- Text,
- TouchableWithoutFeedback,
- View,
- FlatList,
- Dimensions
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  FlatList,
+  Dimensions
 } from 'react-native';
 
 const data = [
@@ -60,38 +60,36 @@ const styles = StyleSheet.create({
     shadowOpacity: .05,
   },
   plate: {
-   position: 'absolute',
-   left: -25,
-   width: 70,
-   height: 70,
-   borderRadius: 25,
-   backgroundColor:'white',
-   color: 'black',
-   shadowOffset:{  width: 5,  height: 5,  },
-   shadowColor: '#000',
-   shadowOpacity: .05,
-   justifyContent: 'center',
-   alignItems: 'center',
+    position: 'absolute',
+    left: -25,
+    width: 70,
+    height: 70,
+    borderRadius: 25,
+    backgroundColor:'#fff',
+    shadowOffset:{  width: 5,  height: 5,  },
+    shadowColor: '#000',
+    shadowOpacity: .05,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   itemText: {
     color: '#000',
   },
   plateText: {
-   color: '#000',
+    color: '#000',
   },
   addCart: {
-   position: 'absolute',
-   right: -20,
-   width: 50,
-   height: 50,
-   borderRadius: 25,
-   backgroundColor:'white',
-   color: 'black',
-   shadowOffset:{  width: -1,  height: 5,  },
-   shadowColor: '#000',
-   shadowOpacity: .05,
-   justifyContent: 'center',
-   alignItems: 'center',
+    position: 'absolute',
+    right: -20,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor:'white',
+    shadowOffset:{  width: -1,  height: 5,  },
+    shadowColor: '#000',
+    shadowOpacity: .05,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
