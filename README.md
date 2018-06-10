@@ -26,7 +26,7 @@ password: `bears2`
 
 ## Contributing
 See link below for instructions on how to get your development environment setup and properly make a pull request.  
-[Instructions](#)
+[Instructions](https://github.com/chingu-voyage5/2-Bears/blob/master/CONTRIBUTING.md)
 
 
 ## Requirements
