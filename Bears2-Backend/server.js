@@ -6,11 +6,15 @@ const {Server} = require('http')
 const server = Server(app)
 const db = require('./db/config/database');
 const {User,Order_Items, Orders} = require('./db/models/index')
-
+const router = require('./db/api/routes/index');
 const bodyparser = require('body-parser');
+
+
 
 app.use(bodyparser.json({ limit: '50mb' }));
 app.use(bodyparser.urlencoded({ limit: '50mb', extended: true }));
+app.use('/api', router);
+
 
 
 server.listen(PORT, (err) => {
