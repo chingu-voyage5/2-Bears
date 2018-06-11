@@ -4,6 +4,8 @@ const app = express();
 const PORT = 8080;
 const {Server} = require('http')
 const server = Server(app)
+const db = require('./db/config/database');
+const {User,Order_Items, Orders} = require('./db/models/index')
 
 const bodyparser = require('body-parser');
 
@@ -26,6 +28,9 @@ server.listen(PORT, (err) => {
     console.log('Bears Backend!!');
   }
 });
+
+// User.findAll({
+// });
 
 // Catches errors to routes.
 app.use((error, req, res, next) => {
