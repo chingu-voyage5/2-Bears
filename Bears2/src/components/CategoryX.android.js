@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
@@ -124,7 +125,7 @@ class CategoryX extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton />
+        <RoundAddButton onPress={Actions.cart} />
       </View>
     );
   }
