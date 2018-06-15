@@ -30,7 +30,7 @@ class StarRating extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-    paddingBottom: 10,
+    paddingBottom: 15,
     top: 5,
     backgroundColor: "#FFF",
     flexDirection: 'row',

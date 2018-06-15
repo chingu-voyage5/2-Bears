@@ -20,7 +20,7 @@ class CategoryX extends Component {
     this.state = {
       title : props.title,
       expanded : false,
-      animation : new Animated.Value(15),
+      animation : new Animated.Value(16),
       liked: false,
       scale: new Animated.Value(0),
       animations: [
@@ -151,18 +151,22 @@ const styles = StyleSheet.create({
   },
   cardDescription: {
     width: 150,
-    paddingVertical: 20,
+    paddingTop: 20,
+    // paddingBottom: 10,
     color: '#000',
   },
   cardReview: {
     width: 150,
-    paddingVertical: 20,
+    paddingBottom: 20,
+    paddingTop: 10,
     color: '#000',
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
+    borderBottomWidth: 2,
+    borderBottomColor: '#fff'
   },
   plate: {
     position: 'absolute',
-    top: 20,
+    top: 28,
     left: 50,
     width: 70,
     height: 70,
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
   addCart: {
     position: 'absolute',
     right: 55,
-    bottom: 36,
+    bottom: 45,
     width: 40,
     height: 40,
     borderRadius: 25,
