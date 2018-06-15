@@ -9,14 +9,14 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { BottomNav } from './common';
-const data = [
+import { BottomNav, ImageLoader } from './common';
+
+const numColumns = 3
+const categories = [
   { key: 'Category1' }, { key: 'Category2' }, { key: 'Category3' }, { key: 'Category4' }, { key: 'Category5' }, { key: 'Category6' }, { key: 'Category7' }, { key: 'Category8' }, { key: 'Category9' }, { key: 'Category10' }, { key: 'Category11' }, { key: 'Category12' }, { key: 'category13' },
 ]
-
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);
-
   let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
   while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
@@ -25,60 +25,18 @@ const formatData = (data, numColumns) => {
   return data;
 };
 
-const numColumns = 3
-
-class CategoryXList extends Component {
-  constructor(props) {
-    super(props);
-    this.handlePressIn = this.handlePressIn.bind(this);
-    this.handlePressOut = this.handlePressOut.bind(this);
-  }
-
-  componentWillMount() {
-    this.animatedValue = new Animated.Value(1);
-  }
-
-  handlePressIn() {
-    Animated.spring(this.animatedValue, {
-      toValue: .5
-    }).start()
-  }
-
-  handlePressOut() {
-    Animated.spring(this.animatedValue, {
-      toValue: 1,
-      friction: 3,
-      tension: 40
-    }).start()
-    Actions.categoryXList();
-  }
-
+class CategoriesList extends Component {
   renderItem = ({ item, index }) => {
-    const animatedStyle = {
-      transform: [{ scale: this.animatedValue }]
-    }
-
-    if (item.empty === true) {
-      return <View style={[styles.item, styles.itemInvisible]} />;
-    }
     return (
-      <TouchableWithoutFeedback
-        onPressIn={this.handlePressIn}
-        onPressOut={this.handlePressOut}
-      >
-      <Animated.View style={[styles.item, animatedStyle]}>
-        <Text style={styles.itemText}>{item.key}</Text>
-      </Animated.View>
-      </TouchableWithoutFeedback>
+      <ImageLoader  item={item} />
     );
   };
-
   render() {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 0.9}}>
           <FlatList
-            data={formatData(data, numColumns)}
+            data={formatData(categories, numColumns)}
             style={styles.container}
             renderItem={this.renderItem}
             numColumns={numColumns}
@@ -97,20 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
   },
-  item: {
-    backgroundColor: '#4d243d',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    margin: 1,
-    height: Dimensions.get('window').width / numColumns
-  },
-  itemInvisible: {
-    backgroundColor: 'transparent',
-  },
-  itemText: {
-    color: '#fff',
-  },
 });
 
-export default(CategoryXList);
+export default(CategoriesList);
