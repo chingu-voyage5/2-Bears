@@ -8,6 +8,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { Heart } from './common'
+// import { connect } from 'react-redux';
+// import { employeeUpdate, employeeCreate } from '../actions';
+// onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
 
 class CategoryX extends Component {
   constructor(props) {
@@ -16,8 +20,31 @@ class CategoryX extends Component {
     this.state = {
       title : props.title,
       expanded : false,
-      animation : new Animated.Value(15)
-    };
+      animation : new Animated.Value(15),
+      liked: false,
+      scale: new Animated.Value(0),
+      animations: [
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+        new Animated.Value(0),
+      ]
+    }
+    this.triggerLike = this.triggerLike.bind(this);
+  }
+
+  triggerLike() {
+    this.setState({
+      liked: !this.state.liked
+    })
+    Animated.spring(this.state.scale, {
+      toValue: 2,
+      friction: 3
+    }).start(() => {
+      this.state.scale.setValue(0);
+    });
   }
 
   _setMaxHeight(event){
@@ -41,11 +68,11 @@ class CategoryX extends Component {
     let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
     finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
     this.setState({
-        expanded : !this.state.expanded  //Step 2
+        expanded : !this.state.expanded
     });
 
-    this.state.animation.setValue(initialValue);  //Step 3
-    Animated.spring(     //Step 4
+    this.state.animation.setValue(initialValue);
+    Animated.spring(
         this.state.animation,
         {
             toValue: finalValue
@@ -54,6 +81,15 @@ class CategoryX extends Component {
   }
 
   render() {
+    const bouncyHeart = this.state.scale.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [1, .8, 1]
+    })
+    const heartButtonStyle = {
+      transform: [
+        { scale: bouncyHeart }
+      ]
+    }
     return (
       <View
         style={styles.fakeOverflowCard}
@@ -65,7 +101,7 @@ class CategoryX extends Component {
           <TouchableWithoutFeedback
           onPress={this.toggle.bind(this)}
           >
-            <View style={{paddingTop: 22}}>
+            <View style={{paddingTop: 22, paddingHorizontal: '15%',}}>
               <Animated.View style={{height: this.state.animation}}>
                 <Text style={styles.cardTitle} onLayout={this._setMinHeight.bind(this)}>{this.props.title}</Text>
                 <Text style={[styles.cardDescription, this.hideOnExpand.bind(this)]} onLayout={this._setMaxHeight.bind(this)}>
@@ -74,8 +110,15 @@ class CategoryX extends Component {
               </Animated.View>
               <Text style={styles.cardReview} >
                 5 stars
-                75mg fat
+                15mg fat
               </Text>
+              <View style={styles.heartContainer}>
+                <TouchableWithoutFeedback onPress={this.triggerLike}>
+                  <Animated.View style={heartButtonStyle}>
+                    <Heart filled={this.state.liked} />
+                  </Animated.View>
+                </TouchableWithoutFeedback>
+              </View>
             </View>
           </TouchableWithoutFeedback>
 
@@ -91,17 +134,11 @@ class CategoryX extends Component {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   marginTop: 20,
-  // },
   card: {
     backgroundColor: '#fff',
-    // paddingTop: 22,
     alignItems: 'center',
     alignSelf: 'center',
     borderRadius: 15,
-    width: '70%',
     elevation: 2,
     minHeight: 100,
   },
@@ -109,13 +146,11 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   cardDescription: {
-    // left: -45,
     width: 150,
     paddingVertical: 20,
     color: '#000',
   },
   cardReview: {
-    // left: -45,
     width: 150,
     paddingVertical: 20,
     color: '#000',
@@ -124,7 +159,7 @@ const styles = StyleSheet.create({
   plate: {
     position: 'absolute',
     top: 20,
-    left: 40,
+    left: 50,
     width: 70,
     height: 70,
     borderRadius: 25,
@@ -138,7 +173,7 @@ const styles = StyleSheet.create({
   },
   addCart: {
     position: 'absolute',
-    right: 45,
+    right: 55,
     bottom: 36,
     width: 40,
     height: 40,
@@ -156,10 +191,21 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     width: '100%',
     marginVertical: 10,
-    // justifyContent: 'center',
     position: "relative",
     paddingVertical: 5,
   },
+  heartContainer: {
+    position: 'absolute',
+    bottom: 50,
+    left: 18,
+  }
 });
 
+// const mapStateToProps = (state) => {
+//   const { name, phone, shift } = state.employeeForm;
+
+//   return { name, phone, shift };
+// };
+
 export default(CategoryX);
+// export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
