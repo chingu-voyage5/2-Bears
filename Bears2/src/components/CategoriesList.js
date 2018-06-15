@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
+import { BottomNav } from './common';
 const data = [
   { key: 'Category1' }, { key: 'Category2' }, { key: 'Category3' }, { key: 'Category4' }, { key: 'Category5' }, { key: 'Category6' }, { key: 'Category7' }, { key: 'Category8' }, { key: 'Category9' }, { key: 'Category10' }, { key: 'Category11' }, { key: 'Category12' }, { key: 'category13' },
 ]
@@ -75,12 +75,19 @@ class CategoryXList extends Component {
 
   render() {
     return (
-      <FlatList
-        data={formatData(data, numColumns)}
-        style={styles.container}
-        renderItem={this.renderItem}
-        numColumns={numColumns}
-      />
+      <View style={{flex: 1}}>
+        <View style={{flex: 0.9}}>
+          <FlatList
+            data={formatData(data, numColumns)}
+            style={styles.container}
+            renderItem={this.renderItem}
+            numColumns={numColumns}
+          />
+        </View>
+        <View style={{flex: 0.1}}>
+          <BottomNav text="Bottom Navigation"/>
+        </View>
+      </View>
     );
   }
 }
@@ -88,7 +95,7 @@ class CategoryXList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
+    marginTop: 20,
   },
   item: {
     backgroundColor: '#4d243d',
