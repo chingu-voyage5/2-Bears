@@ -3,6 +3,7 @@ import { Stack, Scene, Router } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import CategoriesList from './components/CategoriesList'
 import CategoryXList from './components/CategoryXList'
+import Cart from './components/Cart'
 
 const RouterComponent = () => {
   return (
@@ -14,6 +15,7 @@ const RouterComponent = () => {
         <Scene key="main">
           <Scene key="categoriesList" component={ CategoriesList } title="Food Categories" initial />
           <Scene key="categoryXList" component={ CategoryXList } />
+          <Scene key="cart" component={ Cart } />
         </Scene>
       </Stack>
     </Router>

@@ -7,18 +7,16 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-class RoundAddButton extends Component {
-	render() {
-		return (
-      <View>
-        <TouchableWithoutFeedback>
-          <View style={styles.addCart}>
-            <Text style={styles.addCartText}>+</Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-		);
-	}
+const RoundAddButton = ({ onPress, children }) => {
+  return (
+    <View>
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={styles.addCart}>
+          <Text style={styles.addCartText}>+</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
