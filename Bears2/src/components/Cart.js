@@ -9,7 +9,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
 
-class CategoryX extends Component {
+class Cart extends Component {
  render() {
   return (
    <Text>CART</Text>
@@ -19,4 +19,4 @@ class CategoryX extends Component {
 
 const styles = StyleSheet.create({})
 
-export default(CategoryX);
+export default(Cart);
