@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Image,
 	View,
-	Text
+  Text,
+  Platform
 } from 'react-native';
 
 class PlateImage extends Component {
@@ -20,14 +21,24 @@ const styles = StyleSheet.create({
   plate: {
     position: 'absolute',
     top: 28,
-    left: 50,
     width: 70,
     height: 70,
     borderRadius: 25,
     backgroundColor:'#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 3,
+    ...Platform.select({
+      android: {
+        left: 50,
+        elevation: 3,
+      },
+      ios: {
+        left: -20,
+        shadowOffset:{  width: 3,  height: 3,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
   },
   plateText: {
     color: '#000',

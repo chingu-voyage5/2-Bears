@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import CategoryX from './CategoryX';
 import {
-  Dimensions,
   FlatList,
   StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
 } from 'react-native';
 
 const data = [

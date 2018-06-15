@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Image,
 	View,
   Text,
+  Platform,
   TouchableWithoutFeedback,
 } from 'react-native';
 
@@ -24,7 +24,6 @@ class RoundAddButton extends Component {
 const styles = StyleSheet.create({
   addCart: {
     position: 'absolute',
-    right: 55,
     bottom: 42,
     width: 40,
     height: 40,
@@ -32,7 +31,18 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 3,
+    ...Platform.select({
+      android: {
+        right: 55,
+        elevation: 3,
+      },
+      ios: {
+        right: -15,
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
   },
   addCartText: {
     color: '#000',
