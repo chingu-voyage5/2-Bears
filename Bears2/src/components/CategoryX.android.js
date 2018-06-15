@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Heart } from './common'
+import { Heart, StarRating } from './common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -108,10 +108,14 @@ class CategoryX extends Component {
                 {this.props.description}
                 </Text>
               </Animated.View>
-              <Text style={styles.cardReview} >
-                5 stars
-                15mg fat
-              </Text>
+              <View style={styles.cardReview}>
+                <StarRating
+                  ratings={2}
+                />
+                <Text >
+                  15mg fat
+                </Text>
+              </View>
               <View style={styles.heartContainer}>
                 <TouchableWithoutFeedback onPress={this.triggerLike}>
                   <Animated.View style={heartButtonStyle}>
