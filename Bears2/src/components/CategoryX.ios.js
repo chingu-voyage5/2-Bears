@@ -139,9 +139,7 @@ const styles = StyleSheet.create({
     width: 150,
     // height: 90,
     paddingTop: 20,
-    // flexDirection: 'column',
     flexWrap: 'wrap',
-    // paddingBottom: 10,
     color: '#000',
   },
   cardReview: {
