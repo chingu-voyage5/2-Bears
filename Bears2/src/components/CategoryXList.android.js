@@ -20,8 +20,8 @@ class CategoryXList extends Component {
 
     this.state = {
       title : props.title,
-      expanded : true,
-      animation : new Animated.Value(),
+      expanded : false,
+      animation : new Animated.Value(15)
     };
   }
 
@@ -33,7 +33,7 @@ class CategoryXList extends Component {
 
   _setMinHeight(event){
     this.setState({
-        minHeight   : event.nativeEvent.layout.height
+      minHeight: event.nativeEvent.layout.height,
     });
   }
 
@@ -43,9 +43,8 @@ class CategoryXList extends Component {
   }
 
   toggle() {
-    let initialValue    = this.state.expanded? this.state.maxHeight + (this.state.minHeight) : (this.state.minHeight),
-    finalValue      = this.state.expanded? (this.state.minHeight) : this.state.maxHeight + (this.state.minHeight);
-
+    let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
+    finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
     this.setState({
         expanded : !this.state.expanded  //Step 2
     });
@@ -71,7 +70,7 @@ class CategoryXList extends Component {
           <TouchableWithoutFeedback
           onPress={this.toggle.bind(this)}
           >
-            <View>
+            <View style={{paddingTop: 22}}>
               <Animated.View style={{height: this.state.animation}}>
                 <Text style={styles.cardTitle} onLayout={this._setMinHeight.bind(this)}>{item.key}</Text>
                 <Text style={[styles.cardDescription, this.hideOnExpand.bind(this)]} onLayout={this._setMaxHeight.bind(this)}>
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    paddingTop: 22,
+    // paddingTop: 22,
     alignItems: 'center',
     alignSelf: 'center',
     borderRadius: 15,
