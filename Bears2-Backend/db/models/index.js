@@ -72,7 +72,7 @@ const Order_Items = db.define('order_items', {
 Orders.hasMany(Order_Items, { foreignKey: { name: 'order_id', allowNull: true }, onDelete: 'CASCADE' });
 Order_Items.belongsTo(Orders, { foreignKey: { name: 'order_id', allowNull: true }, onDelete: 'CASCADE' });
 
-User.sync({force: true}).then(() => {
+User.sync().then(() => {
 });
 
 module.exports = {

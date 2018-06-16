@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../../models/index');
 const bcrypt = require('bcrypt');
-
+const util = require('./utils');
 const saltRounds = 10;
 
 
@@ -38,8 +38,10 @@ router.post('/adduser', async (req, res) => {
 
 router.get('/:email/:password', async(req, res) => {
     try {
+        console.log('this is req.params', req.params)
         const user = await db.User.findOne({ where: { email: req.params.email, userType: 1 } });
-        const data = await bcrypt.compare(req.params.password, user.password);
+        console.log('this is the user', user);
+        const data = await bcrypt.compare(req.params.password, user.password)
         if(data) {
             console.log('User Logged In: ', {user: user, id_token: util.hasher(`${req.params.email}`)});
             res.status(200).send({user: user, id_token: util.hasher(req.params.email)});
@@ -48,7 +50,7 @@ router.get('/:email/:password', async(req, res) => {
         }
     }
     catch (error) {
-        console.log('Error in fetchStudent',error);
+        console.log('Error in fetch User',error);
         res.status(500).send(error);
     }
 
