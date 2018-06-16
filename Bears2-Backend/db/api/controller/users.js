@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const db = require('../../models/index');
+const bcrypt = require('bcrypt');
+
 
 router.post('/adduser', async (req, res) => {
   console.log('this is the body', req.body)
@@ -29,5 +31,26 @@ router.post('/adduser', async (req, res) => {
       res.status(500).send(error);
     }
 });
+
+router.get('/:email/:password', async(req, res) {
+    try {
+        const user = await db.User.findOne({ where: { email: req.params.email, userType: 1 } });
+        const data = await bcrypt.compare(req.params.creds, user.password);
+        if(data) {
+            console.log('User Logged In: ', {user: user, id_token: util.hasher(`${req.params.email}`)});
+            res.status(200).send({user: user, id_token: util.hasher(req.params.email)});
+        } else {
+            res.status(404).send('Credentials are incorrect')
+        }
+    }
+    catch{
+        console.log('Error in fetchStudent',error);
+        res.status(500).send(error);
+    }
+
+
+})
+
+
 
 module.exports = router;
