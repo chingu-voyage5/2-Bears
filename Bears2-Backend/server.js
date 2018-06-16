@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
+const mongoose = require('mongoose');
 const app = express();
-const PORT = 8080;
 const {Server} = require('http')
 const server = Server(app)
 const db = require('./db/config/database');
