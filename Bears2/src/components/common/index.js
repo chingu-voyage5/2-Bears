@@ -6,3 +6,5 @@ export * from './Input';
 export * from './Spinner';
 export * from './Heart';
 export * from './StarRating';
+export * from './PlateImage';
+export * from './RoundAddButton';

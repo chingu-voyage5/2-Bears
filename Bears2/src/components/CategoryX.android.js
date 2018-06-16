@@ -8,7 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Heart, StarRating } from './common'
+import { Actions } from 'react-native-router-flux';
+import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -65,8 +66,8 @@ class CategoryX extends Component {
   }
 
   toggle() {
-    let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
-    finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
+    let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
+    finalValue       = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
     this.setState({
         expanded : !this.state.expanded
     });
@@ -94,9 +95,7 @@ class CategoryX extends Component {
       <View
         style={styles.fakeOverflowCard}
       >
-        <View style={styles.plate}>
-          <Text style={styles.plateText}>IMG</Text>
-        </View>
+        <PlateImage />
         <View style={styles.card}>
           <TouchableWithoutFeedback
           onPress={this.toggle.bind(this)}
@@ -125,13 +124,8 @@ class CategoryX extends Component {
               </View>
             </View>
           </TouchableWithoutFeedback>
-
         </View>
-        <TouchableWithoutFeedback>
-          <View style={styles.addCart}>
-            <Text style={styles.addCartText}>+</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <RoundAddButton onPress={Actions.cart} />
       </View>
     );
   }
@@ -163,36 +157,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 2,
     borderBottomColor: '#fff'
-  },
-  plate: {
-    position: 'absolute',
-    top: 28,
-    left: 50,
-    width: 70,
-    height: 70,
-    borderRadius: 25,
-    backgroundColor:'#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 3,
-  },
-  plateText: {
-    color: '#000',
-  },
-  addCart: {
-    position: 'absolute',
-    right: 55,
-    bottom: 45,
-    width: 40,
-    height: 40,
-    borderRadius: 25,
-    backgroundColor:'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 3,
-  },
-  addCartText: {
-    color: '#000',
   },
   fakeOverflowCard: {
     // fakes overflow but requires more markup
