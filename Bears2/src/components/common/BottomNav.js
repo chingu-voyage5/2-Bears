@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
+import Interactable from 'react-native-interactable';
 import {
   StyleSheet,
   Image,
 	View,
   Text,
-  Platform
+  Platform,
 } from 'react-native';
+
 
 const BottomNav = (props) => {
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.textStyle}>{props.text}</Text>
-    </View>
+    <Interactable.View
+      horizontalOnly={true}
+      snapPoints={[{x: 0}, {x: -200}]}
+      onSnap={this.onDrawerSnap}
+    >
+      <View style={styles.viewStyle}>
+        <Text style={styles.textStyle}>{props.text}</Text>
+      </View>
+    </Interactable.View>
   );
 }
 
