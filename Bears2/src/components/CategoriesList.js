@@ -63,7 +63,8 @@ class CategoryXList extends Component {
     }
     return (
       <TouchableWithoutFeedback
-        onPressIn={this.handlePressIn}
+        pressRetentionOffset={1}
+        // onPressIn={this.handlePressIn}
         onPressOut={this.handlePressOut}
       >
       <Animated.View style={[styles.item, animatedStyle]}>
