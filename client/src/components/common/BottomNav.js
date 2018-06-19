@@ -32,7 +32,7 @@ class BottomNav extends Component {
       <View style={styles.container}>
         <Interactable.View
           verticalOnly={true}
-          snapPoints={[{y: 0}, {y: -250}]}
+          snapPoints={[{y: 0}, {y: -240}]}
           boundaries={{bottom: 0, top: -240}}
           animatedValueY={this._deltaY}
           style={[styles.interactableView, {top: this.state.topValue}]}
@@ -64,7 +64,7 @@ class BottomNav extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+
   },
   interactableView: {
     justifyContent: 'flex-end',
