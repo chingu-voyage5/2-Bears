@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -34,17 +35,16 @@ class CategoriesList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: 0.9}}>
+        <ScrollView>
           <FlatList
             data={formatData(categories, numColumns)}
+            keyExtractor={item => item.key}
             style={styles.container}
             renderItem={this.renderItem}
             numColumns={numColumns}
           />
-        </View>
-        <View style={{flex: 0.1}}>
-          <BottomNav text="Bottom Navigation"/>
-        </View>
+        </ScrollView>
+        <BottomNav />
       </View>
     );
   }

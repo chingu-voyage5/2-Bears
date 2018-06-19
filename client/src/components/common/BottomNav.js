@@ -1,43 +1,85 @@
 import React, { Component } from 'react';
 import Interactable from 'react-native-interactable';
 import {
-  StyleSheet,
-  Image,
-	View,
-  Text,
+  Animated,
+  Button,
+  Dimensions,
   Platform,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
-
-const BottomNav = (props) => {
-  return (
-    <Interactable.View
-      horizontalOnly={true}
-      snapPoints={[{x: 0}, {x: -200}]}
-      onSnap={this.onDrawerSnap}
-    >
-      <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}>{props.text}</Text>
+class BottomNav extends Component {
+  constructor(props) {
+    super(props);
+    this._deltaY = new Animated.Value(0);
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Interactable.View
+          verticalOnly={true}
+          snapPoints={[{y: 0}, {y: -250}]}
+          boundaries={{bottom: 0, top: -250}}
+          animatedValueY={this._deltaY}
+          style={{justifyContent: 'flex-end', top: 500}}
+        >
+          <View style={styles.slideupContainer}>
+            <View style={styles.slideupToggle} />
+            <Text style={styles.openTimes} >8:00AM to 22:00AM</Text>
+            <Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>
+            <Text style={styles.slideupText} >About</Text>
+            <Text style={styles.slideupText} >Login</Text>
+          </View>
+        </Interactable.View>
       </View>
-    </Interactable.View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  viewStyle: {
-    backgroundColor: '#F8F8F8',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 60,
-    paddingTop: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    elevation: 2,
-    position: 'relative'
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
   },
-  textStyle: {
-    fontSize: 20
+  slideupContainer: {
+    paddingTop: 20,
+    paddingLeft: 35,
+    left: 0, 
+    right: 0, 
+    height: 550, 
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowOffset:{  width: 0,  height: -3,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
+  slideupToggle: {
+    marginLeft: -35,
+    height: 10, 
+    width: 60, 
+    borderRadius: 5, 
+    borderWidth: 1,
+    borderColor: '#c1c1c1', 
+    alignSelf: 'center',  
+  },
+  openTimes: {
+    paddingVertical: 30,
+    fontSize: 20,
+    left: (Dimensions.get('window').width / 2) - 125,
+  },
+  slideupText: {
+    paddingTop: 20,
+    fontSize: 20,
   }
 });
 
