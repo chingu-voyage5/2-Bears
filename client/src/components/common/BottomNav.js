@@ -23,6 +23,7 @@ class BottomNav extends Component {
       linkTwoScene: props.linkTwoScene,
       linkThreeElement: props.linkThreeElement,
       linkThreeScene: props.linkThreeScene,
+      openTimes: props.openTimes,
     }
     this._deltaY = new Animated.Value(0);
   }
@@ -38,7 +39,7 @@ class BottomNav extends Component {
         >
           <View style={styles.slideupContainer}>
             <View style={styles.slideupToggle} />
-            <Text style={styles.openTimes} >8:00AM to 22:00AM</Text>
+            {this.state.openTimes}
             <TouchableWithoutFeedback onPress={this.state.linkOneScene} >
               <View>
                 {this.state.linkOneElement}
@@ -70,6 +71,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height - 300,
   },
   slideupContainer: {
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     paddingTop: 20,
     paddingLeft: 35,
     left: 0,
@@ -78,8 +81,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     ...Platform.select({
       android: {
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0, 0, 0, 0.25)',
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.125)',
         // elevation: 2,
       },
       ios: {
@@ -97,11 +100,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#c1c1c1',
     alignSelf: 'center',
-  },
-  openTimes: {
-    paddingVertical: 30,
-    fontSize: 20,
-    left: (Dimensions.get('window').width / 2) - 125,
   },
 });
 

@@ -53,9 +53,10 @@ class CategoriesList extends Component {
         </Animated.View>
         <BottomNav
         topValue={ -140 }
+        openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
         linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
-        linkTwoElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >About</Text>}
-        linkThreeElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Login</Text>}
+        linkTwoElement={<Text style={styles.slideupText} >About</Text>}
+        linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
         linkOneScene={Actions.cart}
         linkTwoScene={Actions.about}
         linkThreeScene={Actions.auth}
@@ -71,6 +72,12 @@ const styles = StyleSheet.create({
   },
   flatlist: {
     marginBottom: 50
+  },
+  openTimes: {
+    paddingTop: 15,
+    paddingBottom: 25,
+    fontSize: 20,
+    left: (Dimensions.get('window').width / 2) - 125,
   },
   slideupText: {
     paddingTop: 20,
