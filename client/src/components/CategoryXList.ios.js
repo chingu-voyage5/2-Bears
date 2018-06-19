@@ -34,7 +34,7 @@ class CategoryXList extends Component {
           />
         </View>
         <View style={{flex: 0.1}}>
-          <BottomNav text="Bottom Navigation"/>
+          <BottomNav />
         </View>
       </View>
     );

@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     width: 150,
     paddingBottom: 20,
     paddingTop: 10,
-    color: '#000',
     backgroundColor: '#fff',
     borderBottomWidth: 2,
     borderBottomColor: '#fff'

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CategoryX from './CategoryX';
+import { BottomNav } from './common';
 import {
   Animated,
   Dimensions,
@@ -27,11 +28,13 @@ class CategoryXList extends Component {
 
   render() {
     return (
-      <FlatList
-        data={categories}
-        style={styles.container}
-        renderItem={this.renderItem}
-      />
+        <View style={{flex: 1}}>
+          <FlatList
+            data={categories}
+            style={styles.container}
+            renderItem={this.renderItem}
+          />
+        </View>
     );
   }
 }
@@ -39,15 +42,7 @@ class CategoryXList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
-  },
-  fakeOverflowCard: {
-    // fakes overflow but requires more markup
-    backgroundColor: "transparent",
-    width: '100%',
-    marginVertical: 10,
-    position: "relative",
-    paddingVertical: 5,
+    // marginBottom: 50,
   },
 });
 

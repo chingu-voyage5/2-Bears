@@ -13,7 +13,7 @@ const RouterComponent = () => {
           <Scene key="login" component={LoginForm} hideNavBar initial />
         </Scene>
         <Scene key="main">
-          <Scene key="categoriesList" component={ CategoriesList } title="Food Categories" initial />
+          <Scene key="categoriesList" component={ CategoriesList } hideNavBar initial />
           <Scene key="categoryXList" component={ CategoryXList } />
           <Scene key="cart" component={ Cart } />
         </Scene>

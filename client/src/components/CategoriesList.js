@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import Interactable from 'react-native-interactable';
 import {
   Animated,
   Dimensions,
   FlatList,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -27,6 +29,11 @@ const formatData = (data, numColumns) => {
 };
 
 class CategoriesList extends Component {
+  constructor(props) {
+    super(props);
+
+    this._deltaY = new Animated.Value(0);
+  }
   renderItem = ({ item, index }) => {
     return (
       <ImageLoader  item={item} />
@@ -34,17 +41,25 @@ class CategoriesList extends Component {
   };
   render() {
     return (
-      <View style={{flex: 1}}>
-        <ScrollView>
+      <View style={styles.container}>
+        <Animated.View >
           <FlatList
             data={formatData(categories, numColumns)}
             keyExtractor={item => item.key}
-            style={styles.container}
             renderItem={this.renderItem}
             numColumns={numColumns}
+            style={styles.flatlist}
           />
-        </ScrollView>
-        <BottomNav />
+        </Animated.View>
+        <BottomNav
+        topValue={ -140 }
+        linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
+        linkTwoElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >About</Text>}
+        linkThreeElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Login</Text>}
+        linkOneScene={Actions.cart}
+        linkTwoScene={Actions.about}
+        linkThreeScene={Actions.auth}
+        />
       </View>
     );
   }
@@ -53,8 +68,14 @@ class CategoriesList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
   },
+  flatlist: {
+    marginBottom: 50
+  },
+  slideupText: {
+    paddingTop: 20,
+    fontSize: 20,
+  }
 });
 
 export default(CategoriesList);
