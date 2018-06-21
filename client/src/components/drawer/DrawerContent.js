@@ -7,10 +7,11 @@ export default class DrawerContent extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <Text style={styles.item} onPress={()=> Actions.auth()}>login</Text>
-          <Text style={styles.item} onPress={()=> Actions.main()}>main</Text>
-          <Text style={styles.item} onPress={()=> Actions.categoriesList()}>categoriesList</Text>
-          <Text style={styles.item} onPress={()=> Actions.categoryXList()}>categoryXList</Text>
+          <Text style={styles.item} onPress={()=> Actions.stats()}>Stats</Text>
+          <Text style={styles.item} onPress={()=> Actions.scan()}>Scan</Text>
+          <Text style={styles.item} onPress={()=> Actions.drinks()}>Drinks</Text>
+          <Text style={styles.item} onPress={()=> Actions.kitchen()}>Kitchen</Text>
+          <Text style={styles.item} onPress={()=> Actions.settings()}>Settings</Text>
       </View>
     );
   }
@@ -19,7 +20,7 @@ export default class DrawerContent extends Component {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginLeft: 20
+        // marginLeft: 20
     },
     item:{
       marginLeft: 20,

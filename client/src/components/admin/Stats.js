@@ -6,17 +6,15 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
 
-class Cart extends Component {
+class Stats extends Component {
   render() {
     return (
-    < Text>CART</Text>
+    < Text>STATS</Text>
     );
   }
 }
 
 const styles = StyleSheet.create({})
 
-export default(Cart);
+export default(Stats);
