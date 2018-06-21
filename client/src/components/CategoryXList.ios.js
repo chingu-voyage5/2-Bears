@@ -30,10 +30,11 @@ class CategoryXList extends Component {
             data={data}
             style={styles.container}
             renderItem={this.renderItem}
+            keyExtractor={item => item.key}
           />
         </View>
         <View style={{flex: 0.1}}>
-          <BottomNav text="Bottom Navigation"/>
+          <BottomNav />
         </View>
       </View>
     );
