@@ -10,7 +10,6 @@ const App = () => {
   return (
     <Provider store={createStore(reducers)}>
       <View style={{ flex: 1 }}>
-        <Header headerText="Welcome, User" />
         <Router />
       </View>
     </Provider>
@@ -18,3 +17,5 @@ const App = () => {
 };
 
 export default App;
+
+// <Header headerText="Welcome, User" />

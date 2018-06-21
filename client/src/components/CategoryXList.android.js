@@ -33,6 +33,7 @@ class CategoryXList extends Component {
             data={categories}
             style={styles.container}
             renderItem={this.renderItem}
+            keyExtractor={item => item.key}
           />
         </View>
     );

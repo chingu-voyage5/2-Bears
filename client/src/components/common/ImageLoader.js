@@ -51,16 +51,19 @@ class ImageLoader extends Component {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
     return (
-    <TouchableWithoutFeedback
-      onPressIn={this.handlePressIn}
-      onPressOut={this.handlePressOut}
-    >
-      <Animated.View style={[styles.item, animatedStyle]}>
-        <Text style={styles.itemText}>{this.props.item.key}</Text>
-      </Animated.View>
-    </TouchableWithoutFeedback>
-    );
-  }
+      <TouchableWithoutFeedback
+        delayPressIn={2}
+        onPressIn={this.handlePressIn}
+        onPressOut={this.handlePressOut}
+      >
+        <View style={{flex:1}}>
+          <Animated.View style={[styles.item, animatedStyle]}>
+            <Text style={styles.itemText}>{this.props.item.key}</Text>
+          </Animated.View>
+        </View>
+      </TouchableWithoutFeedback>
+      );
+    }
   };
 
   const styles = {
