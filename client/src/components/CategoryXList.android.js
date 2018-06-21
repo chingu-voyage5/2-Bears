@@ -41,14 +41,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
   },
-  fakeOverflowCard: {
-    // fakes overflow but requires more markup
-    backgroundColor: "transparent",
-    width: '100%',
-    marginVertical: 10,
-    position: "relative",
-    paddingVertical: 5,
-  },
 });
 
 export default(CategoryXList);
