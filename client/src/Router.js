@@ -4,8 +4,7 @@ import LoginForm from './components/LoginForm';
 import CategoriesList from './components/CategoriesList'
 import CategoryXList from './components/CategoryXList'
 import DrawerContent from './components/drawer/DrawerContent';
-
-
+import Cart from './components/Cart'
 
 const RouterComponent = () => {
   return (
@@ -24,6 +23,7 @@ const RouterComponent = () => {
         <Scene key="main">
           <Scene key="categoriesList" component={ CategoriesList } title="Food Categories" initial />
           <Scene key="categoryXList" component={ CategoryXList } />
+          <Scene key="cart" component={ Cart } />
         </Scene>
         </Drawer>
       </Stack>
