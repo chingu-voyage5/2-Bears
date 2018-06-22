@@ -24,12 +24,12 @@ const RouterComponent = () => {
           drawerWidth={300}
           title={"2 Bears"}
         >
-          <Scene key="auth">
-            <Scene key="login" component={LoginForm} hideNavBar initial />
+          <Scene key="auth" title={"2 Bears"}>
+            <Scene key="login" component={LoginForm} initial />
           </Scene>
 
           <Scene key="main" title={"2 Bears"}>
-            <Scene key="categoriesList" component={ CategoriesList } title="Food Categories" initial />
+            <Scene key="categoriesList" component={ CategoriesList } initial />
             <Scene key="categoryXList" component={ CategoryXList } />
             <Scene key="cart" component={ Cart } />
             <Scene key="about" component={ About } />

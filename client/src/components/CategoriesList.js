@@ -61,7 +61,7 @@ class CategoriesList extends Component {
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
           linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
           linkOneScene={Actions.cart}
-          linkTwoScene={Actions.categoriesList}
+          linkTwoScene={Actions.main}
           linkThreeScene={Actions.auth}
         />
       </View>
