@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import CategoriesList from './components/CategoriesList';
 import CategoryXList from './components/CategoryXList';
 import DrawerContent from './components/drawer/DrawerContent';
+import About from './components/About';
 import Cart from './components/Cart';
 import Stats from './components/admin/Stats';
 import DrinkStatus from './components/admin/DrinkStatus';
@@ -23,17 +24,18 @@ const RouterComponent = () => {
           drawerWidth={300}
           title={"2 Bears"}
         >
-          <Scene key="auth">
-            <Scene key="login" component={LoginForm} hideNavBar initial />
+          <Scene key="auth" title={"2 Bears"}>
+            <Scene key="login" component={LoginForm} initial />
           </Scene>
 
-          <Scene key="main">
-            <Scene key="categoriesList" component={ CategoriesList } title="Food Categories" initial />
+          <Scene key="main" title={"2 Bears"}>
+            <Scene key="categoriesList" component={ CategoriesList } initial />
             <Scene key="categoryXList" component={ CategoryXList } />
             <Scene key="cart" component={ Cart } />
+            <Scene key="about" component={ About } />
           </Scene>
 
-          <Scene key="admin">
+          <Scene key="admin" title={"2 Bears"}>
             <Scene key="scan" component={ Scan } />
             <Scene key="stats" component={ Stats }  initial />
             <Scene key="drinks" component={ DrinkStatus } />

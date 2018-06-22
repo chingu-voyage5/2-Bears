@@ -10,7 +10,7 @@ import {
 class Stats extends Component {
   render() {
     return (
-    < Text>STATS</Text>
+    <Text>STATS</Text>
     );
   }
 }
