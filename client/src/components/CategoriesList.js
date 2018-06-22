@@ -58,10 +58,10 @@ class CategoriesList extends Component {
           topValue={ -140 }
           openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
-          linkTwoElement={<Text style={styles.slideupText} >About</Text>}
+          linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
           linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
           linkOneScene={Actions.cart}
-          linkTwoScene={Actions.about}
+          linkTwoScene={Actions.categoriesList}
           linkThreeScene={Actions.auth}
         />
       </View>

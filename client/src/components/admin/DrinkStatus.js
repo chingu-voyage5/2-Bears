@@ -10,7 +10,7 @@ import {
 class DrinkStatus extends Component {
   render() {
     return (
-    < Text>DRINKSTATUS</Text>
+    <Text>DRINKSTATUS</Text>
     );
   }
 }

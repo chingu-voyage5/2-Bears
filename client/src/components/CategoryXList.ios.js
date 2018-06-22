@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import CategoryX from './CategoryX';
 import {
+  Dimensions,
   FlatList,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import { BottomNav } from './common';
@@ -25,7 +27,7 @@ class CategoryXList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: .9}}>
+        <View>
           <FlatList
             data={data}
             style={styles.container}
@@ -33,9 +35,16 @@ class CategoryXList extends Component {
             keyExtractor={item => item.key}
           />
         </View>
-        <View style={{flex: 0.1}}>
-          <BottomNav />
-        </View>
+        <BottomNav
+          topValue={ -140 }
+          openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
+          linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
+          linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
+          linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
+          linkOneScene={Actions.cart}
+          linkTwoScene={Actions.categoriesList}
+          linkThreeScene={Actions.auth}
+        />
       </View>
     );
   }
@@ -46,6 +55,16 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
   },
+  openTimes: {
+    paddingTop: 15,
+    paddingBottom: 25,
+    fontSize: 20,
+    left: (Dimensions.get('window').width / 2) - 125,
+  },
+  slideupText: {
+    paddingTop: 20,
+    fontSize: 20,
+  }
 });
 
 export default(CategoryXList);

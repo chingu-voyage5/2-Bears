@@ -52,7 +52,7 @@ class ImageLoader extends Component {
     }
     return (
       <TouchableWithoutFeedback
-        delayPressIn={2}
+        delayPressIn={100}
         onPressIn={this.handlePressIn}
         onPressOut={this.handlePressOut}
       >

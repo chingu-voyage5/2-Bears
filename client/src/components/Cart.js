@@ -5,7 +5,7 @@ import Interactable from 'react-native-interactable';
 class Cart extends Component {
   render() {
     return (
-    < Text>CART</Text>
+    <Text>CART</Text>
     );
   }
 }

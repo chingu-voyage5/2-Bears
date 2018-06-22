@@ -10,7 +10,7 @@ import {
 class Scan extends Component {
   render() {
     return (
-    < Text>SCAN</Text>
+    <Text>SCAN</Text>
     );
   }
 }
