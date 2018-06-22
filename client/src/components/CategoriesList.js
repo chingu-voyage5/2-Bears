@@ -64,7 +64,7 @@ class CategoryXList extends Component {
     return (
       <TouchableWithoutFeedback
         // pressRetentionOffset={{ top: 0, left: 0, bottom: 0, right: 0 }}
-        delayPressIn={2}
+        delayPressIn={100}
         onPressIn={this.handlePressIn}
         onPressOut={this.handlePressOut}
       >
