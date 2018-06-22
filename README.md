@@ -7,7 +7,7 @@
 * [Contributing](#contributing)
 * [Requirements](#requirements)
 * [Mac Installation](#mac-installation)
-* [Windons Installation](#windows-instalation)
+* [Windows Installation](#windows-instalation)
 * [Build Tools](#build-tools)
 * [Contributors](#contributors)
 * [License](#license)
@@ -73,8 +73,7 @@ See link below for instructions on how to get your development environment setup
 ## Contributors
 [Jason Kim](https://github.com/jtk3068)  
 [Lucas Taboada](https://github.com/LucasTaboada)  
-[Oliver De La Via](https://github.com/odelavia)  
-[Tyrese Wills](https://github.com/ty893777)  
+[Oliver De La Via](https://github.com/odelavia)   
 
 ## License
 This project was created in association with [Chingu Coders](https://github.com/chingu-voyage5) through [Chingu](https://chingu.io/).    
