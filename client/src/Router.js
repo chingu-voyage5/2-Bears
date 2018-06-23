@@ -1,11 +1,11 @@
 import React from 'react';
 import { Stack, Scene, Router, Drawer } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
-import CategoriesList from './components/CategoriesList';
-import CategoryXList from './components/CategoryXList';
+import CategoriesList from './components/guest/CategoriesList';
+import CategoryXList from './components/guest/CategoryXList';
 import DrawerContent from './components/drawer/DrawerContent';
-import About from './components/About';
-import Cart from './components/Cart';
+import About from './components/guest/About';
+import Cart from './components/guest/Cart';
 import Stats from './components/admin/Stats';
 import DrinkStatus from './components/admin/DrinkStatus';
 import KitchenStatus from './components/admin/KitchenStatus';

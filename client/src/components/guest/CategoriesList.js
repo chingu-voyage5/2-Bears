@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { BottomNav, ImageLoader } from './common'
+import { BottomNav, ImageLoader } from '../common'
 
 const numColumns = 3
 const categories = [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Underline from './Underline';
 import FloatingLabel from './FloatingLabel';
 import { Animated, TextInput, View, Text } from 'react-native';
@@ -6,7 +6,6 @@ import { Animated, TextInput, View, Text } from 'react-native';
 class Textfield extends Component {
   constructor(props) {
     super(props);
-    this.theme = getTheme();
     this.inputFrame = {};
     this.anim = null;
     this.state = {
@@ -83,11 +82,11 @@ class Textfield extends Component {
     if (this.anim) {
       this.anim.stop();
     }
-
     this.anim = Animated.parallel(animations).start(cb);
   }
 
   _doMeasurement() {
+    console.log('doMeasurement works')
     if (this.refs.input) {
       this.refs.input.measure(this._onInputMeasured.bind(this));
       if (this.props.floatingLabelEnabled && this.refs.floatingLabel) {
@@ -187,40 +186,30 @@ class Textfield extends Component {
   }
 
   render() {
-    const tfTheme = this.theme.textfieldStyle;
     let floatingLabel;
     if (this.props.floatingLabelEnabled) {
       // the floating label
-      const props = Object.assign(
-        pick(['tintColor', 'highlightColor', 'floatingLabelFont'], tfTheme),
-        utils.extractProps(this, FloatingLabel.propTypes));
-
+          //rgba(0, 0, 0, 0.12)
       floatingLabel = (
-        <FloatingLabel ref="floatingLabel"
+        <FloatingLabel
+          ref="floatingLabel"
           {...props}
           text={this.props.placeholder}
           allowFontScaling={this.props.allowFontScaling}
+          underlineEnabled
+          underlineSize={2}
+          highlightColor={'rgba(63,81,181, 0.9)'}
+          tintColor={'rgba(0, 0, 0, 0.12)'}
         />
       );
     }
 
-    const underlineProps = Object.assign(
-      pick(['tintColor', 'highlightColor'], tfTheme),
-      utils.extractProps(this, ['tintColor',
-        'highlightColor', 'underlineSize', 'underlineEnabled']));
-    const inputProps = utils.extractProps(this, {
-      ...TextInput.propTypes,
-      password: 1,
-    });
-
     return (
-      <View style={this.props.style} onLayout={this._doMeasurement.bind(this)}>
+      <View style={styles.containerStyle} onLayout={this._doMeasurement.bind(this)}>
         {floatingLabel}
         <TextInput  // the input
           ref="input"
-          {...inputProps}
-          {...this.props.additionalInputProps}
-          style={textFieldStyle}
+          style={[styles.textfieldStyle, {marginTop: this.state.inputMarginTop,}]}
           onChangeText={this._onTextChange}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
@@ -229,8 +218,9 @@ class Textfield extends Component {
           underlineColorAndroid="transparent"
         />
         <Underline ref="underline"  // the underline
-          {...underlineProps}
-          underlineAniDur={this.props.floatingLabelAniDuration}
+          style={styles.underlineStyle}
+          underlineAniDur={200}
+          opacityAniDur={0}
         />
       </View>
     );
@@ -238,12 +228,29 @@ class Textfield extends Component {
 }
 
 const styles = {
-  textFieldStyle: {
-    backgroundColor: MKColor.Transparent,
+  containerStyle: {
+    height: 39,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  floatingLabelStyle: {
+    color: 'rgba(63, 81, 181, 0.9)',
+  },
+  textfieldStyle: {
+    backgroundColor: 'transparent',
     alignSelf: 'stretch',
-    paddingTop: 2, paddingBottom: 2,
-    marginTop: this.state.inputMarginTop,
+    paddingVertical: 2,
+    color: '#000',
+    paddingHorizontal: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 1
+  },
+  underlineStyle: {
+    borderBottomWidth: 2,
+    borderBottomColor: 'rgba(63,81,181, 0.9)',
   },
 };
 
-export { TextField };
+export default (Textfield);

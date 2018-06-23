@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {
   Animated,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
+import { Heart, StarRating, RoundAddButton, PlateImage } from '../common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -48,7 +50,7 @@ class CategoryX extends Component {
 
   _setMaxHeight(event){
     this.setState({
-        maxHeight: event.nativeEvent.layout.height
+        maxHeight   : event.nativeEvent.layout.height
     });
   }
 
@@ -56,6 +58,11 @@ class CategoryX extends Component {
     this.setState({
       minHeight: event.nativeEvent.layout.height,
     });
+  }
+
+  hideOnExpand() {
+    console.log('hits function')
+    this.state.expanded ? { height:0, width: 0 } : { display: 'block' }
   }
 
   toggle() {
@@ -85,37 +92,37 @@ class CategoryX extends Component {
       ]
     }
     return (
-      <View style={styles.card}>
-        <TouchableWithoutFeedback
-        onPress={this.toggle.bind(this)}
-        >
-          <View style={{paddingTop: 22, paddingHorizontal: '15%',}}>
-            <Animated.View style={{height: this.state.animation}}>
-              <Text style={styles.cardTitle} onLayout={this._setMinHeight.bind(this)}>
-                {this.props.title}
-              </Text>
-              <Text style={[styles.cardDescription, (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 90}]} onLayout={this._setMaxHeight.bind(this)}>
-                {this.props.description}
-              </Text>
-            </Animated.View>
-            <View style={styles.cardReview}>
-              <StarRating
-                ratings={2}
-              />
-              <Text >
-                15mg fat
-              </Text>
-            </View>
-            <View style={styles.heartContainer}>
-              <TouchableWithoutFeedback onPress={this.triggerLike}>
-                <Animated.View style={heartButtonStyle}>
-                  <Heart filled={this.state.liked} />
-                </Animated.View>
-              </TouchableWithoutFeedback>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
+      <View style={styles.fakeOverflowCard}>
         <PlateImage />
+        <View style={styles.card}>
+          <TouchableWithoutFeedback
+          onPress={this.toggle.bind(this)}
+          >
+            <View style={{paddingTop: 22, paddingHorizontal: '15%',}}>
+              <Animated.View style={{height: this.state.animation}}>
+                <Text style={styles.cardTitle} onLayout={this._setMinHeight.bind(this)}>{this.props.title}</Text>
+                <Text style={[styles.cardDescription, this.hideOnExpand.bind(this)]} onLayout={this._setMaxHeight.bind(this)}>
+                {this.props.description}
+                </Text>
+              </Animated.View>
+              <View style={styles.cardReview}>
+                <StarRating
+                  ratings={2}
+                />
+                <Text >
+                  15mg fat
+                </Text>
+              </View>
+              <View style={styles.heartContainer}>
+                <TouchableWithoutFeedback onPress={this.triggerLike}>
+                  <Animated.View style={heartButtonStyle}>
+                    <Heart filled={this.state.liked} />
+                  </Animated.View>
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
         <RoundAddButton onPress={Actions.cart} />
       </View>
     );
@@ -125,22 +132,19 @@ class CategoryX extends Component {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
+    alignItems: 'center',
     alignSelf: 'center',
     borderRadius: 15,
-    marginVertical: 15,
+    elevation: 2,
     minHeight: 100,
-    shadowOffset:{  width: 3,  height: 3,  },
-    shadowColor: '#000',
-    shadowOpacity: .05,
   },
   cardTitle: {
     color: '#000',
   },
   cardDescription: {
     width: 150,
-    // height: 90,
     paddingTop: 20,
-    flexWrap: 'wrap',
+    // paddingBottom: 10,
     color: '#000',
   },
   cardReview: {
@@ -150,6 +154,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 2,
     borderBottomColor: '#fff'
+  },
+  fakeOverflowCard: {
+    // fakes overflow but requires more markup
+    backgroundColor: "transparent",
+    width: '100%',
+    marginVertical: 10,
+    position: "relative",
+    paddingVertical: 5,
   },
   heartContainer: {
     position: 'absolute',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CategoryX from './CategoryX';
+import { Actions } from 'react-native-router-flux';
 import {
   Dimensions,
   FlatList,
@@ -7,8 +7,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import { BottomNav } from './common';
-import { Actions } from 'react-native-router-flux';
+import { BottomNav } from '../common';
+import CategoryX from './CategoryX';
 const data = [
   { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' }, { key: 'Meal7' }, { key: 'Meal8' }, { key: 'Meal9' }, { key: 'Meal10' }, { key: 'Meal11' }, { key: 'Meal12' }, { key: 'Meal13' },
 ]

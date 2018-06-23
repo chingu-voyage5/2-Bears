@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import CategoryX from './CategoryX';
-import { BottomNav } from './common';
+import { BottomNav } from '../common';
 import {
   Dimensions,
   FlatList,

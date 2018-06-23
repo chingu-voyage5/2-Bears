@@ -2,6 +2,7 @@ export * from './BottomNav';
 export * from './Button';
 export * from './Card';
 export * from './CardSection';
+export * from './FloatingInput';
 export * from './Header';
 export * from './Heart';
 export * from './Input';

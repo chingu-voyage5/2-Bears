@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Animated, TextInput, View, Text } from 'react-native';
 
 class Underline extends Component {
@@ -8,6 +8,7 @@ class Underline extends Component {
     this.animatedLineLength = new Animated.Value(0);
     this.state = {
       lineLength: 0,
+      // lineLength: 2,
     };
   }
 
@@ -35,7 +36,7 @@ class Underline extends Component {
     ];
   }
 
-  // collapse the the line to a single point at center
+  // // collapse the the line to a single point at center
   aniShrinkUnderline() {
     if (!this.props.underlineEnabled) {
       return [];
@@ -64,10 +65,10 @@ class Underline extends Component {
   render() {
     return (
       <View pointerEvents="none"
-        style={styles.container}
+        style={[styles.container, {height: this.props.underlineSize}]}
       >
         <View  // the default silver border
-          style={styles.borderStyle}
+          style={[styles.borderStyle, {backgroundColor: this.props.tintColor, height: this.props.underlineSize, width: this.state.lineLength,}]}
         />
         {this.renderUnderline()}
       </View>
@@ -76,22 +77,20 @@ class Underline extends Component {
 }
 
 const styles = {
-  underlineStyle: {
-    position: 'absolute',
-    backgroundColor: this.props.highlightColor,
-    height: this.props.underlineSize,
-    left: this.animatedLeft,
-    width: this.animatedLineLength,
-  },
   container: {
-    // top: -this.props.underlineSize,
-    height: this.props.underlineSize,
+    height: 2,
   },
   borderStyle: {
     position: 'absolute',
-    backgroundColor: this.props.tintColor,
-    height: this.props.underlineSize,
-    width: this.state.lineLength,
+    // backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    // height: 2,
+  },
+  underlineStyle: {
+    position: 'absolute',
+    backgroundColor: 'rgba(63,81,181, 0.9)',
+    // height: 2,
+    left: this.animatedLeft,
+    width: this.animatedLineLength,
   },
 };
 

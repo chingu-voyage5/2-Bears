@@ -1,5 +1,11 @@
-import React from 'react';
-import { Animated, TextInput, View, Text } from 'react-native';
+import React, { Component } from 'react';
+import {
+  Animated,
+  NativeModules,
+  TextInput,
+  View,
+  Text
+} from 'react-native';
 
 class FloatingLabel extends Component {
   constructor(props) {
@@ -25,6 +31,7 @@ class FloatingLabel extends Component {
   // property initializers begin
 
   _onLabelLayout = ({ nativeEvent: { layout } }) => {
+    console.log('onlabellayout function works')
     const x = layout.x;
     const width = layout.width;
     const height = layout.height;
@@ -85,7 +92,7 @@ class FloatingLabel extends Component {
       }),
     ])];
   }
-
+  //outputRange: ['rgba(63,81,181, 0.9)', 'rgba(0, 0, 0, 0.12)'],
   render() {
     const labelColor = this.state.progress.interpolate({
       inputRange: [0, 1],
@@ -113,7 +120,15 @@ class FloatingLabel extends Component {
         pointerEvents="none"
         allowFontScaling={this.props.allowFontScaling}
 
-        style={styles.floatingLabelStyle}
+        style={[
+          styles.floatingLabelStyle, {
+            top: labelY,
+            left: labelX,
+            color: labelColor,
+            opacity: this.state.opacity,
+            transform: [{ scale: labelScale }],
+            marginBottom: this.props.floatingLabelBottomMargin,
+          }]}
         onLayout={this._onLabelLayout}
       >
         {this.state.text}
@@ -124,17 +139,13 @@ class FloatingLabel extends Component {
 
 const styles = {
   floatingLabelStyle: {
-    backgroundColor: MKColor.Transparent,
+    backgroundColor: 'transparent',
     position: 'absolute',
-    top: labelY,
-    left: labelX,
-    color: labelColor,
-    opacity: this.state.opacity,
     fontSize: 16,
-    transform: [
-      { scale: labelScale },
-    ],
-    marginBottom: this.props.floatingLabelBottomMargin,
+    // fontSize: 10,
+    // fontStyle: 'italic',
+    // fontWeight: '200',
+    // marginBottom: 20,
   },
 };
 
