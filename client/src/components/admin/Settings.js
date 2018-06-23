@@ -3,7 +3,7 @@ import {
   Animated,
   StyleSheet,
   Text,
-  TouchableWithoutFeedback,
+  ScrollView,
   View,
 } from 'react-native';
 import { Card, CardSection, FloatingInput, Button, Spinner } from '../common';
@@ -11,31 +11,82 @@ import { Card, CardSection, FloatingInput, Button, Spinner } from '../common';
 class Settings extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <Text>SETTINGS</Text>
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>SETTINGS</Text>
         <View style={styles.card}>
           <View style={styles.cardSection}>
-            <FloatingInput 
-              label={'Email'}
-              secureTextEntry={false}
-              placeholder={''}
+            <FloatingInput
+              label={'First Course Name'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Age Group One'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Age Group Two'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Option One'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal One Price'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Option Two'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Two Price'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Option Three'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Three Price'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Option Four'}
+            />
+          </View>
+          <View style={styles.cardSection}>
+            <FloatingInput
+              label={'Meal Four Price'}
             />
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 25,
+    // marginBottom: 100,
+  },
   card: {
-    borderWidth: 1,
-    borderRadius: 2,
     borderColor: 'transparent',
-    borderBottomWidth: 0,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 50,
   },
   cardSection: {
     borderBottomWidth: 1,
@@ -46,6 +97,10 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     position: 'relative'
   },
+  title: {
+    paddingLeft: 15,
+    // paddingTop: 15,
+  }
 })
 
 export default(Settings);
