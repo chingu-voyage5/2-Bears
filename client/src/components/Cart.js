@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import {
-  Animated,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
+import { StyleSheet, Text, View } from 'react-native';
+import Interactable from 'react-native-interactable';
 
 class Cart extends Component {
- render() {
-  return (
-   <Text>CART</Text>
-  );
-}
+  render() {
+    return (
+    <Text>CART</Text>
+    );
+  }
 }
 
 const styles = StyleSheet.create({})

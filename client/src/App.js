@@ -6,9 +6,6 @@ import thunkMiddleware from 'redux-thunk';
 import { AppRegistry } from 'react-native';
 import { createLogger } from 'redux-logger';
 import reducers from './reducers/index';
-import { Header } from './components/common';
-import Router from './Router'
-
 
 const logger = createLogger({});
 const middleware = [
@@ -32,3 +29,4 @@ export default class App extends Component {
     );
     }
 }
+

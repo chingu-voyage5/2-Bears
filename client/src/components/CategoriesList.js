@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
+import Interactable from 'react-native-interactable';
 import {
   Animated,
   Dimensions,
   FlatList,
+  Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { BottomNav, ImageLoader } from './common'
 
-const data = [
+const numColumns = 3
+const categories = [
   { key: 'Category1' }, { key: 'Category2' }, { key: 'Category3' }, { key: 'Category4' }, { key: 'Category5' }, { key: 'Category6' }, { key: 'Category7' }, { key: 'Category8' }, { key: 'Category9' }, { key: 'Category10' }, { key: 'Category11' }, { key: 'Category12' }, { key: 'category13' },
 ]
 
@@ -25,62 +30,41 @@ const formatData = (data, numColumns) => {
   return data;
 };
 
-const numColumns = 3
-
-class CategoryXList extends Component {
+class CategoriesList extends Component {
   constructor(props) {
     super(props);
-    this.handlePressIn = this.handlePressIn.bind(this);
-    this.handlePressOut = this.handlePressOut.bind(this);
-  }
 
-  componentWillMount() {
-    this.animatedValue = new Animated.Value(1);
+    this._deltaY = new Animated.Value(0);
   }
-
-  handlePressIn() {
-    Animated.spring(this.animatedValue, {
-      toValue: .5
-    }).start()
-  }
-
-  handlePressOut() {
-    Animated.spring(this.animatedValue, {
-      toValue: 1,
-      friction: 3,
-      tension: 40
-    }).start()
-    Actions.categoryXList();
-  }
-
   renderItem = ({ item, index }) => {
-    const animatedStyle = {
-      transform: [{ scale: this.animatedValue }]
-    }
-
-    if (item.empty === true) {
-      return <View style={[styles.item, styles.itemInvisible]} />;
-    }
     return (
-      <TouchableWithoutFeedback
-        onPressIn={this.handlePressIn}
-        onPressOut={this.handlePressOut}
-      >
-      <Animated.View style={[styles.item, animatedStyle]}>
-        <Text style={styles.itemText}>{item.key}</Text>
-      </Animated.View>
-      </TouchableWithoutFeedback>
+      <ImageLoader item={item} />
     );
   };
 
   render() {
     return (
-      <FlatList
-        data={formatData(data, numColumns)}
-        style={styles.container}
-        renderItem={this.renderItem}
-        numColumns={numColumns}
-      />
+      <View style={styles.container}>
+        <View>
+          <FlatList
+            data={formatData(categories, numColumns)}
+            keyExtractor={item => item.key}
+            renderItem={this.renderItem}
+            numColumns={numColumns}
+            style={styles.flatlist}
+          />
+        </View>
+        <BottomNav
+          topValue={ -140 }
+          openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
+          linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
+          linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
+          linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
+          linkOneScene={Actions.cart}
+          linkTwoScene={Actions.main}
+          linkThreeScene={Actions.auth}
+        />
+      </View>
     );
   }
 }
@@ -88,22 +72,20 @@ class CategoryXList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
   },
-  item: {
-    backgroundColor: '#4d243d',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    margin: 1,
-    height: Dimensions.get('window').width / numColumns
+  flatlist: {
+    marginBottom: 50
   },
-  itemInvisible: {
-    backgroundColor: 'transparent',
+  openTimes: {
+    paddingTop: 15,
+    paddingBottom: 25,
+    fontSize: 20,
+    left: (Dimensions.get('window').width / 2) - 125,
   },
-  itemText: {
-    color: '#fff',
-  },
+  slideupText: {
+    paddingTop: 20,
+    fontSize: 20,
+  }
 });
 
-export default(CategoryXList);
+export default(CategoriesList);

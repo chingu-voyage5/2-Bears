@@ -15,7 +15,7 @@ class StarRating extends Component {
 			if (i > ratings) {
 				path = require('../../images/star-unfilled.png');
 			}
-			stars.push((<Image style={styles.image} source={path} />));
+			stars.push((<Image style={styles.image} source={path} key={i} />));
 		}
 
 		return (

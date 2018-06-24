@@ -92,9 +92,7 @@ class CategoryX extends Component {
       ]
     }
     return (
-      <View
-        style={styles.fakeOverflowCard}
-      >
+      <View style={styles.fakeOverflowCard}>
         <PlateImage />
         <View style={styles.card}>
           <TouchableWithoutFeedback
@@ -153,7 +151,6 @@ const styles = StyleSheet.create({
     width: 150,
     paddingBottom: 20,
     paddingTop: 10,
-    color: '#000',
     backgroundColor: '#fff',
     borderBottomWidth: 2,
     borderBottomColor: '#fff'
