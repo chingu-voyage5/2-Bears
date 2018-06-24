@@ -16,17 +16,18 @@ class LoginForm extends Component {
 
         }
         this.passwordChange = this.passwordChange.bind(this);
-        this.emailChange = this.passwordChange.bind(this);
+        this.emailChange = this.emailChange.bind(this);
         const { dispatch, errorMessage, isAuthenticated } = this.props
     }
 
     emailChange(text) {
         this.setState({
             email: text,
-        })
+        },()=> console.log(this.state) )
     }
 
     passwordChange(text) {
+
         this.setState({
             password: text
         })
@@ -34,8 +35,8 @@ class LoginForm extends Component {
 
     handleLoginClick() {
         // console.log('this is the props on line 26', this.props);
-        const email = this.state.email.toLowerCase().replace(/\s/g, '');
-        const password = this.state.password.replace(/\s/g, '');
+        const email = this.state.email;
+        const password = this.state.password;
         const creds = { email: email, password: password };
         this.props.dispatch(loginUser(creds));
     }

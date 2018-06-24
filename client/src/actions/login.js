@@ -48,7 +48,7 @@ exports.loginUser = (creds) => {
     return (dispatch) => {
         dispatch(requestLogin(creds));
 
-        return axios.get(`https://localhost:5000/users/${creds.email}/${creds.password}`)
+        return axios.get(`http://localhost:5000/api/users/${creds.email}/${creds.password}`)
             .then((response) => {
                 console.log(response);
                 console.log('this is asnycstorage 60!!!!!!!!!!!!!', AsyncStorage);
@@ -62,7 +62,7 @@ exports.loginUser = (creds) => {
                 console.log('before dashboard');
                 console.log(AsyncStorage, 'this is asnycstorage 60!!!!!!!!!!!!!')
                 console.log('this is the token when they signup', AsyncStorage.getItem('id_token'));
-                Actions.home({ type: ActionConst.RESET });
+                Actions.cart({ type: ActionConst.RESET });
                 console.log('after dashboard');
             })
             .catch((err) => {

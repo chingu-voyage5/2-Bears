@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { AppRegistry } from 'react-native';
 import { createLogger } from 'redux-logger';
-import reducers from './reducers';
+import reducers from './reducers/index';
 import { Header } from './components/common';
 import Router from './Router'
 
