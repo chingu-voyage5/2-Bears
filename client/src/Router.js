@@ -1,5 +1,6 @@
-import React from 'react';
-import { Stack, Scene, Router, Drawer } from 'react-native-router-flux';
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
+import { Stack, Scene, Router } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import CategoriesList from './components/CategoriesList';
 import CategoryXList from './components/CategoryXList';
@@ -12,9 +13,20 @@ import KitchenStatus from './components/admin/KitchenStatus';
 import Settings from './components/admin/Settings';
 import Scan from './components/admin/Scan';
 
-const RouterComponent = () => {
-  return (
-    <Router>
+class RouterComponent extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
+
+    render(){
+        const { dispatch, errorMessage, isAuthenticated } = this.props
+        return (
+<Router>
 
       <Stack key="root" hideNavBar>
         <Drawer
@@ -25,7 +37,7 @@ const RouterComponent = () => {
           title={"2 Bears"}
         >
           <Scene key="auth" title={"2 Bears"}>
-            <Scene key="login" component={LoginForm} initial />
+            <Scene key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenitcated} errorMessage={errorMessage} dispatch={dispatch} initial />
           </Scene>
 
           <Scene key="main" title={"2 Bears"}>
@@ -46,7 +58,20 @@ const RouterComponent = () => {
         </Drawer>
       </Stack>
     </Router>
-  );
+    );
+
+    }
+
 };
 
-export default RouterComponent;
+const mapsStateToProps = (state) => {
+    const { auth } = state;
+    const { isAuthenticated, errorMessage } = auth;
+
+    return {
+        isAuthenticated,
+        errorMessage
+    }
+}
+
+export default connect(mapsStateToProps)(RouterComponent);

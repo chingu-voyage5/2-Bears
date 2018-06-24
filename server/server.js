@@ -3,7 +3,6 @@ const path = require('path');
 if(process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
-const mongoose = require('mongoose');
 const app = express();
 const {Server} = require('http')
 const server = Server(app)
@@ -20,11 +19,11 @@ app.use('/api', router);
 
 
 
-server.listen(PORT, (err) => {
+server.listen(5000, (err) => {
   if (err) {
     console.log('There was an error connecting to the Server ', err);
   } else {
-    console.log('You have connected to the server on PORT: ', PORT);
+    console.log('You have connected to the server on PORT: ', 5000);
     console.log('╔═══════════════════╗');
     console.log('║                   ║');
     console.log('║  Hi!              ║');

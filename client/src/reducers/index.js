@@ -1,7 +1,13 @@
 import { combineReducers } from 'redux';
+//import EmployeeFormReducer from './EmployeeFormReducer';
+// import AnimationReducers from './AnimationReducers';
+import authReducer from './authReducer'
 
-export default combineReducers({
-  // change child reducers here
-  childReducer: () => []
-  //
-});
+  const RootReducer = combineReducers({
+      auth: authReducer,
+      // AnimationReducers,
+
+  })
+
+export default RootReducer;
+

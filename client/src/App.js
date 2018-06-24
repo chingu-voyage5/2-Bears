@@ -1,21 +1,32 @@
-import React  from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { Header } from './components/common';
-import reducers from './reducers';
-import Router from './Router'
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { AppRegistry } from 'react-native';
+import { createLogger } from 'redux-logger';
+import reducers from './reducers/index';
 
-const App = () => {
-  return (
-    <Provider store={createStore(reducers)}>
-      <View style={{ flex: 1 }}>
-        <Router />
-      </View>
-    </Provider>
-  );
-};
+const logger = createLogger({});
+const middleware = [
+    thunkMiddleware,
+    logger,
+];
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
+const store = createStoreWithMiddleware(reducers);
+console.disableYellowBox = true;
+export default class App extends Component {
 
-export default App;
 
-// <Header headerText="Welcome, User" />
+    render() {
+        return (
+            <Provider store={store}>
+                <View style={{ flex: 1 }}>
+                    <Header headerText="Welcome, User" />
+                    <Router />
+                </View>
+            </Provider>
+    );
+    }
+}
+
