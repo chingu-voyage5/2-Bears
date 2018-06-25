@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { Stack, Scene, Router } from 'react-native-router-flux';
+
+import { Stack, Scene, Router, Drawer } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import CategoriesList from './components/CategoriesList';
 import CategoryXList from './components/CategoryXList';
@@ -37,7 +38,7 @@ class RouterComponent extends Component {
           title={"2 Bears"}
         >
           <Scene key="auth" title={"2 Bears"}>
-            <Scene key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenitcated} errorMessage={errorMessage} dispatch={dispatch} initial />
+            <Scene key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} initial />
           </Scene>
 
           <Scene key="main" title={"2 Bears"}>

@@ -62,7 +62,7 @@ exports.loginUser = (creds) => {
                 console.log('before dashboard');
                 console.log(AsyncStorage, 'this is asnycstorage 60!!!!!!!!!!!!!')
                 console.log('this is the token when they signup', AsyncStorage.getItem('id_token'));
-                Actions.cart({ type: ActionConst.RESET });
+                Actions.main();
                 console.log('after dashboard');
             })
             .catch((err) => {
