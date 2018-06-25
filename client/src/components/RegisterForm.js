@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { loginUser } from '../actions/login';
 import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
 
     constructor(props) {
         super(props);
@@ -51,47 +51,72 @@ class LoginForm extends Component {
 
     return (
       <ScrollView>
-        <View style={styles.containerStyle}>
-          <View style={styles.titleStyle}>
-            <Text style={styles.titleText}>Log In</Text>
+      <View style={styles.containerStyle}>
+        <View style={styles.titleStyle}>
+          <Text style={styles.titleText}>Register</Text>
+        </View>
+        <View style={styles.cardStyle}>
+          <View style={styles.inputSection}>
+            <FloatingInput
+              label="First Name"
+              placeholder="John"
+              onChangeText={ text => this.emailChange(text)}
+            />
           </View>
-          <View style={styles.cardStyle}>
-            <View style={styles.inputSection}>
-              <FloatingInput
-                label="Email"
-                placeholder="email@email.com"
-                onChangeText={ text => this.emailChange(text)}
-              />
-            </View>
 
-            <View style={styles.inputSection}>
+          <View style={styles.inputSection}>
+            <FloatingInput
+              secureTextEntry
+              label="Last Name"
+              placeholder="Johnson"
+              onChangeText={ text => this.passwordChange(text)}
+            />
+          </View>
+
+          <View style={styles.inputSection}>
+            <FloatingInput
+              secureTextEntry
+              label="Username"
+              placeholder="TheJohn007"
+              onChangeText={ text => this.passwordChange(text)}
+            />
+          </View>
+
+          <View style={styles.inputSection}>
+            <FloatingInput
+              label="Email"
+              placeholder="email@email.com"
+              onChangeText={ text => this.emailChange(text)}
+            />
+          </View>
+
+          <View style={styles.inputSection}>
             <FloatingInput
               secureTextEntry
               label="Password"
               placeholder="password"
               onChangeText={ text => this.passwordChange(text)}
             />
-            </View>
-
-
-          </View>
-
-          <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={() => this.handleLoginClick()}>
-            Login
-            </Button>
-            <View style={styles.signupText}>
-              <Text style={styles.text}>First time here?
-                <TouchableWithoutFeedback onPress={ Actions.register }>
-                  <Text style={styles.signupLink }>
-                    Sign up
-                  </Text>
-                </TouchableWithoutFeedback>
-              </Text>
-            </View>
           </View>
 
         </View>
+
+        <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
+          <Button onPress={() => this.handleLoginClick()}>
+            Register
+          </Button>
+          <View style={styles.signupText}>
+            <Text style={styles.text}>Not your first time here?
+              <TouchableWithoutFeedback onPress={ Actions.login }>
+                <Text style={styles.signupLink }>
+                  Log in
+                </Text>
+              </TouchableWithoutFeedback>
+            </Text>
+          </View>
+        </View>
+
+      </View>
       </ScrollView>
     );
   }
@@ -100,6 +125,7 @@ class LoginForm extends Component {
 const styles ={
   containerStyle: {
     flex: 1,
+    // minHeight: 550,
     paddingVertical: 80,
     justifyContent: 'space-around',
   },
@@ -113,6 +139,7 @@ const styles ={
     color: 'rgba(40, 40, 40, 1)'
   },
   cardStyle: {
+    // minHeight: 500,
     marginHorizontal: 25,
     marginVertical: 25
   },
@@ -144,4 +171,4 @@ const styles ={
   }
 }
 
-export default (LoginForm);
+export default (RegisterForm);
