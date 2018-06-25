@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Dimensions, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { loginUser } from '../actions/login';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
 
 class LoginForm extends Component {
 
@@ -41,43 +41,98 @@ class LoginForm extends Component {
         this.props.dispatch(loginUser(creds));
     }
 
-
+    measure(layout) {
+      const { width } = layout;
+      this.setState({ width: width })
+    }
 
   render() {
-        const { dispatch, errorMessage, isAuthenticated } = this.props;
-
+    const { dispatch, errorMessage, isAuthenticated } = this.props;
 
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={ text => this.emailChange(text)}
+      <View style={styles.containerStyle}>
+        <View style={styles.titleStyle}>
+          <Text style={styles.titleText}>Log In</Text>
+        </View>
+        <View style={styles.cardStyle}>
+          <View style={styles.inputSection}>
+            <FloatingInput
+              label="Email"
+              placeholder="email@email.com"
+              onChangeText={ text => this.emailChange(text)}
+            />
+          </View>
 
-      />
-        </CardSection>
+          <View style={styles.inputSection}>
+          <FloatingInput
+            secureTextEntry
+            label="Password"
+            placeholder="password"
+            onChangeText={ text => this.passwordChange(text)}
+          />
+          </View>
 
-        <CardSection>
-        <Input
-          secureTextEntry
-          label="Password"
-          placeholder="password"
-          onChangeText={ text => this.passwordChange(text)}
-        />
-        </CardSection>
 
-        <CardSection>
+        </View>
+
+        <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
           <Button onPress={() => this.handleLoginClick()}>
           Login
           </Button>
-        </CardSection>
-      </Card>
+          <View style={styles.signupText}>
+            <Text style={styles.text}>First time here?
+              <Text style={styles.signupLink }>
+                Sign up
+              </Text>
+            </Text>
+          </View>
+        </View>
+
+      </View>
     );
   }
 }
 
 const styles ={
+  containerStyle: {
+    flex: 1,
+    paddingVertical: 80,
+    justifyContent: 'space-around',
+  },
+  titleStyle: {
+    alignSelf: 'center',
+  },
+  titleText: {
+    alignSelf: 'center',
+    fontSize: 30,
+    fontWeight: '800',
+    color: 'rgba(40, 40, 40, 1)'
+  },
+  cardStyle: {
+    marginHorizontal: 25,
+    marginVertical: 25
+  },
+  inputSection: {
+    padding: 5,
+    flexDirection: 'row',
+    position: 'relative'
+  },
+  buttonSection: {
+    padding: 5,
+    flexDirection: 'column',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  signupText: {
+    marginTop: 15,
+  },
+  text: {
+
+  },
+  signupLink: {
+    paddingLeft: 5,
+    color: 'rgba(63, 81, 181, 0.75)',
+  },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
