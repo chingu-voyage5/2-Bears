@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { Dimensions, TextInput, View, Text } from 'react-native';
 
 class FloatingInput extends Component {
   constructor(props) {
@@ -18,21 +18,9 @@ class FloatingInput extends Component {
       labelColor: 'rgba(63, 81, 181, 0.75)',
       fontStyle: 'normal',
       fontSize: 18,
+      display: 'flex',
+      width: 0,
     }
-  }
-
-  handleFloatingLabel() {
-    console.log('works')
-    // if (this.state.isFocused || this.state.value !== '') {
-      // return (
-      //   <View style={styles.floatingLabelStyle}>
-      //     <Text style={[styles.floatingLabelText, {color: this.state.labelColor, marginBottom: this.state.marginColor, }]}>
-      //       {`${this.state.label}...`}
-      //     </Text>
-      //   </View>
-      // )
-    //   this.setState({ labelColor: 'rgba(63, 81, 181, 0.9)', marginBottom: 45, fontStyle: 'italic',})
-    // }
   }
 
   handleInputFocus() {
@@ -43,6 +31,7 @@ class FloatingInput extends Component {
       labelMarginBottom: 45,
       fontStyle: 'italic',
       fontSize: 14,
+      display: 'none',
       ellipsis: '...',
     });
   }
@@ -56,6 +45,7 @@ class FloatingInput extends Component {
         fontStyle: 'normal',
         fontSize: 18,
         ellipsis: '',
+        display: 'flex',
       });
     } else {
       this.setState({ isFocused: false,
@@ -63,12 +53,17 @@ class FloatingInput extends Component {
       });
     }
   }
+
+  measure(layout) {
+    const { width } = layout;
+    this.setState({ width: width }) 
+  } 
+
   render() {
     return (
       <View style={styles.containerStyle}>
         <View style={styles.floatingLabelStyle}>
           <Text
-            handleFloatingLabel={() => this.handleFloatingLabel()} 
             style={[
               styles.floatingLabelText,
               {
@@ -81,10 +76,23 @@ class FloatingInput extends Component {
             {`${this.state.label}${this.state.ellipsis}`}
           </Text>
         </View>
+        <View style={styles.placeholderStyle}>
+          <Text
+            style={[
+              styles.placeholderText,
+              {
+                display: this.state.display,
+                left: (Dimensions.get('window').width / 2) - (this.state.width / 2),
+              }
+            ]}
+            onLayout={(event) => { this.measure(event.nativeEvent.layout) }}
+          >
+            {`${this.state.placeholder}`}
+          </Text>
+        </View>
         <TextInput
           label={this.props.label}
           secureTextEntry={this.props.secureTextEntry}
-          placeholder={this.props.placeholder}
           placeholderTextColor={'rgba(0, 0, 0, 0.12)'}
           selectionColor={'rgba(63, 81, 181, 0.9)'}
           underlineColorAndroid='transparent'
@@ -116,15 +124,22 @@ const styles = {
     lineHeight: 23,
     flex: 2,
     borderBottomWidth: 2,
-    // borderBottomColor: 'rgba(63, 81, 181, 0.9)',
+
   },
   floatingLabelStyle: {
     position: 'absolute',
   },
   floatingLabelText: {
-    // marginBottom: 45,
-    // marginBottom: 3,
     marginLeft: 5,
+  },
+  placeholderStyle: {
+    position: 'absolute',
+  },
+  placeholderText: {
+    color: 'rgba(0, 0, 0, 0.12)',
+    fontSize: 18,
+    marginBottom: 3,
+    alignSelf: 'center',
   },
   containerStyle: {
     height: 50,
