@@ -1,5 +1,6 @@
 export * from './BottomNav';
 export * from './Button';
+export * from './ButtonTwo';
 export * from './Card';
 export * from './CardSection';
 export * from './FloatingInput';
