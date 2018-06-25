@@ -6,16 +6,18 @@ import { Header } from './components/common';
 import reducers from './reducers';
 import Router from './Router'
 
-const App = () => {
-  return (
-    <Provider store={createStore(reducers)}>
-      <View style={{ flex: 1 }}>
-        <Router />
-      </View>
-    </Provider>
-  );
-};
-
-export default App;
+console.disableYellowBox = true;
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={createStore(reducers)}>
+        <View style={{ flex: 1 }}>
+          <Router />
+        </View>
+      </Provider>
+    );
+  }
+}
 
 // <Header headerText="Welcome, User" />
+
