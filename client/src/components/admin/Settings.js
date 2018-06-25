@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect (mapStateToProps, {  }) (Settings);
+export default (Settings);
 
 //'rgba(63,81,181, 0.9)'
 //'rgba(0,0,0, 0.12)'

@@ -1,7 +1,7 @@
 import React  from 'react';
 import { View } from 'react-native';
 import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { Header } from './components/common';
 import reducers from './reducers';
 import Router from './Router'

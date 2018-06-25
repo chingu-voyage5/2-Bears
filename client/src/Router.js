@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack, Scene, Router, Drawer } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 import CategoriesList from './components/guest/CategoriesList';
 import CategoryXList from './components/guest/CategoryXList';
 import DrawerContent from './components/drawer/DrawerContent';
@@ -26,6 +27,7 @@ const RouterComponent = () => {
         >
           <Scene key="auth" title={"2 Bears"}>
             <Scene key="login" component={LoginForm} initial />
+            <Scene key="register" component={RegisterForm} />
           </Scene>
 
           <Scene key="main" title={"2 Bears"}>

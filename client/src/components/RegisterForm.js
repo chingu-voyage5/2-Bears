@@ -1,54 +1,11 @@
 import React, { Component } from 'react';
 import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
-import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { loginUser } from '../actions/login';
 import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
 
 class RegisterForm extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            email: '',
-            password: '',
-
-        }
-        this.passwordChange = this.passwordChange.bind(this);
-        this.emailChange = this.emailChange.bind(this);
-        const { dispatch, errorMessage, isAuthenticated } = this.props
-    }
-
-    emailChange(text) {
-        this.setState({
-            email: text,
-        },()=> console.log(this.state) )
-    }
-
-    passwordChange(text) {
-
-        this.setState({
-            password: text
-        })
-    }
-
-    handleLoginClick() {
-        // console.log('this is the props on line 26', this.props);
-        const email = this.state.email;
-        const password = this.state.password;
-        const creds = { email: email, password: password };
-        this.props.dispatch(loginUser(creds));
-    }
-
-    measure(layout) {
-      const { width } = layout;
-      this.setState({ width: width })
-    }
-
   render() {
-    const { dispatch, errorMessage, isAuthenticated } = this.props;
-
     return (
       <ScrollView>
         <View style={styles.containerStyle}>
@@ -60,25 +17,20 @@ class RegisterForm extends Component {
               <FloatingInput
                 label="First Name"
                 placeholder="John"
-                onChangeText={ text => this.emailChange(text)}
               />
             </View>
 
             <View style={styles.inputSection}>
               <FloatingInput
-                secureTextEntry
                 label="Last Name"
                 placeholder="Johnson"
-                onChangeText={ text => this.passwordChange(text)}
               />
             </View>
 
             <View style={styles.inputSection}>
               <FloatingInput
-                secureTextEntry
                 label="Username"
                 placeholder="TheJohn007"
-                onChangeText={ text => this.passwordChange(text)}
               />
             </View>
 
@@ -86,7 +38,6 @@ class RegisterForm extends Component {
               <FloatingInput
                 label="Email"
                 placeholder="email@email.com"
-                onChangeText={ text => this.emailChange(text)}
               />
             </View>
 
@@ -95,14 +46,13 @@ class RegisterForm extends Component {
                 secureTextEntry
                 label="Password"
                 placeholder="password"
-                onChangeText={ text => this.passwordChange(text)}
               />
             </View>
 
           </View>
 
           <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={() => this.handleLoginClick()}>
+            <Button onPress={ Actions.main}>
               Register
             </Button>
             <View style={styles.signupText}>
