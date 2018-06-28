@@ -22,26 +22,31 @@ class Settings extends Component {
           <View style={styles.cardSection}>
             <FloatingInput
               label={'Number of courses'}
+              placeholder={'1'}
             />
           </View>
           <View style={styles.cardSection}>
             <FloatingInput
               label={'how many options for first course?'}
+              placeholder=''
             />
           </View>
           <View style={styles.cardSection}>
             <FloatingInput
               label={'how many options for second course?'}
+              placeholder=''
             />
           </View>
           <View style={styles.cardSection}>
             <FloatingInput
               label={'Add Kid Menu? (answer \'yes\' or \'no\')'}
+              placeholder=''
             />
           </View>
           <View style={styles.cardSection}>
             <FloatingInput
               label={'How many drink options?'}
+              placeholder=''
             />
           </View>
         </View>

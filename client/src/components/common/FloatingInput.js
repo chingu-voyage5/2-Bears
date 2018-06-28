@@ -10,7 +10,7 @@ class FloatingInput extends Component {
       ellipsis: '',
       value: '',
       onChangeText: this.props.onChangeText,
-      placeholder: this.props.placeholder,
+      placeholder: this.props.placeholder || '',
       secureTextEntry: this.props.secureTextEntry,
       isFocused: false,
       underlineColor: 'rgba(0, 0, 0, 0.12)',
@@ -94,6 +94,7 @@ class FloatingInput extends Component {
           label={this.props.label}
           secureTextEntry={this.props.secureTextEntry}
           placeholderTextColor={'rgba(0, 0, 0, 0.12)'}
+          placeholder='wow'
           selectionColor={'rgba(63, 81, 181, 0.9)'}
           underlineColorAndroid='transparent'
           autoCorrect={false}

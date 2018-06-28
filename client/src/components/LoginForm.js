@@ -33,7 +33,7 @@ class LoginForm extends Component {
             Login
             </Button>
             <View style={styles.signupText}>
-              <Text style={styles.text}>First time here?
+              <Text style={styles.text}>First time here?</Text>
                 <TouchableWithoutFeedback onPress={ Actions.register }>
                   <View>
                     <Text style={styles.signupLink }>
@@ -41,7 +41,6 @@ class LoginForm extends Component {
                     </Text>
                   </View>
                 </TouchableWithoutFeedback>
-              </Text>
             </View>
           </View>
 
