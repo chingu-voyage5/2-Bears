@@ -35,10 +35,11 @@ class LoginForm extends Component {
 
     handleLoginClick() {
         // console.log('this is the props on line 26', this.props);
-        const email = this.state.email;
-        const password = this.state.password;
-        const creds = { email: email, password: password };
-        this.props.dispatch(loginUser(creds));
+        // const email = this.state.email;
+        // const password = this.state.password;
+        // const creds = { email: email, password: password };
+        // this.props.dispatch(loginUser(creds));
+        Actions.main()
     }
 
     measure(layout) {
