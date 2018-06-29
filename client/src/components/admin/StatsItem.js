@@ -7,14 +7,14 @@ import {
   View,
 } from 'react-native';
 
-class Stats extends Component {
+class StatsItem extends Component {
   render() {
     return (
-    <Text>STATS</Text>
+    <Text>More Info about stat item</Text>
     );
   }
 }
 
 const styles = StyleSheet.create({})
 
-export default(Stats);
+export default(StatsItem);

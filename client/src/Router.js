@@ -9,7 +9,8 @@ import CategoryXList from './components/CategoryXList';
 import DrawerContent from './components/drawer/DrawerContent';
 import About from './components/About';
 import Cart from './components/Cart';
-import Stats from './components/admin/Stats';
+import StatsList from './components/admin/StatsList';
+import StatsItem from './components/admin/StatsItem';
 import DrinkStatus from './components/admin/DrinkStatus';
 import KitchenStatus from './components/admin/KitchenStatus';
 import Settings from './components/admin/Settings';
@@ -52,7 +53,8 @@ class RouterComponent extends Component {
 
           <Scene key="admin" title={"2 Bears"}>
             <Scene key="scan" component={ Scan } />
-            <Scene key="stats" component={ Stats }  initial />
+            <Scene key="stats" component={ StatsList }  initial />
+            <Scene key="statsItem" component={ StatsItem } />
             <Scene key="drinks" component={ DrinkStatus } />
             <Scene key="kitchen" component={ KitchenStatus } />
             <Scene key="settings" component={ Settings } />
