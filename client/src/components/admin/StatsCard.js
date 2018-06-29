@@ -30,12 +30,27 @@ class StatsDetail extends Component {
     }
   }
 
+  // getMenuOneOrderstats() {
+  //   const menuOne = this.props.menuOne
+  //   menuOne.map(x => {
+  //     let i = 0
+  //     while(i > menuOne.length && menuOne[i].value !== 'N/A') {
+
+
+  //     }
+  //   })
+  // }
+
+  // getMenuTwoOrderstats() {
+
+  // }
+
   render() {
     return (
       <View style={styles.fakeOverflowCard}>
         <View style={styles.card}>
           <TouchableWithoutFeedback
-          onPress={Actions.statsItem}
+            onPress={Actions.statsItem}
           >
             <View style={{paddingTop: 22, paddingHorizontal: '5%',}}>
               <Text style={styles.cardTitle}>{this.props.id}</Text>
