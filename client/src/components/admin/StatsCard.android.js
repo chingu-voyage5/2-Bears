@@ -15,7 +15,7 @@ import { Heart, StarRating, RoundAddButton, PlateImage } from '../common'
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
 
-class StatsDetail extends Component {
+class StatsCard extends Component {
   constructor(props) {
     super(props);
 
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default(StatsDetail);
+export default(StatsCard);
 
 
 

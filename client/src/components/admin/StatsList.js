@@ -9,14 +9,14 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import StatsDetail from './StatsCard';
+import StatsCard from './StatsCard';
 import customers from '../SeedData/customerSeedData'
 
 const numColumns = 3.5;
 class StatsList extends Component {
   renderItem = ({ item, index }) => {
     return (
-      <StatsDetail
+      <StatsCard
         id={item.key}
         customer={item.name}
         scanTime={item.scanTime}
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     marginBottom: 50,
+    marginHorizontal: 0,
   },
   openTimes: {
     paddingTop: 15,
