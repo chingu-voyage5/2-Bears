@@ -3,7 +3,7 @@ import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 're
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { loginUser } from '../actions/login';
-import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
+import { Card, CardSection, FloatingInput, SolidButton, Spinner } from './common';
 
 class LoginForm extends Component {
 
@@ -78,9 +78,9 @@ class LoginForm extends Component {
           </View>
 
           <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={() => this.handleLoginClick()}>
+            <SolidButton onPress={() => this.handleLoginClick()}>
             Login
-            </Button>
+            </SolidButton>
             <View style={styles.signupText}>
               <Text style={styles.text}>First time here?
                 <TouchableWithoutFeedback onPress={ Actions.register }>

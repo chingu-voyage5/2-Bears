@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from '../common'
+import { Heart, StarRating, RoundAddButton, PlateImage, OutlineButton } from '../common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -20,13 +20,17 @@ class StatsCard extends Component {
     super(props);
 
     this.state = {
+      customers : props.customerList,
+      item: props.item,
       id : props.id,
+      index : props.index,
       customer : props.customer,
       scanTime : props.scanTime,
       tableNo : props.tableNo,
       action : props.action,
       menuOne: props.menuOne,
       menuTwo: props.menuTwo,
+      activeCardKey : this.props.item.key,
     }
   }
 
@@ -44,6 +48,30 @@ class StatsCard extends Component {
   // getMenuTwoOrderstats() {
 
   // }
+  // componentWillUnmount() {
+  //  this.handleActionButton()
+  // }
+  handleActionButton() {
+   let customers = this.state.customers
+   let index = this.state.index
+   let action = this.state.action
+   if (action == 'Scan' ) {
+     this.setState({ action: `Serve drinks` })
+   } else if (action === `Serve drinks`) {
+     this.setState({ action: `Serve firstCourse` })
+   } else if (action === `Serve firstCourse`) {
+     this.setState({ action: `Serve secondCourse` })
+   } else if (action === `Serve secondCourse`) {
+     this.setState({ action: `Done` })
+   } else if (action === `Done`) {
+     const deletingCard = this.state.activeCardKey
+     this.setState({
+       customers : this.state.customers.splice( customers[index], 1),
+       activeCardKey : null
+     })
+     this.props.parentFlatlist.refreshFlatlist(deletingCard)
+   }
+  }
 
   render() {
     return (
@@ -52,8 +80,8 @@ class StatsCard extends Component {
           onPress={Actions.statsItem}
         >
           <View style={{paddingVertical: '8%', paddingHorizontal: '8%',}}>
-            <Text style={styles.cardTitle}>{this.props.id}</Text>
             <Text>{this.props.customer}</Text>
+            <Text style={styles.cardTitle}>ID #: {this.props.id}</Text>
             <Text>{this.props.scanTime}</Text>
             <View style={styles.menuOneStyle}>
               <Text>{this.props.menuOne.courseOne.optionOne}</Text>
@@ -89,8 +117,10 @@ class StatsCard extends Component {
               <Text>{this.props.menuTwo.courseFive.optionTwo}</Text>
               <Text>{this.props.menuTwo.courseFive.optionThree}</Text>
             </View>
-            <Text>{this.props.tableNo}</Text>
-            <Text>{this.props.action}</Text>
+            <Text>Table #: {this.props.tableNo}</Text>
+            <OutlineButton onPress={() => {this.handleActionButton() }}>
+              {this.state.action}
+            </OutlineButton>
 
           </View>
         </TouchableWithoutFeedback>
@@ -108,7 +138,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     minHeight: 100,
-    shadowOffset:{  width: 3,  height: 3,  },
+    shadowOffset:{ width: 3,  height: 3, },
     shadowColor: '#000',
     shadowOpacity: .05,
   },
