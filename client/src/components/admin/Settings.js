@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Card, CardSection, FloatingInput, ButtonTwo, Spinner } from '../common';
+import {Actions} from 'react-native-router-flux';
 
 class Settings extends Component {
   render() {
@@ -14,7 +15,7 @@ class Settings extends Component {
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Settings</Text>
         <View style={styles.buttonContainerStyle}>
-          <ButtonTwo onPress={console.log('save button pressed')}>
+          <ButtonTwo onPress={Actions.cms}>
             Save
           </ButtonTwo>
         </View>

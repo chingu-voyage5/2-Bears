@@ -37,7 +37,7 @@ class FloatingInput extends Component {
   }
 
   handleInputBlur() {
-    if ( this.state.value == '') {
+    if ( this.state.value == this.props.value || '') {
       this.setState({ isFocused: false,
         underlineColor: 'rgba(0, 0, 0, 0.12)',
         labelColor: 'rgba(63, 81, 181, 0.75)',
@@ -94,13 +94,13 @@ class FloatingInput extends Component {
           label={this.props.label}
           secureTextEntry={this.props.secureTextEntry}
           placeholderTextColor={'rgba(0, 0, 0, 0.12)'}
-          placeholder='wow'
+          placeholder=' '
           selectionColor={'rgba(63, 81, 181, 0.9)'}
           underlineColorAndroid='transparent'
           autoCorrect={false}
           style={[styles.inputStyle, {borderBottomColor: this.state.underlineColor}]}
           value={this.props.value}
-          onChangeText={(text) => this.setState({value: text})}
+          onChangeText={(text) => this.props.ChangeText? this.props.ChangeText(text,this.props.name): this.setState({value: text})}
           onFocus={() => this.handleInputFocus()}
           onBlur={() => this.handleInputBlur()}
           onLayout={event => {

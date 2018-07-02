@@ -12,6 +12,7 @@ import DrinkStatus from './components/admin/DrinkStatus';
 import KitchenStatus from './components/admin/KitchenStatus';
 import Settings from './components/admin/Settings';
 import Scan from './components/admin/Scan';
+import CmsForm from './components/CmsForm';
 
 const RouterComponent = () => {
   return (
@@ -43,6 +44,7 @@ const RouterComponent = () => {
             <Scene key="drinks" component={ DrinkStatus } />
             <Scene key="kitchen" component={ KitchenStatus } />
             <Scene key="settings" component={ Settings } />
+            <Scene key='cms' component={ CmsForm } title={"Create menu item"}/>
           </Scene>
 
         </Drawer>
