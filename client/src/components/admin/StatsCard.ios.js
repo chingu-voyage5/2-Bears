@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage, OutlineButton } from '../common'
+import { OutlineButton } from '../common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -34,12 +34,11 @@ class StatsCard extends Component {
     }
   }
 
-  // getMenuOneOrderstats() {
+  // getMenuOneOrders() {
   //   const menuOne = this.props.menuOne
   //   menuOne.map(x => {
   //     let i = 0
   //     while(i > menuOne.length && menuOne[i].value !== 'N/A') {
-
 
   //     }
   //   })
@@ -51,6 +50,7 @@ class StatsCard extends Component {
   // componentWillUnmount() {
   //  this.handleActionButton()
   // }
+
   handleActionButton() {
    let customers = this.state.customers
    let index = this.state.index
@@ -66,6 +66,7 @@ class StatsCard extends Component {
    } else if (action === `Done`) {
      const deletingCard = this.state.activeCardKey
      this.setState({
+       action: `Scan`,
        customers : this.state.customers.splice( customers[index], 1),
        activeCardKey : null
      })
@@ -143,11 +144,6 @@ const styles = StyleSheet.create({
     shadowOpacity: .05,
   },
   cardTitle: {
-    color: '#000',
-  },
-  cardDescription: {
-    width: 300,
-    paddingVertical: 20,
     color: '#000',
   },
   menuOneStyle: {
