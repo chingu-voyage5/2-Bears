@@ -6,7 +6,8 @@ import {
   NUMBER_OF_COURSE_FOUR_OPTIONS,
   NUMBER_OF_COURSE_FIVE_OPTIONS,
   NUMBER_OF_MENUS,
-  NUMBER_OF_DRINK_OPTIONS
+  NUMBER_OF_DRINK_OPTIONS,
+  CREATE_ITEM
 } from './types';
 
 export const numberOfCourses = (num) => {
@@ -60,3 +61,4 @@ export const numOfDrinkOptions = (num) => {
     payload: num
   }
 }
+

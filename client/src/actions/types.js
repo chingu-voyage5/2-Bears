@@ -6,3 +6,4 @@ export const NUMBER_OF_COURSE_FOUR_OPTIONS = 'number_of_course_four_options';
 export const NUMBER_OF_COURSE_FIVE_OPTIONS = 'number_of_course_five_options';
 export const NUMBER_OF_MENUS = 'number_of_menus';
 export const NUMBER_OF_DRINK_OPTIONS = 'number_of_drink_options';
+export const CREATE_ITEM = 'CREATE_ITEM';

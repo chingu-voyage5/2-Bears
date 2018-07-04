@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput,Image, Button} from 'react-native'
+import { Text, View, StyleSheet, Button} from 'react-native'
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage, FloatingInput } from './common'
+import { FloatingInput } from './common'
 import CmsPreview from './admin/CmsPreview';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
+import * as itemActions from '../actions/itemActions';
+import { bindActionCreators} from 'redux';
 
  class CmsForm extends Component {
     constructor(props){
@@ -13,7 +15,9 @@ import { connect } from 'react-redux';
         this.state ={
             Name:'',
             Description:'',
-            image:''
+            image:'',
+            price:2.45,
+            type:'food'
         }
         this.updateInput = this.updateInput.bind(this);
     }
@@ -33,6 +37,7 @@ import { connect } from 'react-redux';
   render() {
       console.log(this.props);
       const previewImage =  this.state.image === '' ?soupImage:this.state.image;
+      const {Name, Description,image,price,type} = this.state;
     return (
       <View>
         <Text style={styles.title}>Component Preview</Text>
@@ -72,6 +77,10 @@ import { connect } from 'react-redux';
             style={styles.button}
             title="Post"
             color="#841584"
+            onPress={()=> {
+                this.props.itemActions.createItem(Name,Description,previewImage,price,type)
+                return this.setState({Name:'',Description:'',image:'',price:0,type:''})
+            } }
          />
         </View>
       </View>
@@ -118,4 +127,9 @@ const mapStateToProps = (state)=>{
 return {state}
 }
 
-export default connect(mapStateToProps)(CmsForm);
+const mapDispatchToProps= dispatch =>({
+    itemActions: bindActionCreators(itemActions, dispatch),
+  
+   })
+
+export default connect(mapStateToProps,mapDispatchToProps)(CmsForm);

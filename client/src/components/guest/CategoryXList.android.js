@@ -9,6 +9,8 @@ import {
   Text,
   View,
 } from 'react-native';
+import { connect} from 'react-redux';
+import CmsPreview from '../admin/CmsPreview';
 
 const categories = [
   { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' },
@@ -20,10 +22,11 @@ const numColumns = 3.5;
 class CategoryXList extends Component {
   renderItem = ({ item, index }) => {
     return (
-      <CategoryX
-        title={item.key}
-        description="Phasellus posuere lectus vel mattis bibendum. Aliquam vulputate quis mi vitae sodales. Nulla vel luctus quam."
-      />
+      <CmsPreview 
+      imageUrl={item.image}
+         title={item.name}
+         description={item.desc}
+     />
     );
   };
 
@@ -32,7 +35,7 @@ class CategoryXList extends Component {
         <View style={{flex: 1}}>
           <View>
             <FlatList
-              data={categories}
+              data={this.props.items}
               style={styles.container}
               renderItem={this.renderItem}
               keyExtractor={item => item.key}
@@ -70,4 +73,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default(CategoryXList);
+const mapStateToProps = state => state;
+
+
+export default connect(mapStateToProps)(CategoryXList);

@@ -12,15 +12,17 @@ import CategoryX from './CategoryX';
 const data = [
   { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' }, { key: 'Meal7' }, { key: 'Meal8' }, { key: 'Meal9' }, { key: 'Meal10' }, { key: 'Meal11' }, { key: 'Meal12' }, { key: 'Meal13' },
 ]
-
+import { connect} from 'react-redux';
+import CmsPreview from '../admin/CmsPreview';
 class CategoryXList extends Component {
   renderItem = ({ item, index }) => {
     return (
       <View>
-        <CategoryX
-          title={item.key}
-          description="Phasellus posuere lectus vel mattis bibendum. Aliquam vulputate quis mi vitae sodales. Nulla vel luctus quam."
-        />
+       <CmsPreview 
+      imageUrl={item.image}
+         title={item.name}
+         description={item.desc}
+     />
       </View>
     );
   };
@@ -67,5 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 });
+const mapStateToProps = state => state;
 
-export default(CategoryXList);
+
+export default connect(mapStateToProps)(CategoryXList);
