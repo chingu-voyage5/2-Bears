@@ -28,15 +28,16 @@ const formatData = (data, numColumns) => {
 
   return data;
 };
+
 const unique = [...new Set(categories.map(categories => categories.category))]
 const newCategoryList = [...new Set(unique.map(unique => ({'category':unique}) ))]
+
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       uniqueCategories: newCategoryList,
-      categoryDetails: [],
     }
 
     this._deltaY = new Animated.Value(0);
