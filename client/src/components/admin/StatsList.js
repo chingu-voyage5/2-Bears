@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import StatsCard from './StatsCard';
-import customers from '../SeedData/customerSeedData'
+import customers from '../../SeedData/ordersSeed'
 
 const numColumns = 3.5;
 class StatsList extends Component {
@@ -36,12 +36,13 @@ class StatsList extends Component {
       <StatsCard
         customerList={this.state.customers}
         item={item}
-        id={item.key}
+        id={item.id}
         index={index}
         customer={item.name}
         scanTime={item.scanTime}
         menuOne={item.menuOne}
         menuTwo={item.menuTwo}
+        orderDate={item.orderDate}
         tableNo={item.tableNo}
         action={item.action}
         parentFlatlist={this}

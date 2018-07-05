@@ -16,7 +16,7 @@ class ImageLoader extends Component {
     super(props);
 
     this.state = {
-      item : props.item,
+      category : props.category,
       numColumns : props.numColumns,
     }
     this.handlePressIn = this.handlePressIn.bind(this);
@@ -58,7 +58,7 @@ class ImageLoader extends Component {
       >
         <View style={{flex:1}}>
           <Animated.View style={[styles.item, animatedStyle]}>
-            <Text style={styles.itemText}>{this.props.item.key}</Text>
+            <Text style={styles.itemText}>{this.props.category}</Text>
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>

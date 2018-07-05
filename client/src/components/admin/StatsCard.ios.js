@@ -26,6 +26,7 @@ class StatsCard extends Component {
       index : props.index,
       customer : props.customer,
       scanTime : props.scanTime,
+      orderDate : props.orderDate,
       tableNo : props.tableNo,
       action : props.action,
       menuOne: props.menuOne,
@@ -83,7 +84,7 @@ class StatsCard extends Component {
           <View style={{paddingVertical: '8%', paddingHorizontal: '8%',}}>
             <Text>{this.props.customer}</Text>
             <Text style={styles.cardTitle}>ID #: {this.props.id}</Text>
-            <Text>{this.props.scanTime}</Text>
+            <Text>Scan Time: {this.props.scanTime}</Text>
             <View style={styles.menuOneStyle}>
               <Text>{this.props.menuOne.courseOne.optionOne}</Text>
               <Text>{this.props.menuOne.courseOne.optionTwo}</Text>
@@ -118,6 +119,7 @@ class StatsCard extends Component {
               <Text>{this.props.menuTwo.courseFive.optionTwo}</Text>
               <Text>{this.props.menuTwo.courseFive.optionThree}</Text>
             </View>
+            <Text>Order Date: {this.props.orderDate}</Text>
             <Text>Table #: {this.props.tableNo}</Text>
             <OutlineButton onPress={() => {this.handleActionButton() }}>
               {this.state.action}

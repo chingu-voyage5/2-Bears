@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CategoryX from './CategoryX';
+import { Actions } from 'react-native-router-flux';
+// import { connect} from 'react-redux';
 import {
   Dimensions,
   FlatList,
@@ -8,18 +9,16 @@ import {
   View,
 } from 'react-native';
 import { BottomNav } from './common';
-import { Actions } from 'react-native-router-flux';
-const data = [
-  { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' }, { key: 'Meal7' }, { key: 'Meal8' }, { key: 'Meal9' }, { key: 'Meal10' }, { key: 'Meal11' }, { key: 'Meal12' }, { key: 'Meal13' },
-]
+import CategoryX from './CategoryX';
+import orderItems from '../SeedData/orderItemSeed';
 
 class CategoryXList extends Component {
   renderItem = ({ item, index }) => {
     return (
       <View>
         <CategoryX
-          title={item.key}
-          description="Phasellus posuere lectus vel mattis bibendum. Aliquam vulputate quis mi vitae sodales. Nulla vel luctus quam."
+          title={item.title}
+          description={item.description}
         />
       </View>
     );
@@ -30,10 +29,10 @@ class CategoryXList extends Component {
       <View style={{flex: 1}}>
         <View>
           <FlatList
-            data={data}
+            data={orderItems}
             style={styles.container}
             renderItem={this.renderItem}
-            keyExtractor={item => item.key}
+            keyExtractor={item => item.id}
           />
         </View>
         <BottomNav
@@ -68,4 +67,8 @@ const styles = StyleSheet.create({
   }
 });
 
+// const mapStateToProps = state => state;
+
 export default(CategoryXList);
+// export default connect(mapStateToProps)(CategoryXList);
+

@@ -13,11 +13,9 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { BottomNav, ImageLoader } from './common'
+import categories from '../SeedData/orderItemSeed';
 
 const numColumns = 3
-const categories = [
-  { key: 'Category1' }, { key: 'Category2' }, { key: 'Category3' }, { key: 'Category4' }, { key: 'Category5' }, { key: 'Category6' }, { key: 'Category7' }, { key: 'Category8' }, { key: 'Category9' }, { key: 'Category10' }, { key: 'Category11' }, { key: 'Category12' }, { key: 'category13' },
-]
 
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -27,18 +25,27 @@ const formatData = (data, numColumns) => {
     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
     numberOfElementsLastRow++;
   }
+
   return data;
 };
-
+const unique = [...new Set(categories.map(categories => categories.category))]
+const newCategoryList = [...new Set(unique.map(unique => ({'category':unique}) ))]
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      uniqueCategories: newCategoryList,
+      categoryDetails: [],
+    }
+
     this._deltaY = new Animated.Value(0);
   }
+
   renderItem = ({ item, index }) => {
     return (
-      <ImageLoader item={item} />
+      // <ImageLoader item={item} category={ () => this.getCategoryList(item)}/>
+      <ImageLoader item={item} category={item.category}/>
     );
   };
 
@@ -47,8 +54,8 @@ class CategoriesList extends Component {
       <View style={styles.container}>
         <View>
           <FlatList
-            data={formatData(categories, numColumns)}
-            keyExtractor={item => item.key}
+            data={formatData(this.state.uniqueCategories, numColumns)}
+            keyExtractor={item => item.id}
             renderItem={this.renderItem}
             numColumns={numColumns}
             style={styles.flatlist}
@@ -74,6 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flatlist: {
+    minHeight: '94%',
     marginBottom: 50
   },
   openTimes: {

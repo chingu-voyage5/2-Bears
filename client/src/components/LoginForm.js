@@ -56,6 +56,7 @@ class LoginForm extends Component {
           <View style={styles.titleStyle}>
             <Text style={styles.titleText}>Log In</Text>
           </View>
+          
           <View style={styles.cardStyle}>
             <View style={styles.inputSection}>
               <FloatingInput
@@ -73,8 +74,6 @@ class LoginForm extends Component {
               onChangeText={ text => this.passwordChange(text)}
             />
             </View>
-
-
           </View>
 
           <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
