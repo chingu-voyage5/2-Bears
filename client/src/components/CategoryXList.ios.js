@@ -10,9 +10,30 @@ import {
 } from 'react-native';
 import { BottomNav } from './common';
 import CategoryX from './CategoryX';
-import orderItems from '../SeedData/orderItemSeed';
-
+import categoryDetails from '../SeedData/orderItemSeed';
 class CategoryXList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      category: this.props.category
+    }
+  }
+
+  componentWillMount(){
+    console.log(categoryDetails)
+    const categoryName = this.state.category
+    function uniqBy (inputArray, callback) {
+      return inputArray.filter(callback)
+    }
+    var inputFunc = function (a) {
+      return ('category', a.category == categoryName )
+    }
+
+    this.setState({ category: uniqBy(categoryDetails, inputFunc)})
+    console.log(this.state.category)
+  }
+
   renderItem = ({ item, index }) => {
     return (
       <View>
@@ -29,7 +50,7 @@ class CategoryXList extends Component {
       <View style={{flex: 1}}>
         <View>
           <FlatList
-            data={orderItems}
+            data={this.state.category}
             style={styles.container}
             renderItem={this.renderItem}
             keyExtractor={item => item.id}
@@ -54,6 +75,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     marginTop: 20,
+    minHeight: '99%',
   },
   openTimes: {
     paddingTop: 15,

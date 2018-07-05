@@ -48,7 +48,7 @@ class ImageLoader extends Component {
       friction: 3,
       tension: 40
     }).start()
-    Actions.categoryXList();
+    Actions.categoryXList({category: this.state.category});
 
   }
 
