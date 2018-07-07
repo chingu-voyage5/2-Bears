@@ -30,7 +30,7 @@ class LoginForm extends Component {
 
         this.setState({
             password: text
-        })
+        },()=> console.log(this.state))
     }
 
     handleLoginClick() {

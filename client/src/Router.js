@@ -28,7 +28,7 @@ class RouterComponent extends Component {
     render(){
         const { dispatch, errorMessage, isAuthenticated } = this.props
         return (
-<Router>
+        <Router>
 
       <Stack key="root" hideNavBar>
         <Drawer

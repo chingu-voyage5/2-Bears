@@ -36,12 +36,14 @@ const User = db.define('user', {
 
 const Orders= db.define('orders', {
   order_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
   },
   order_details: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   order_date_ordered: {
     type: Sequelize.DATE,
@@ -51,8 +53,10 @@ const Orders= db.define('orders', {
 
 const Order_Items = db.define('order_items', {
   order_item_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
   },
   order_item_quantity: {
     type: Sequelize.INTEGER,
@@ -64,9 +68,28 @@ const Order_Items = db.define('order_items', {
   },
   order_item_details: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
+});
+
+const Food_Items = db.define('food_items', {
+    food_item_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    order_item_price: {
+        type: Sequelize.N,
+        allowNull: false,
+    },
+    order_item_details: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+    },
 })
+
+
 
 // Relation Definitions
 Orders.hasMany(Order_Items, { foreignKey: { name: 'order_id', allowNull: true }, onDelete: 'CASCADE' });
@@ -76,7 +99,8 @@ User.sync().then(() => {
 });
 
 module.exports = {
-  User,
-  Order_Items,
-  Orders
+    User,
+    Order_Items,
+    Orders,
+    Food_Items
 };
