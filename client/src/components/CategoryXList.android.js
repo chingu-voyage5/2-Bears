@@ -9,20 +9,37 @@ import {
   Text,
   View,
 } from 'react-native';
-
-const categories = [
-  { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' },
-  { key: 'Meal7' }, { key: 'Meal8' }, { key: 'Meal9' }, { key: 'Meal10' }, { key: 'Meal11' }, { key: 'Meal12' },
-  { key: 'Meal13' },
-]
+import categoryDetails from '../SeedData/orderItemSeed';
 
 const numColumns = 3.5;
 class CategoryXList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      category: this.props.category,
+    }
+  }
+
+  componentWillMount() {
+    console.log(categoryDetails)
+    const categoryName = this.state.category
+    function uniqBy (inputArray, callback) {
+      return inputArray.filter(callback)
+    }
+    var inputFunc = function (a) {
+      return ('category', a.category == categoryName)
+    }
+
+    this.setState({ category: uniqBy(categoryDetails, inputFunc) })
+    console.log(this.state.category)
+  }
+
   renderItem = ({ item, index }) => {
     return (
       <CategoryX
-        title={item.key}
-        description="Phasellus posuere lectus vel mattis bibendum. Aliquam vulputate quis mi vitae sodales. Nulla vel luctus quam."
+        title={item.title}
+        description={item.description}
       />
     );
   };
@@ -32,7 +49,7 @@ class CategoryXList extends Component {
         <View style={{flex: 1}}>
           <View>
             <FlatList
-              data={categories}
+              data={this.state.category}
               style={styles.container}
               renderItem={this.renderItem}
               keyExtractor={item => item.key}
@@ -57,6 +74,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     marginBottom: 50,
+    minHeight: '92%',
   },
   openTimes: {
     paddingTop: 15,
