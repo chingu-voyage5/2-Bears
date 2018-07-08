@@ -125,7 +125,7 @@ const styles = {
     lineHeight: 23,
     flex: 2,
     borderBottomWidth: 2,
-
+    // borderBottomColor: 'rgba(63, 81, 181, 0.9)',
   },
   floatingLabelStyle: {
     position: 'absolute',

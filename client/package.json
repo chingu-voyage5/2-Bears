@@ -7,7 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
+<<<<<<< HEAD
     "lodash": "^4.17.10",
+=======
+    "axios": "^0.18.0",
+>>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-drawer": "^2.5.0",
@@ -15,7 +19,9 @@
     "react-native-interactable": "^0.1.10",
     "react-native-router-flux": "^4.0.0-beta.31",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-jest": "23.0.1",

@@ -39,7 +39,7 @@ router.post('/adduser', async (req, res) => {
 router.get('/:email/:password', async(req, res) => {
     try {
         console.log('this is req.params', req.params)
-        const user = await db.User.findOne({ where: { email: req.params.email, userType: 1 } });
+        const user = await db.User.findOne({ where: { email: req.params.email} });
         console.log('this is the user', user);
         const data = await bcrypt.compare(req.params.password, user.password)
         if(data) {

@@ -1,10 +1,59 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+=======
+import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import { loginUser } from '../actions/login';
+>>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
 import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
 
 class LoginForm extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+
+        }
+        this.passwordChange = this.passwordChange.bind(this);
+        this.emailChange = this.emailChange.bind(this);
+        const { dispatch, errorMessage, isAuthenticated } = this.props
+    }
+
+    emailChange(text) {
+        this.setState({
+            email: text,
+        },()=> console.log(this.state) )
+    }
+
+    passwordChange(text) {
+
+        this.setState({
+            password: text
+        },()=> console.log(this.state))
+    }
+
+    handleLoginClick() {
+        // console.log('this is the props on line 26', this.props);
+        const email = this.state.email;
+        const password = this.state.password;
+        const creds = { email: email, password: password };
+        this.props.dispatch(loginUser(creds));
+    }
+
+    measure(layout) {
+      const { width } = layout;
+      this.setState({ width: width })
+    }
+
   render() {
+    const { dispatch, errorMessage, isAuthenticated } = this.props;
+
     return (
       <ScrollView>
         <View style={styles.containerStyle}>
@@ -16,10 +65,15 @@ class LoginForm extends Component {
               <FloatingInput
                 label="Email"
                 placeholder="email@email.com"
+<<<<<<< HEAD
+=======
+                onChangeText={ text => this.emailChange(text)}
+>>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
               />
             </View>
 
             <View style={styles.inputSection}>
+<<<<<<< HEAD
               <FloatingInput
                 secureTextEntry
                 label="Password"
@@ -41,6 +95,31 @@ class LoginForm extends Component {
                     </Text>
                   </View>
                 </TouchableWithoutFeedback>
+=======
+            <FloatingInput
+              secureTextEntry
+              label="Password"
+              placeholder="password"
+              onChangeText={ text => this.passwordChange(text)}
+            />
+            </View>
+
+
+          </View>
+
+          <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
+            <Button onPress={() => this.handleLoginClick()}>
+            Login
+            </Button>
+            <View style={styles.signupText}>
+              <Text style={styles.text}>First time here?
+                <TouchableWithoutFeedback onPress={ Actions.register }>
+                  <Text style={styles.signupLink }>
+                    Sign up
+                  </Text>
+                </TouchableWithoutFeedback>
+              </Text>
+>>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
             </View>
           </View>
 
