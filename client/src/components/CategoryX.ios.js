@@ -34,6 +34,10 @@ class CategoryX extends Component {
     this.triggerLike = this.triggerLike.bind(this);
   }
 
+  componentWillMount() {
+    console.log(this)
+  }
+
   triggerLike() {
     this.setState({
       liked: !this.state.liked

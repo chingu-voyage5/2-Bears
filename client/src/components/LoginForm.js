@@ -83,9 +83,11 @@ class LoginForm extends Component {
             <View style={styles.signupText}>
               <Text style={styles.text}>First time here?
                 <TouchableWithoutFeedback onPress={ Actions.register }>
-                  <Text style={styles.signupLink }>
-                    Sign up
-                  </Text>
+                  <View>
+                    <Text style={styles.signupLink }>
+                      Sign up
+                    </Text>
+                  </View>
                 </TouchableWithoutFeedback>
               </Text>
             </View>
