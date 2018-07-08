@@ -1,49 +1,20 @@
-'use strict';
-
 import React, { Component } from 'react';
-
 import {
-  AppRegistry,
+  Animated,
   StyleSheet,
-  NavigatorIOS,
-  Dimensions
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 
-import QRCodeScanner from 'react-native-qrcode-scanner';
-
-class Scan extends Component {
-  onSuccess(e) {
-    Linking.openURL(e.data).catch(err => console.error('An error occured', err))
-  }
-
+class Settings extends Component {
   render() {
     return (
-      <NavigatorIOS
-        initialRoute={{
-          component: QRCodeScanner,
-          title: 'Scan Code',
-          passProps: {
-            onRead: this.onSuccess.bind(this),
-            cameraStyle: styles.cameraContainer,
-            topViewStyle: styles.zeroContainer,
-            bottomViewStyle: styles.zeroContainer,
-          }
-        }}
-        style={{flex: 1}}
-      />
-    )
+    <Text>SCAN</Text>
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  zeroContainer: {
-    height: 0,
-    flex: 0,
-  },
+const styles = StyleSheet.create({})
 
-  cameraContainer: {
-    height: Dimensions.get('window').height,
-  },
-});
-
-export default(Scan);
+export default(Settings);
