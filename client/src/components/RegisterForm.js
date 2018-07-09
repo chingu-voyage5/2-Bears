@@ -1,81 +1,12 @@
 import React, { Component } from 'react';
 import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
-<<<<<<< HEAD
-import { Actions } from 'react-native-router-flux';
-=======
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { loginUser } from '../actions/login';
->>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
 import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
 
 class RegisterForm extends Component {
 
-<<<<<<< HEAD
-  render() {
-    return (
-      <ScrollView>
-        <View style={styles.containerStyle}>
-          <View style={styles.titleStyle}>
-            <Text style={styles.titleText}>Register</Text>
-          </View>
-          <View style={styles.cardStyle}>
-            <View style={styles.inputSection}>
-              <FloatingInput
-                label="First Name"
-                placeholder="John"
-              />
-            </View>
-
-            <View style={styles.inputSection}>
-              <FloatingInput
-                label="Last Name"
-                placeholder="Johnson"
-              />
-            </View>
-
-            <View style={styles.inputSection}>
-              <FloatingInput
-                label="Username"
-                placeholder="TheJohn007"
-              />
-            </View>
-
-            <View style={styles.inputSection}>
-              <FloatingInput
-                label="Email"
-                placeholder="email@email.com"
-              />
-            </View>
-
-            <View style={styles.inputSection}>
-              <FloatingInput
-                secureTextEntry
-                label="Password"
-                placeholder="password"
-              />
-            </View>
-
-          </View>
-
-          <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={ Actions.main}>
-              Register
-            </Button>
-            <View style={styles.signupText}>
-              <Text style={styles.text}>Not your first time here?</Text>
-                <TouchableWithoutFeedback onPress={ Actions.login }>
-                  <View>
-                    <Text style={styles.signupLink }>
-                      Log in
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-            </View>
-          </View>
-
-        </View>
-=======
     constructor(props) {
         super(props);
 
@@ -186,7 +117,6 @@ class RegisterForm extends Component {
         </View>
 
       </View>
->>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
       </ScrollView>
     );
   }

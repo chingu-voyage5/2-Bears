@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-=======
 import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { loginUser } from '../actions/login';
->>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
 import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
 
 class LoginForm extends Component {
@@ -65,37 +60,11 @@ class LoginForm extends Component {
               <FloatingInput
                 label="Email"
                 placeholder="email@email.com"
-<<<<<<< HEAD
-=======
                 onChangeText={ text => this.emailChange(text)}
->>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
               />
             </View>
 
             <View style={styles.inputSection}>
-<<<<<<< HEAD
-              <FloatingInput
-                secureTextEntry
-                label="Password"
-                placeholder="password"
-              />
-            </View>
-          </View>
-
-          <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={ Actions.main }>
-            Login
-            </Button>
-            <View style={styles.signupText}>
-              <Text style={styles.text}>First time here?</Text>
-                <TouchableWithoutFeedback onPress={ Actions.register }>
-                  <View>
-                    <Text style={styles.signupLink }>
-                      Sign up
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-=======
             <FloatingInput
               secureTextEntry
               label="Password"
@@ -108,7 +77,7 @@ class LoginForm extends Component {
           </View>
 
           <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={() => this.handleLoginClick()}>
+            <Button onPress={() => Actions.main()}>
             Login
             </Button>
             <View style={styles.signupText}>
@@ -119,7 +88,6 @@ class LoginForm extends Component {
                   </Text>
                 </TouchableWithoutFeedback>
               </Text>
->>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
             </View>
           </View>
 

@@ -7,11 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
-<<<<<<< HEAD
     "lodash": "^4.17.10",
-=======
     "axios": "^0.18.0",
->>>>>>> a91b8d2d0eea65e4c1b89e7fda972d6afb1e6c9f
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-drawer": "^2.5.0",

@@ -12,6 +12,7 @@ export default class DrawerContent extends Component {
           <Text style={styles.item} onPress={()=> Actions.drinks()}>Drinks</Text>
           <Text style={styles.item} onPress={()=> Actions.kitchen()}>Kitchen</Text>
           <Text style={styles.item} onPress={()=> Actions.settings()}>Settings</Text>
+          <Text style={styles.item} onPress={()=> Actions.cms()}>Content Management</Text>
       </View>
     );
   }

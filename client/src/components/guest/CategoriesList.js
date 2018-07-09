@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Interactable from 'react-native-interactable';
+import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
@@ -13,6 +14,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { BottomNav, ImageLoader } from '../common'
+import CmsPreview from '../admin/CmsPreview';
 
 const numColumns = 3
 const categories = [
@@ -37,17 +39,22 @@ class CategoriesList extends Component {
     this._deltaY = new Animated.Value(0);
   }
   renderItem = ({ item, index }) => {
+    console.log(item);
     return (
-      <ImageLoader item={item} />
+      <CmsPreview 
+      imageUrl={item.image}
+      title={item.name}
+      description={item.desc}/>
     );
   };
 
   render() {
+  
     return (
       <View style={styles.container}>
         <View>
           <FlatList
-            data={formatData(categories, numColumns)}
+            data={this.props.items}
             keyExtractor={item => item.key}
             renderItem={this.renderItem}
             numColumns={numColumns}
@@ -87,5 +94,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 });
+const mapStateToProps = state => state;
 
-export default(CategoriesList);
+export default connect(mapStateToProps)(CategoriesList);
