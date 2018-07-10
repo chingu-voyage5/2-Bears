@@ -56,7 +56,7 @@ class CategoriesList extends Component {
         <View>
           <FlatList
             data={formatData(this.state.uniqueCategories, numColumns)}
-            keyExtractor={item => item.id}
+            keyExtractor={item => 'c' + item.key}
             renderItem={this.renderItem}
             numColumns={numColumns}
             style={styles.flatlist}
