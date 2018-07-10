@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import {  View, Text, StyleSheet,Image,Button,Modal } from 'react-native';
+import {  View, Text, StyleSheet,Image,Button, Modal } from 'react-native';
 
 
 
-export default  CmsItem = (props)=> {
-   console.log("THIS IS CMSITEM",props);
+export default CmsItem = (props)=>{
+   
+        var modalVisibility = false;
+        
+     const {title,price,description,type,image } = props;
+     console.log(props.handleModal);
     return (
+        
       <View style={styles.container}>
       <Image style={styles.image} source={{uri:props.image}}/>
       <View style={{flexDirection:"column"}}>
@@ -15,10 +20,11 @@ export default  CmsItem = (props)=> {
        </View>
         <Text style={styles.description}>{props.description}</Text>
         </View>
-        <Button style={styles.button} onPress={()=>alert('this is updated')} title='Update'/>
+        <Button style={styles.button} onPress={props.handleModal(price,title,description,image,type)} title='Update'/>
+       
       </View>
     );
-  
+
 };
 
 const styles = StyleSheet.create({

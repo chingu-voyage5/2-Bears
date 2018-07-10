@@ -15,29 +15,22 @@ class LoginForm extends Component {
             password: '',
 
         }
-        this.passwordChange = this.passwordChange.bind(this);
-        this.emailChange = this.emailChange.bind(this);
+       this.updateInput = this.updateInput.bind(this);
         const { dispatch, errorMessage, isAuthenticated } = this.props
     }
 
-    emailChange(text) {
-        this.setState({
-            email: text,
-        },()=> console.log(this.state) )
-    }
-
-    passwordChange(text) {
-
-        this.setState({
-            password: text
-        },()=> console.log(this.state))
-    }
+    updateInput = (value,name) =>{
+      this.setState({
+          [name]:value
+      })
+  }
 
     handleLoginClick() {
         // console.log('this is the props on line 26', this.props);
         const email = this.state.email;
         const password = this.state.password;
         const creds = { email: email, password: password };
+        console.log(creds);
         this.props.dispatch(loginUser(creds));
     }
 
@@ -59,17 +52,21 @@ class LoginForm extends Component {
             <View style={styles.inputSection}>
               <FloatingInput
                 label="Email"
+                name='email'
                 placeholder="email@email.com"
-                onChangeText={ text => this.emailChange(text)}
+                ChangeText={this.updateInput}
+                value={this.state.email}
               />
             </View>
 
             <View style={styles.inputSection}>
             <FloatingInput
               secureTextEntry
+              name="password"
               label="Password"
               placeholder="password"
-              onChangeText={ text => this.passwordChange(text)}
+              value={this.state.password}
+              ChangeText={this.updateInput}
             />
             </View>
 
@@ -77,7 +74,8 @@ class LoginForm extends Component {
           </View>
 
           <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={() => Actions.main()}>
+            <Button onPress={() => 
+              this.handleLoginClick() }>
             Login
             </Button>
             <View style={styles.signupText}>

@@ -48,7 +48,7 @@ exports.loginUser = (creds) => {
     return (dispatch) => {
         dispatch(requestLogin(creds));
 
-        return axios.get(`http://localhost:5000/api/users/${creds.email}/${creds.password}`)
+        return axios.get(`http://10.0.2.2::5000/api/users/${creds.email}/${creds.password}`)
             .then((response) => {
                 console.log(response);
                 console.log('this is asnycstorage 60!!!!!!!!!!!!!', AsyncStorage);
