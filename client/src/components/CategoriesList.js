@@ -4,11 +4,8 @@ import {
   Animated,
   Dimensions,
   FlatList,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableWithoutFeedback,
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
