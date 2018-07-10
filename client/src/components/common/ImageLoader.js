@@ -58,7 +58,9 @@ class ImageLoader extends Component {
       >
         <View style={{flex:1}}>
           <Animated.View style={[styles.item, animatedStyle]}>
-            <Text style={styles.itemText}>{this.props.item.key}</Text>
+            <View>
+              <Text style={styles.itemText}>{this.props.item.key}</Text>
+            </View>
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>

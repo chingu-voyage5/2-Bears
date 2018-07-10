@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { loginUser } from '../actions/login';
-import { Card, CardSection, FloatingInput, Button, Spinner } from './common';
+import { Card, CardSection, Button, Spinner } from './common';
 
 class LoginForm extends Component {
 
@@ -57,7 +57,7 @@ class LoginForm extends Component {
           </View>
           <View style={styles.cardStyle}>
             <View style={styles.inputSection}>
-              <FloatingInput
+              <TextInput
                 label="Email"
                 placeholder="email@email.com"
                 onChangeText={ text => this.emailChange(text)}
@@ -65,7 +65,7 @@ class LoginForm extends Component {
             </View>
 
             <View style={styles.inputSection}>
-            <FloatingInput
+            <TextInput
               secureTextEntry
               label="Password"
               placeholder="password"
@@ -81,13 +81,14 @@ class LoginForm extends Component {
             Login
             </Button>
             <View style={styles.signupText}>
-              <Text style={styles.text}>First time here?
+              <Text style={styles.text}>First time here?</Text>
                 <TouchableWithoutFeedback onPress={ Actions.register }>
-                  <Text style={styles.signupLink }>
-                    Sign up
-                  </Text>
+                  <View>
+                    <Text style={styles.signupLink }>
+                      Sign up
+                    </Text>
+                  </View>
                 </TouchableWithoutFeedback>
-              </Text>
             </View>
           </View>
 
