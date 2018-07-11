@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Interactable from 'react-native-interactable';
+import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { BottomNav, ImageLoader } from './common'
-import categories from '../SeedData/orderItemSeed';
+import { getCategories } from '../actions'
 
 const numColumns = 3
 
@@ -22,27 +22,26 @@ const formatData = (data, numColumns) => {
     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
     numberOfElementsLastRow++;
   }
-
   return data;
 };
-
-const unique = [...new Set(categories.map(categories => categories.category))]
-const newCategoryList = [...new Set(unique.map(unique => ({'category':unique}) ))]
 
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      uniqueCategories: newCategoryList,
-    }
+    // this.state = {
+    //   uniqueCategories: uniqueCategories,
+    // }
 
     this._deltaY = new Animated.Value(0);
+    // this.props.dispatch(getCategories(orderItems));
+    this.props.dispatch(getCategories());
   }
 
   renderItem = ({ item, index }) => {
+    console.log(item.category)
+    // console.log(this.props.categories)
     return (
-      // <ImageLoader item={item} category={ () => this.getCategoryList(item)}/>
       <ImageLoader item={item} category={item.category}/>
     );
   };
@@ -52,8 +51,8 @@ class CategoriesList extends Component {
       <View style={styles.container}>
         <View>
           <FlatList
-            data={formatData(this.state.uniqueCategories, numColumns)}
-            keyExtractor={item => item.id}
+            data={formatData(this.props.categories, numColumns)}
+            keyExtractor={item => 'c' + item.key}
             renderItem={this.renderItem}
             numColumns={numColumns}
             style={styles.flatlist}
@@ -94,4 +93,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default(CategoriesList);
+const mapStateToProps = (state) => {
+  return {
+    categories: state.items.newCategoriesList,
+  };
+};
+
+export default connect(mapStateToProps)(CategoriesList);

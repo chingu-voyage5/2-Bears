@@ -25,7 +25,6 @@ class RouterComponent extends Component {
         }
     }
 
-
     render(){
         const { dispatch, errorMessage, isAuthenticated } = this.props
         return (

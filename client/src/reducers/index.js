@@ -6,10 +6,7 @@ import authReducer from './authReducer';
 
 const RootReducer = combineReducers({
   auth: authReducer,
-  // change child reducers here
-  // settings: SettingReducers,
   items:item__reducer
-  //
 });
 
 export default RootReducer;

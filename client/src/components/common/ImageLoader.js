@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
@@ -10,6 +11,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+// import { setCategory } from '../actions'
 import categories from '../../SeedData/orderItemSeed';
 
 class ImageLoader extends Component {
@@ -48,6 +50,7 @@ class ImageLoader extends Component {
       friction: 3,
       tension: 40
     }).start()
+    // Actions.categoryXList({ category: this.props.dispatch(setCategory()) });
     Actions.categoryXList({category: this.state.category});
 
   }
@@ -72,12 +75,12 @@ class ImageLoader extends Component {
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>
-      );
-    }
-  };
+    );
+  }
+};
 
-  const styles = {
-    item: {
+const styles = {
+  item: {
     backgroundColor: '#4d243d',
     alignItems: 'center',
     justifyContent: 'center',
@@ -91,6 +94,14 @@ class ImageLoader extends Component {
   itemText: {
     color: '#fff',
   },
-  };
+};
+
+// const mapStateToProps = (state) => {
+//   return {
+//     // categoryPick: state.items.category,
+//     categories: state.items.newCategoriesList,
+//   };
+// };
 
 export { ImageLoader };
+// export connect (mapStateToProps) ({ ImageLoader });

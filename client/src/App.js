@@ -16,6 +16,8 @@ const middleware = [
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 const store = createStoreWithMiddleware(reducers);
 console.disableYellowBox = true;
+
+// const ConnectedRouter = connect() (Router);
 export default class App extends Component {
     componentDidMount() {
         SplashScreen.hide()

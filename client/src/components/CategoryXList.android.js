@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import CategoryX from './CategoryX';
-import { BottomNav } from './common';
 import {
   Dimensions,
   FlatList,
@@ -9,7 +7,10 @@ import {
   Text,
   View,
 } from 'react-native';
+import { BottomNav } from './common';
+import CategoryX from './CategoryX';
 import categoryDetails from '../SeedData/orderItemSeed';
+// import { getCategoryItems } from '../actions'
 
 const numColumns = 3.5;
 class CategoryXList extends Component {
@@ -24,18 +25,24 @@ class CategoryXList extends Component {
   componentWillMount() {
     console.log(categoryDetails)
     const categoryName = this.state.category
+
     function uniqBy (inputArray, callback) {
       return inputArray.filter(callback)
     }
     var inputFunc = function (a) {
-      return ('category', a.category == categoryName)
+        return ('category', a.category == categoryName)
     }
 
     this.setState({ category: uniqBy(categoryDetails, inputFunc) })
     console.log(this.state.category)
   }
 
+  componentDidMount() {
+    console.log('component did mount!!')
+  }
+
   renderItem = ({ item, index }) => {
+    console.log('renderItem entered')
     return (
       <CategoryX
         title={item.title}
@@ -49,10 +56,11 @@ class CategoryXList extends Component {
         <View style={{flex: 1}}>
           <View>
             <FlatList
-              data={this.state.category}
+              extraData={this.state}
+              data={this.props.category}
               style={styles.container}
-              renderItem={this.renderItem}
-              keyExtractor={item => item.key}
+              renderItem={ this.renderItem}
+              keyExtractor={item => item.id}
             />
           </View>
           <BottomNav
@@ -88,4 +96,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default(CategoryXList);
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.items.newCategoryList,
+  };
+};
+
+// export default connect(mapStateToProps)(CategoryXList);
+export default (CategoryXList);

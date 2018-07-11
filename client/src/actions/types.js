@@ -7,3 +7,6 @@ export const NUMBER_OF_COURSE_FIVE_OPTIONS = 'number_of_course_five_options';
 export const NUMBER_OF_MENUS = 'number_of_menus';
 export const NUMBER_OF_DRINK_OPTIONS = 'number_of_drink_options';
 export const CREATE_ITEM = 'CREATE_ITEM';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const GET_CATEGORY_ITEMS = 'GET_CATEGORY_ITEMS';
