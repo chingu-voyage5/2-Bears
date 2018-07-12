@@ -1,11 +1,9 @@
-export const NUMBER_OF_COURSES = 'number_of_courses';
-export const NUMBER_OF_COURSE_ONE_OPTIONS = 'number_of_course_one_options';
-export const NUMBER_OF_COURSE_TWO_OPTIONS = 'number_of_course_two_options';
-export const NUMBER_OF_COURSE_THREE_OPTIONS = 'number_of_course_three_options';
-export const NUMBER_OF_COURSE_FOUR_OPTIONS = 'number_of_course_four_options';
-export const NUMBER_OF_COURSE_FIVE_OPTIONS = 'number_of_course_five_options';
-export const NUMBER_OF_MENUS = 'number_of_menus';
-export const NUMBER_OF_DRINK_OPTIONS = 'number_of_drink_options';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const SET_CATEGORIES = 'SET_CATEGORIES';

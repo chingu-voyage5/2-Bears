@@ -1,18 +1,5 @@
 import dataArray from '../SeedData/orderItemSeed';
-import * as types from './types';
-
-export const createItem = (name,desc,image,price,type) =>{
-    return{
-      type: types.CREATE_ITEM,
-      payload: {
-      name,
-      desc,
-      image,
-      price,
-      type
-      }
-    }
-}
+import { GET_CATEGORIES, GET_CATEGORY_ITEMS } from './types';
 
 export const getCategories = () => {
   const uniqueCategoriesArray = [...new Set(dataArray.map(dataArray => dataArray.category))]
@@ -20,7 +7,7 @@ export const getCategories = () => {
   // console.log(uniqueCategoriesArray)
   console.log(newCategoriesList)
   return  {
-    type: types.GET_CATEGORIES,
+    type: GET_CATEGORIES,
     payload: newCategoriesList,
   }
 };
@@ -37,7 +24,7 @@ export const getCategories = () => {
 
 
 // export const getCategoryItems = (dataArray) => {
-//   const categoryName = this.state.category
+//   const categoryName = newCategoriesList
 //   function uniqBy (inputArray, callback) {
 //     return inputArray.filter(callback)
 //   }

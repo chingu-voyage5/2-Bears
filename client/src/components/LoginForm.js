@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { loginUser } from '../actions/login';
+import { loginUser } from '../actions';
 import { Card, CardSection, FloatingInput, SolidButton, Spinner } from './common';
 
 class LoginForm extends Component {
