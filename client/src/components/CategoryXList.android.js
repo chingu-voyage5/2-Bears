@@ -19,21 +19,22 @@ class CategoryXList extends Component {
 
     this.state = {
       category: this.props.category,
+      // categoryItems: [],
     }
   }
 
   componentWillMount() {
-    console.log(categoryDetails)
+    // console.log(categoryDetails)
     const categoryName = this.state.category
 
-    function uniqBy (inputArray, callback) {
+    function getItemsOfSame (inputArray, callback) {
       return inputArray.filter(callback)
     }
-    var inputFunc = function (a) {
-        return ('category', a.category == categoryName)
+    var hasSameCategory = function (a) {
+      return ('category', a.category == categoryName)
     }
 
-    this.setState({ category: uniqBy(categoryDetails, inputFunc) })
+    this.setState({ category: getItemsOfSame(categoryDetails, hasSameCategory) })
     console.log(this.state.category)
   }
 
@@ -42,7 +43,7 @@ class CategoryXList extends Component {
   }
 
   renderItem = ({ item, index }) => {
-    console.log('renderItem entered')
+    // console.log('renderItem entered')
     return (
       <CategoryX
         title={item.title}
@@ -56,8 +57,7 @@ class CategoryXList extends Component {
         <View style={{flex: 1}}>
           <View>
             <FlatList
-              extraData={this.state}
-              data={this.props.category}
+              data={this.state.category}
               style={styles.container}
               renderItem={ this.renderItem}
               keyExtractor={item => item.id}
@@ -97,11 +97,12 @@ const styles = StyleSheet.create({
 });
 
 
-const mapStateToProps = (state) => {
-  return {
-    categories: state.items.newCategoryList,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     categories: state.items.newCategoryList,
+//     categoryItems: state.items.newItems,
+//   };
+// };
 
 // export default connect(mapStateToProps)(CategoryXList);
 export default (CategoryXList);

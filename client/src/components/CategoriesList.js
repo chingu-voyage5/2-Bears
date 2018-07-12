@@ -34,13 +34,11 @@ class CategoriesList extends Component {
     // }
 
     this._deltaY = new Animated.Value(0);
-    // this.props.dispatch(getCategories(orderItems));
     this.props.dispatch(getCategories());
   }
 
   renderItem = ({ item, index }) => {
     console.log(item.category)
-    // console.log(this.props.categories)
     return (
       <ImageLoader item={item} category={item.category}/>
     );

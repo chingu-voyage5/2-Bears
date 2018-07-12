@@ -26,42 +26,42 @@ class RouterComponent extends Component {
     }
 
     render(){
-        const { dispatch, errorMessage, isAuthenticated } = this.props
-        return (
-<Router>
+      const { dispatch, errorMessage, isAuthenticated } = this.props
+      return (
+      <Router>
 
-      <Stack key="root" hideNavBar>
-        <Drawer
-          hideNavBar
-          key="drawer"
-          contentComponent={DrawerContent}
-          drawerWidth={300}
-          title={"2 Bears"}
-        >
-          <Scene key="auth" title={"2 Bears"}>
-            <Scene key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} initial />
-            <Scene key="register" component={RegisterForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} />
-          </Scene>
+        <Stack key="root" hideNavBar>
+          <Drawer
+            hideNavBar
+            key="drawer"
+            contentComponent={DrawerContent}
+            drawerWidth={300}
+            title={"2 Bears"}
+          >
+            <Scene key="auth" title={"2 Bears"}>
+              <Scene key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} initial />
+              <Scene key="register" component={RegisterForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} />
+            </Scene>
 
-          <Scene key="main" title={"2 Bears"}>
-            <Scene key="categoriesList" component={ CategoriesList } initial />
-            <Scene key="categoryXList" component={ CategoryXList } />
-            <Scene key="cart" component={ Cart } />
-            <Scene key="about" component={ About } />
-          </Scene>
+            <Scene key="main" title={"2 Bears"}>
+              <Scene key="categoriesList" component={ CategoriesList } initial />
+              <Scene key="categoryXList" component={ CategoryXList } />
+              <Scene key="cart" component={ Cart } />
+              <Scene key="about" component={ About } />
+            </Scene>
 
-          <Scene key="admin" title={"2 Bears"}>
-            <Scene key="scan" component={ Scan } />
-            <Scene key="stats" component={ StatsList }  initial />
-            <Scene key="statsItem" component={ StatsItem } />
-            <Scene key="drinks" component={ DrinkStatus } />
-            <Scene key="kitchen" component={ KitchenStatus } />
-            <Scene key="settings" component={ Settings } />
-          </Scene>
+            <Scene key="admin" title={"2 Bears"}>
+              <Scene key="scan" component={ Scan } />
+              <Scene key="stats" component={ StatsList }  initial />
+              <Scene key="statsItem" component={ StatsItem } />
+              <Scene key="drinks" component={ DrinkStatus } />
+              <Scene key="kitchen" component={ KitchenStatus } />
+              <Scene key="settings" component={ Settings } />
+            </Scene>
 
-        </Drawer>
-      </Stack>
-    </Router>
+          </Drawer>
+        </Stack>
+      </Router>
     );
 
     }

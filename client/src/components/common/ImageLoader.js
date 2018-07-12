@@ -11,8 +11,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-// import { setCategory } from '../actions'
-import categories from '../../SeedData/orderItemSeed';
+// import categories from '../../SeedData/orderItemSeed';
 
 class ImageLoader extends Component {
   constructor(props) {
@@ -34,14 +33,14 @@ class ImageLoader extends Component {
     Animated.spring(this.animatedValue, {
       toValue: .5
     }).start()
-    const categoryName = this.state.category
-    const categoryDetails = categories.filter(function(arr) {
-      return arr.category == categoryName;
-    });
-    this.setState({
-      category : categoryDetails
-    })
-    console.log(this.state.category)
+    // const categoryName = this.state.category
+    // const categoryItems = categories.filter(function(arr) {
+    //   return arr.category == categoryName;
+    // });
+    // this.setState({
+    //   category : categoryItems
+    // })
+    // console.log(this.state.category)
   }
 
   handlePressOut() {
