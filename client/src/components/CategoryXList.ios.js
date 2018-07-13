@@ -12,6 +12,9 @@ import { BottomNav } from './common';
 import CategoryXItem from './CategoryXItem';
 import categoryDetails from '../SeedData/orderItemSeed';
 import { setCategoryItems } from '../actions'
+
+const bottomNavHeight = 50
+const iosTopNavHeight = 60
 class CategoryXList extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +61,7 @@ class CategoryXList extends Component {
           />
         </View>
         <BottomNav
-          topValue={ -140 }
+          topValue={ 0 }
           openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
@@ -74,9 +77,8 @@ class CategoryXList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    marginTop: 20,
-    minHeight: '99%',
+    paddingTop: 20,
+    minHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
   },
   openTimes: {
     paddingTop: 15,

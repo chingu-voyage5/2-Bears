@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
 
   },
   interactableView: {
-    justifyContent: 'flex-end',
     height: Dimensions.get('window').height - 300,
   },
   slideupContainer: {
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
       android: {
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.125)',
-        // elevation: 2,
       },
       ios: {
         shadowOffset:{  width: 0,  height: -3,  },

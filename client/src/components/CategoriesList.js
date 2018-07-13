@@ -4,6 +4,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  Platform,
   StyleSheet,
   Text,
   View
@@ -13,6 +14,9 @@ import{ BottomNav, ImageLoader } from './common'
 import { getCategories } from '../actions'
 
 const numColumns = 3
+const bottomNavHeight = 50
+const androidTopNavHeight = 80
+const iosTopNavHeight = 60
 
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -57,7 +61,7 @@ class CategoriesList extends Component {
           />
         </View>
         <BottomNav
-          topValue={ -140 }
+          topValue={ 0 }
           openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
@@ -76,8 +80,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flatlist: {
-    minHeight: '94%',
-    marginBottom: 50
+    // minHeight: '92%',
+    // minHeight: '94%',
+    ...Platform.select({
+      android: {
+        minHeight: ((Dimensions.get('window').height) - androidTopNavHeight) - bottomNavHeight,
+      },
+      ios: {
+        minHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+      }
+    }),
   },
   openTimes: {
     paddingTop: 15,
