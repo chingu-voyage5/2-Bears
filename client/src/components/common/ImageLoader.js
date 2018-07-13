@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 // import categories from '../../SeedData/orderItemSeed';
+// import { getCategoryItems } from '../../actions'
 
 class ImageLoader extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class ImageLoader extends Component {
     }
     this.handlePressIn = this.handlePressIn.bind(this);
     this.handlePressOut = this.handlePressOut.bind(this);
+    // this.getCategoryItems() = this.props.dispatch(getCategoryItems()).bind(this);
   }
 
   componentWillMount() {
@@ -44,13 +46,15 @@ class ImageLoader extends Component {
   }
 
   handlePressOut() {
+    console.log('cool new word', this.props)
     Animated.spring(this.animatedValue, {
       toValue: 1,
       friction: 3,
       tension: 40
     }).start()
-    // Actions.categoryXList({ category: this.props.dispatch(setCategory()) });
-    Actions.categoryXList({category: this.state.category});
+    // Actions.categoryXList({ category: this.props.dispatch(getCategoryItems(this.state.category)) });
+    // this.getCategoryItems(this.state.category);
+    Actions.categoryXList();
 
   }
 
@@ -95,12 +99,12 @@ const styles = {
   },
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     // categoryPick: state.items.category,
-//     categories: state.items.newCategoriesList,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    // categoryPick: state.items.category,
+    category: this.state.category,
+  };
+};
 
-export { ImageLoader };
-// export connect (mapStateToProps) ({ ImageLoader });
+// export { ImageLoader };
+export connect(mapStateToProps)( ImageLoader );

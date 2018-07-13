@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
   Dimensions,
@@ -9,8 +10,8 @@ import {
 } from 'react-native';
 import { BottomNav } from './common';
 import CategoryX from './CategoryX';
-import categoryDetails from '../SeedData/orderItemSeed';
-// import { getCategoryItems } from '../actions'
+// import categoryDetails from '../SeedData/orderItemSeed';
+import { getCategoryItems } from '../actions'
 
 const numColumns = 3.5;
 class CategoryXList extends Component {
@@ -18,28 +19,27 @@ class CategoryXList extends Component {
     super(props);
 
     this.state = {
-      category: this.props.category,
-      // categoryItems: [],
+      // category: this.props.category,
+      categoryItems: [],
     }
+    // this.props.dispatch(getCategoryItems());
   }
 
   componentWillMount() {
+    // console.log(this)
+
     // console.log(categoryDetails)
-    const categoryName = this.state.category
+    // const categoryName = this.state.category
 
-    function getItemsOfSame (inputArray, callback) {
-      return inputArray.filter(callback)
-    }
-    var hasSameCategory = function (a) {
-      return ('category', a.category == categoryName)
-    }
+    // function getItemsOfSame (inputArray, callback) {
+    //   return inputArray.filter(callback)
+    // }
+    // var hasSameCategory = function (a) {
+    //   return ('category', a.category == categoryName)
+    // }
 
-    this.setState({ category: getItemsOfSame(categoryDetails, hasSameCategory) })
-    console.log(this.state.category)
-  }
-
-  componentDidMount() {
-    console.log('component did mount!!')
+    // this.setState({ category: getItemsOfSame(categoryDetails, hasSameCategory) })
+    // console.log(this.state.category)
   }
 
   renderItem = ({ item, index }) => {
@@ -97,12 +97,13 @@ const styles = StyleSheet.create({
 });
 
 
-// const mapStateToProps = (state) => {
-//   return {
-//     categories: state.items.newCategoryList,
-//     categoryItems: state.items.newItems,
-//   };
-// };
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    category: state.category,
+    categoryItems: state.items.newItems,
+  };
+};
 
-// export default connect(mapStateToProps)(CategoryXList);
-export default (CategoryXList);
+export default connect(mapStateToProps)(CategoryXList);
+// export default (CategoryXList);

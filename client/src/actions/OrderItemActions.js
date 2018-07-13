@@ -23,22 +23,23 @@ export const getCategories = () => {
 // };
 
 
-// export const getCategoryItems = (dataArray) => {
-//   const categoryName = newCategoriesList
-//   function uniqBy (inputArray, callback) {
-//     return inputArray.filter(callback)
-//   }
-//   var inputFunc = function (a) {
-//     return ('category', a.category == categoryName)
-//   }
+export const getCategoryItems = (categoryPick) => {
+  // const categoryName = this.state.category
+  console.log('accessed console.og', dataArray)
+  console.log(categoryPick)
+  function getItemsOfSame (inputArray, callback) {
+    return inputArray.filter(callback)
+  }
+  const hasSameCategory = function (a) {
+    return ('category', a.category == categoryPick)
+  }
 
-//   this.setState({ category: uniqBy(dataArray, inputFunc) }) //
-//   console.log(this.state.category)
+  return {
+    type: GET_CATEGORY_ITEMS,
+    payload: getItemsOfSame(dataArray, hasSameCategory),
+  };
 
-//   return {
-//     type: types.GET_CATEGORY_ITEMS,
-//     payload: {
-//       categoryItems: categoryItems
-//     },
-//   };
-// };
+
+
+  // console.log(this.state.category)
+};

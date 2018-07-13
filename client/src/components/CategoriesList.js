@@ -29,10 +29,6 @@ class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   uniqueCategories: uniqueCategories,
-    // }
-
     this._deltaY = new Animated.Value(0);
     this.props.dispatch(getCategories());
   }
