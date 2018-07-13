@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-// import { connect} from 'react-redux';
+import { connect} from 'react-redux';
 import {
   Dimensions,
   FlatList,
@@ -9,8 +9,9 @@ import {
   View,
 } from 'react-native';
 import { BottomNav } from './common';
-import CategoryX from './CategoryX';
+import CategoryXItem from './CategoryXItem';
 import categoryDetails from '../SeedData/orderItemSeed';
+import { setCategoryItems } from '../actions'
 class CategoryXList extends Component {
   constructor(props) {
     super(props);
@@ -18,26 +19,26 @@ class CategoryXList extends Component {
     this.state = {
       category: this.props.category
     }
+    this.props.dispatch(setCategoryItems());
   }
 
   componentWillMount(){
-    console.log(categoryDetails)
-    const categoryName = this.state.category
-    function uniqBy (inputArray, callback) {
-      return inputArray.filter(callback)
-    }
-    var inputFunc = function (a) {
-      return ('category', a.category == categoryName )
-    }
+    const categoryPick = this.props.category
+    console.log('picked the category: ', categoryPick)
 
-    this.setState({ category: uniqBy(categoryDetails, inputFunc)})
-    console.log(this.state.category)
+    getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
+    hasSameCategory = (a) => ('category', a.category == categoryPick)
+
+    const getCategoryItems = getItemsOfSame(categoryDetails, hasSameCategory)
+    console.log(getCategoryItems)
+
+    this.props.dispatch(setCategoryItems(getCategoryItems));
   }
 
   renderItem = ({ item, index }) => {
     return (
       <View>
-        <CategoryX
+        <CategoryXItem
           title={item.title}
           description={item.description}
         />
@@ -50,7 +51,7 @@ class CategoryXList extends Component {
       <View style={{flex: 1}}>
         <View>
           <FlatList
-            data={this.state.category}
+            data={this.props.categoryItems}
             style={styles.container}
             renderItem={this.renderItem}
             keyExtractor={item => item.id}
@@ -89,8 +90,12 @@ const styles = StyleSheet.create({
   }
 });
 
-// const mapStateToProps = state => state;
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    categoryItems: state.items.categoryItems,
+  };
+};
 
-export default(CategoryXList);
-// export default connect(mapStateToProps)(CategoryXList);
+export default connect(mapStateToProps)(CategoryXList);
 

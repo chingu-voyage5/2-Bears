@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import { BottomNav } from './common';
-import CategoryX from './CategoryX';
+import CategoryXItem from './CategoryXItem';
 import categoryDetails from '../SeedData/orderItemSeed';
 import { setCategoryItems } from '../actions'
 
@@ -35,14 +35,11 @@ class CategoryXList extends Component {
     console.log(getCategoryItems)
 
     this.props.dispatch(setCategoryItems(getCategoryItems));
-    // this.setState({ category: getItemsOfSame(categoryDetails, hasSameCategory) })
-    // console.log(this.state.category)
   }
 
   renderItem = ({ item, index }) => {
-    // console.log('renderItem entered')
     return (
-      <CategoryX
+      <CategoryXItem
         title={item.title}
         description={item.description}
       />
@@ -97,10 +94,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    // category: state.items.category,
     categoryItems: state.items.categoryItems,
   };
 };
 
 export default connect(mapStateToProps)(CategoryXList);
-// export default (CategoryXList);

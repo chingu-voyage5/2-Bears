@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
@@ -11,8 +11,6 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-// import categories from '../../SeedData/orderItemSeed';
-// import { getCategoryItems } from '../../actions'
 
 class ImageLoader extends Component {
   constructor(props) {
@@ -24,7 +22,6 @@ class ImageLoader extends Component {
     }
     this.handlePressIn = this.handlePressIn.bind(this);
     this.handlePressOut = this.handlePressOut.bind(this);
-    // this.getCategoryItems() = this.props.dispatch(getCategoryItems()).bind(this);
   }
 
   componentWillMount() {
@@ -44,10 +41,7 @@ class ImageLoader extends Component {
       friction: 3,
       tension: 40
     }).start()
-    // Actions.categoryXList({ category: this.props.dispatch(getCategoryItems(this.state.category)) });
-    // this.getCategoryItems(this.state.category);
     Actions.categoryXList({category: this.state.category});
-
   }
 
   render() {
@@ -81,7 +75,7 @@ const styles = {
     justifyContent: 'center',
     flex: 1,
     margin: 1,
-    height: Dimensions.get('window').width / 3 //this.numColumns
+    height: Dimensions.get('window').width / 3
   },
   itemInvisible: {
     backgroundColor: 'transparent',
@@ -91,12 +85,4 @@ const styles = {
   },
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     // categoryPick: state.items.category,
-//     category: this.state.category,
-//   };
-// };
-
 export { ImageLoader };
-// export connect(mapStateToProps)( ImageLoader );

@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { BottomNav, ImageLoader } from './common'
+import{ BottomNav, ImageLoader } from './common'
 import { getCategories } from '../actions'
 
 const numColumns = 3
@@ -24,6 +24,10 @@ const formatData = (data, numColumns) => {
   }
   return data;
 };
+
+
+
+
 
 class CategoriesList extends Component {
   constructor(props) {
