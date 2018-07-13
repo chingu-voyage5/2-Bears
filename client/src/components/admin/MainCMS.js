@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet,Modal,FlatList } from 'react-native'
-import { Button } from '../common/index';
+import { Text, View, ScrollView, StyleSheet,Modal,FlatList,Button } from 'react-native'
 import { connect } from 'react-redux';
 import CmsItem from './CmsItem';
 import {Actions} from 'react-native-router-flux';
@@ -19,11 +18,17 @@ import _ from 'lodash';
         }
         this.handleModal = this.handleModal.bind(this);
     }
-    handleModal = () =>{
+    handleModal = (props) =>{
+        console.log(props)
         this.setState({
             modal:true,
-
+            price:props.price,
+            title:props.title,
+            description:props.description,
+            type:props.type,
+            image:props.image
         })
+        console.log(this.state)
 
     }
     postModal = ()=>{
@@ -38,13 +43,13 @@ import _ from 'lodash';
     }
   render() {
       console.log(this.props)
-      
+      const {modal} = this.state;
     return (
       <View style={styles.container}>
-        <Modal onRequestClose={()=>{alert('leave?')}} visible={this.state.modal} animationType={'slide'}>
+        <Modal onRequestClose={()=>{alert('leave?')}} visible={modal} animationType={'slide'}>
         <View style={{flex:1}}>
             <Text>this is modal of {this.state.title}</Text>
-            <Button title="back" onPress={this.postModal}/>
+            <Button title="back" onPress={()=>this.postModal()}/>
         </View>
         </Modal>
         <Text> textInComponent </Text>

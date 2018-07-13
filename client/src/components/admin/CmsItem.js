@@ -8,10 +8,11 @@ export default CmsItem = (props)=>{
         var modalVisibility = false;
         
      const {title,price,description,type,image } = props;
-     console.log(props.handleModal);
+     console.log('THIS IS ITEM PROPS',props);
     return (
         
       <View style={styles.container}>
+     <View style={{flexDirection:'row'}}>
       <Image style={styles.image} source={{uri:props.image}}/>
       <View style={{flexDirection:"column"}}>
       <View style={{flexDirection:"row"}}>
@@ -20,8 +21,10 @@ export default CmsItem = (props)=>{
        </View>
         <Text style={styles.description}>{props.description}</Text>
         </View>
-        <Button style={styles.button} onPress={props.handleModal(price,title,description,image,type)} title='Update'/>
-       
+        </View>
+        <View style={styles.button}>
+        <Button  onPress={()=>props.handleModal(props)} title='Update'/>
+        </View>
       </View>
     );
 
@@ -31,10 +34,12 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         borderColor: '#777',
-        borderWidth: 1,
+        borderBottomWidth:1,
+        borderRadius:2 ,
         flexDirection: 'row',
-        position:'relative',
-        width:'100%'
+        width:'100%',
+        marginTop: 3,
+        justifyContent:'space-between'
     
     }
         ,
@@ -48,10 +53,9 @@ const styles = StyleSheet.create({
         width:'30%',
         height:50
     },
-    button:{
-    position:'absolute',
-    right:0,
+    button:{    
     height:'100%',
-    width:'13%'
+    width:'20%',
+    marginRight:5
     }
 })

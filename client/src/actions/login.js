@@ -1,7 +1,13 @@
 import axios from 'axios';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Platform } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
 // import Config from 'react-native-config';
+
+const SERVER_URL =
+  Platform.select({
+    ios: "http://localhost:5000",
+    android: "http://10.0.2.2:5000"
+  })
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -47,9 +53,10 @@ exports.loginUser = (creds) => {
     console.log('This is Creds: ', creds);
     return (dispatch) => {
         dispatch(requestLogin(creds));
-
-        return axios.get(`http://10.0.2.2::5000/api/users/${creds.email}/${creds.password}`)
-            .then((response) => {
+        console.log('yoooo am i even getting in here bro', (creds));
+        // return axios.get(`${SERVER_URL}/api/users/email@em/password`)
+        return axios.get(`${SERVER_URL}/api/users/${creds.email}/${creds.password}`)
+                .then((response) => {
                 console.log(response);
                 console.log('this is asnycstorage 60!!!!!!!!!!!!!', AsyncStorage);
                 if (!response.data) {
@@ -72,7 +79,7 @@ exports.loginUser = (creds) => {
 };
 
 
-
+//this is so much funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 exports.logoutUser = () => {
     console.log('yooo logout ran');
     return (dispatch) => {
