@@ -48,8 +48,9 @@ class CategoryXItem extends Component {
   }
 
   _setMaxHeight(event){
+    console.log(event.nativeEvent.layout)
     this.setState({
-        maxHeight: event.nativeEvent.layout.height
+        maxHeight: (event.nativeEvent.layout.height) + 100 // nativeEvent.layoutHeight isn't the correct height for some reason. Added 100 to see text for now.
     });
   }
 
@@ -58,6 +59,17 @@ class CategoryXItem extends Component {
       minHeight: event.nativeEvent.layout.height,
     });
   }
+
+  hideOnExpand() {
+    console.log('hits hide on expand function')
+    this.state.expanded ? { height:0, width: 0 } : {display: 'block' }
+  }
+
+  // hideOnExpand2() {
+    // (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 190}]}
+  //   console.log('hits hideonexpand  2222222 function')
+  //   this.state.expanded ? { height: 0 } : { height: 190 }
+  // }
 
   toggle() {
     let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
@@ -95,7 +107,7 @@ class CategoryXItem extends Component {
               <Text style={styles.cardTitle} onLayout={this._setMinHeight.bind(this)}>
                 {this.props.title}
               </Text>
-              <Text style={[styles.cardDescription, (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 90}]} onLayout={this._setMaxHeight.bind(this)}>
+              <Text style={[styles.cardDescription, this.hideOnExpand.bind(this)]} onLayout={this._setMaxHeight.bind(this)}>
                 {this.props.description}
               </Text>
             </Animated.View>
@@ -139,9 +151,8 @@ const styles = StyleSheet.create({
   },
   cardDescription: {
     width: 150,
-    // height: 90,
     paddingTop: 20,
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     color: '#000',
   },
   cardReview: {
