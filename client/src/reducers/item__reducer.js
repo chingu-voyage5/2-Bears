@@ -1,5 +1,9 @@
-import { GET_CATEGORIES, GET_CATEGORY_ITEMS } from '../actions/types';
-const initialState = { newCategoriesList: [], category: '', categoryItems:[], }
+import { GET_CATEGORIES, SET_CATEGORY_ITEMS } from '../actions/types';
+const initialState = {
+  newCategoriesList: [],
+  category: '',
+  categoryItems:[],
+}
 
 export default (state = initialState, action) => {
   console.log(action)
@@ -15,7 +19,7 @@ export default (state = initialState, action) => {
     //     ...state,
     //     category: action.payload,
     //   };
-    case GET_CATEGORY_ITEMS:
+    case SET_CATEGORY_ITEMS:
       return {
         ...state,
         categoryItems: action.payload,

@@ -93,4 +93,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+// const mapDispatchToProps =() => {
+//   return {
+//     getCategoryItems
+//   }
+// }
+
 export default connect(mapStateToProps)(CategoriesList);

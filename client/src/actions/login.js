@@ -1,7 +1,13 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from './types';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+} from './types';
 
 const requestLogin = creds => ({
     type: LOGIN_REQUEST,

@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import { BottomNav } from './common';
 import CategoryX from './CategoryX';
-// import categoryDetails from '../SeedData/orderItemSeed';
-import { getCategoryItems } from '../actions'
+import categoryDetails from '../SeedData/orderItemSeed';
+import { setCategoryItems } from '../actions'
 
 const numColumns = 3.5;
 class CategoryXList extends Component {
@@ -19,25 +19,22 @@ class CategoryXList extends Component {
     super(props);
 
     this.state = {
-      // category: this.props.category,
-      categoryItems: [],
+      category: this.props.category,
     }
-    // this.props.dispatch(getCategoryItems());
+    this.props.dispatch(setCategoryItems());
   }
 
   componentWillMount() {
-    // console.log(this)
+    const categoryPick = this.props.category
+    console.log('picked the category: ', categoryPick)
 
-    // console.log(categoryDetails)
-    // const categoryName = this.state.category
+    getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
+    hasSameCategory = (a) => ('category', a.category == categoryPick)
 
-    // function getItemsOfSame (inputArray, callback) {
-    //   return inputArray.filter(callback)
-    // }
-    // var hasSameCategory = function (a) {
-    //   return ('category', a.category == categoryName)
-    // }
+    const getCategoryItems = getItemsOfSame(categoryDetails, hasSameCategory)
+    console.log(getCategoryItems)
 
+    this.props.dispatch(setCategoryItems(getCategoryItems));
     // this.setState({ category: getItemsOfSame(categoryDetails, hasSameCategory) })
     // console.log(this.state.category)
   }
@@ -57,7 +54,7 @@ class CategoryXList extends Component {
         <View style={{flex: 1}}>
           <View>
             <FlatList
-              data={this.state.category}
+              data={this.props.categoryItems}
               style={styles.container}
               renderItem={ this.renderItem}
               keyExtractor={item => item.id}
@@ -100,8 +97,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    category: state.category,
-    categoryItems: state.items.newItems,
+    // category: state.items.category,
+    categoryItems: state.items.categoryItems,
   };
 };
 

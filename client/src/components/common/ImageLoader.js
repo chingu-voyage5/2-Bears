@@ -35,18 +35,10 @@ class ImageLoader extends Component {
     Animated.spring(this.animatedValue, {
       toValue: .5
     }).start()
-    // const categoryName = this.state.category
-    // const categoryItems = categories.filter(function(arr) {
-    //   return arr.category == categoryName;
-    // });
-    // this.setState({
-    //   category : categoryItems
-    // })
-    // console.log(this.state.category)
   }
 
   handlePressOut() {
-    console.log('cool new word', this.props)
+    console.log('clicked on: ', this.props)
     Animated.spring(this.animatedValue, {
       toValue: 1,
       friction: 3,
@@ -54,7 +46,7 @@ class ImageLoader extends Component {
     }).start()
     // Actions.categoryXList({ category: this.props.dispatch(getCategoryItems(this.state.category)) });
     // this.getCategoryItems(this.state.category);
-    Actions.categoryXList();
+    Actions.categoryXList({category: this.state.category});
 
   }
 
@@ -99,12 +91,12 @@ const styles = {
   },
 };
 
-const mapStateToProps = (state) => {
-  return {
-    // categoryPick: state.items.category,
-    category: this.state.category,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     // categoryPick: state.items.category,
+//     category: this.state.category,
+//   };
+// };
 
-// export { ImageLoader };
-export connect(mapStateToProps)( ImageLoader );
+export { ImageLoader };
+// export connect(mapStateToProps)( ImageLoader );
