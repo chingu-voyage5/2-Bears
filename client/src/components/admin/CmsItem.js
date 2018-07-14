@@ -8,9 +8,8 @@ export default CmsItem = (props)=>{
         var modalVisibility = false;
         
      const {title,price,description,type,image } = props;
-     console.log('THIS IS ITEM PROPS',props);
+     console.log('THIS IS ITEM PROPS',title);
     return (
-        
       <View style={styles.container}>
      <View style={{flexDirection:'row'}}>
       <Image style={styles.image} source={{uri:props.image}}/>

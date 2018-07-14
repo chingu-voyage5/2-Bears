@@ -14,7 +14,7 @@ import DrinkStatus from './components/admin/DrinkStatus';
 import KitchenStatus from './components/admin/KitchenStatus';
 import Settings from './components/admin/Settings';
 import Scan from './components/admin/Scan';
-import MainCMS from './components/admin/MainCMS';
+import MainCms from './components/admin/MainCms';
 import CmsCreate from './components/CmsForm';
 
 class RouterComponent extends Component {
@@ -58,7 +58,7 @@ class RouterComponent extends Component {
             <Scene key="drinks" component={ DrinkStatus } />
             <Scene key="kitchen" component={ KitchenStatus } />
             <Scene key="settings" component={ Settings } />
-            <Scene key='cms' component={ MainCMS } title={"Manage Items"}/>
+            <Scene key='cms' component={ MainCms } title={"Manage Items"}/>
             <Scene key='cmsCreate' component={ CmsCreate } title={"Create Item"}/>
           </Scene>
 
