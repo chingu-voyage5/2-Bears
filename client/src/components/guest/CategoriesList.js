@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { BottomNav, ImageLoader } from '../common'
-import CmsPreview from '../admin/CmsPreview';
+import CmsPreview from '../admin/CMS/CmsPreview';
 
 const numColumns = 3
 const categories = [

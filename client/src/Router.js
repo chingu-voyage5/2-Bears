@@ -14,8 +14,8 @@ import DrinkStatus from './components/admin/DrinkStatus';
 import KitchenStatus from './components/admin/KitchenStatus';
 import Settings from './components/admin/Settings';
 import Scan from './components/admin/Scan';
-import MainCms from './components/admin/MainCms';
-import CmsCreate from './components/CmsForm';
+import MainCms from './components/admin/CMS/MainCms';
+import CmsCreate from './components/admin/CMS/CmsForm';
 
 class RouterComponent extends Component {
 

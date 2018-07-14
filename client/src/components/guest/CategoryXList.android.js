@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { connect} from 'react-redux';
-import CmsPreview from '../admin/CmsPreview';
+import CmsPreview from '../admin/CMS/CmsPreview';
 
 const categories = [
   { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' },

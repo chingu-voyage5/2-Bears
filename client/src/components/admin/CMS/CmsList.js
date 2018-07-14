@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet,Modal,FlatList,Button } from 'react-native';
+import { Text, View, ScrollView, StyleSheet,Modal,Button} from 'react-native';
 import CmsItem from './CmsItem';
 import {Actions} from 'react-native-router-flux';
+import _ from 'lodash';
+import CmsUpdate from './CmsUpdate';
 
 
  class CmsList extends Component {
@@ -35,36 +37,36 @@ import {Actions} from 'react-native-router-flux';
             modal:false
         })
     }
-    itemList = ({item,index})=>{
-        return(
-            <CmsItem handleModal={this.handleModal} image={item.image} price={item.price} title={item.name} description={item.desc}/>
-        )
-    }
+    
   render() {
-      console.log(this.props)
-      const {modal} = this.state;
+     
+    const itemList = _.map(this.props.items,(item,i)=>{
+        return(
+            <CmsItem handleModal={this.handleModal} key={i} image={item.image} price={item.price} title={item.name} description={item.desc}/>
+        )
+    }) 
+      const {modal,title,description} = this.state;
     return (
+
       <View style={styles.container}>
         <Modal onRequestClose={()=>{alert('leave?')}} visible={modal} animationType={'slide'}>
         <View style={{flex:1}}>
-            <Text>this is modal of {this.state.title}</Text>
+                <CmsUpdate title description/>
             <Button title="back" onPress={()=>this.postModal()}/>
         </View>
         </Modal>
-        <Text> textInComponent </Text>
-        <Button
-        title='enter'
-        onPress={()=>{ Actions.cmsCreate()}}
-        >Create Item</Button>
-        <ScrollView style={{flex:1}}>
-        <FlatList
-            data={this.props.items}
-            renderItem={this.itemList}
-            keyExtractor={(item,index) => index}
-          />
+    
+        <ScrollView contentContainerStyle={{flex:1,flexWrap:'wrap'}}>
+        {itemList}
         </ScrollView>
-        
-      </View>
+
+        {/* <Button
+        style={styles.button}
+        title='Create New'
+        onPress={()=>{ Actions.cmsCreate()}}
+        >Create Item</Button> */}
+        </View>
+      
     )
   }
 }
@@ -72,8 +74,13 @@ import {Actions} from 'react-native-router-flux';
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        borderWidth: 2,
-        borderColor: 'red',
+        borderWidth: 0,
+        borderColor: '#D3D3D3',
+        backgroundColor:'#FFFFFF',
+        borderRadius:3
+    },
+    button:{
+        backgroundColor:'#FF0000'
     }
 
 })

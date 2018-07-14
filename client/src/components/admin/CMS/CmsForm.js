@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Button} from 'react-native'
 import { Actions } from 'react-native-router-flux';
-import { FloatingInput } from './common'
-import CmsPreview from './admin/CmsPreview';
+import { FloatingInput } from '../../common'
+import CmsPreview from './CmsPreview';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
-import * as itemActions from '../actions/itemActions';
+import * as itemActions from '../../../actions/itemActions';
 import { bindActionCreators} from 'redux';
 
  class CmsForm extends Component {
