@@ -60,13 +60,7 @@ class ImageLoader extends Component {
       >
         <View style={{flex:1}}>
           <Animated.View style={[styles.item, animatedStyle]}>
-<<<<<<< HEAD
-            <View>
-              <Text style={styles.itemText}>{this.props.item.key}</Text>
-            </View>
-=======
             <Text style={styles.itemText}>{this.props.category}</Text>
->>>>>>> admin-stats
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>

@@ -1,30 +1,13 @@
 import axios from 'axios';
 import { AsyncStorage, Platform } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
-<<<<<<< HEAD
-// import Config from 'react-native-config';
-
-const SERVER_URL =
-  Platform.select({
-    ios: "http://localhost:5000",
-    android: "http://10.0.2.2:5000"
-  })
-
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
-=======
 import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
 } from './types';
->>>>>>> admin-stats
 
 const requestLogin = creds => ({
     type: LOGIN_REQUEST,
@@ -87,8 +70,6 @@ exports.loginUser = (creds) => {
     };
 };
 
-
-//this is so much funnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 exports.logoutUser = () => {
     console.log('yooo logout ran');
     return (dispatch) => {

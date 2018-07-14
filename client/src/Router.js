@@ -26,15 +26,9 @@ class RouterComponent extends Component {
     }
 
     render(){
-<<<<<<< HEAD
-        const { dispatch, errorMessage, isAuthenticated } = this.props
-        return (
-        <Router>
-=======
       const { dispatch, errorMessage, isAuthenticated } = this.props
       return (
       <Router>
->>>>>>> admin-stats
 
         <Stack key="root" hideNavBar>
           <Drawer
