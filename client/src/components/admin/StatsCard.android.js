@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from '../common'
+import { Heart, StarRating, RoundAddButton, OutlineButton, PlateImage, ProgressBarContainer } from '../common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -20,13 +20,18 @@ class StatsCard extends Component {
     super(props);
 
     this.state = {
+      customers : props.customerList,
+      item: props.item,
       id : props.id,
+      index : props.index,
       customer : props.customer,
       scanTime : props.scanTime,
+      orderDate : props.orderDate,
       tableNo : props.tableNo,
       action : props.action,
       menuOne: props.menuOne,
       menuTwo: props.menuTwo,
+      activeCardKey : this.props.item.key,
     }
   }
 
@@ -45,13 +50,36 @@ class StatsCard extends Component {
 
   // }
 
+  handleActionButton() {
+    let customers = this.state.customers
+    let index = this.state.index
+    let action = this.state.action
+    if (action == 'Scan' ) {
+      this.setState({ action: `Serve drinks` })
+    } else if (action === `Serve drinks`) {
+      this.setState({ action: `Serve firstCourse` })
+    } else if (action === `Serve firstCourse`) {
+      this.setState({ action: `Serve secondCourse` })
+    } else if (action === `Serve secondCourse`) {
+      this.setState({ action: `Done` })
+    } else if (action === `Done`) {
+      const deletingCard = this.state.activeCardKey
+      this.setState({
+        action: `Scan`,
+        customers : this.state.customers.splice( customers[index], 1),
+        activeCardKey : null
+      })
+      this.props.parentFlatlist.refreshFlatlist(deletingCard)
+    }
+  }
+
   render() {
     return (
-      <View style={styles.fakeOverflowCard}>
         <View style={styles.card}>
           <TouchableWithoutFeedback
             onPress={Actions.statsItem}
           >
+          <View>
             <View style={{paddingTop: 22, paddingHorizontal: '5%',}}>
               <Text style={styles.cardTitle}>{this.props.id}</Text>
               <Text>{this.props.customer}</Text>
@@ -90,13 +118,16 @@ class StatsCard extends Component {
                 <Text>{this.props.menuTwo.courseFive.optionTwo}</Text>
                 <Text>{this.props.menuTwo.courseFive.optionThree}</Text>
               </View>
-              <Text>{this.props.tableNo}</Text>
-              <Text>{this.props.action}</Text>
-
+              <Text>Order Date: {this.props.orderDate}</Text>
+              <Text>Table #: {this.props.tableNo}</Text>
+              <OutlineButton onPress={() => {this.handleActionButton() }}>
+                {this.state.action}
+              </OutlineButton>
+            </View>
+            <ProgressBarContainer />
             </View>
           </TouchableWithoutFeedback>
         </View>
-      </View>
     );
   }
 }
@@ -104,8 +135,10 @@ class StatsCard extends Component {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
-    alignItems: 'center',
-    alignSelf: 'center',
+    // alignItems: 'center',
+    // alignSelf: 'center',
+    marginVertical: 10,
+    marginHorizontal: 20,
     borderRadius: 15,
     elevation: 2,
     minHeight: 100,
@@ -113,24 +146,11 @@ const styles = StyleSheet.create({
   cardTitle: {
     color: '#000',
   },
-  cardDescription: {
-    width: 300,
-    paddingVertical: 20,
-    color: '#000',
-  },
   menuOneStyle: {
     flexDirection: 'row',
   },
   menuTwoStyle: {
     flexDirection: 'row',
-  },
-  fakeOverflowCard: {
-    // fakes overflow but requires more markup
-    backgroundColor: "transparent",
-    width: '100%',
-    marginVertical: 10,
-    position: "relative",
-    paddingVertical: 5,
   },
 });
 

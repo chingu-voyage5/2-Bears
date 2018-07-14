@@ -84,10 +84,10 @@ const styles = StyleSheet.create({
     // minHeight: '94%',
     ...Platform.select({
       android: {
-        minHeight: ((Dimensions.get('window').height) - androidTopNavHeight) - bottomNavHeight,
+        height: ((Dimensions.get('window').height) - androidTopNavHeight) - bottomNavHeight,
       },
       ios: {
-        minHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+        height: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
       }
     }),
   },

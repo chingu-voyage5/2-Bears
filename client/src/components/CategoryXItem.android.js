@@ -56,6 +56,7 @@ class CategoryXItem extends Component {
   }
 
   _setMinHeight(event){
+    console.log(event)
     this.setState({
       minHeight: event.nativeEvent.layout.height,
     });

@@ -19,6 +19,8 @@
 
 export default [
     {
+      // models: 'foodItems',
+      // data: {}
       id: '001',
       category: 'Soup',
       courseType: 'courseOne',
