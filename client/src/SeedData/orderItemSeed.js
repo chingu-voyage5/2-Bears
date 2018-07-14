@@ -17,10 +17,10 @@
 //  },
 // })
 
-export default [
+export default {
+  models: 'foodItems',
+  data: [
     {
-      // models: 'foodItems',
-      // data: {}
       id: '001',
       category: 'Soup',
       courseType: 'courseOne',
@@ -249,4 +249,5 @@ export default [
       starRating: 4.5,
       reviews: 1072,
     },
-  ]
+  ],
+}

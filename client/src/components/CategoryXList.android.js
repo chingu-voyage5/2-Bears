@@ -32,7 +32,7 @@ class CategoryXList extends Component {
     getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
     hasSameCategory = (a) => ('category', a.category == categoryPick)
 
-    const getCategoryItems = getItemsOfSame(categoryDetails, hasSameCategory)
+    const getCategoryItems = getItemsOfSame(categoryDetails.data, hasSameCategory)
     console.log(getCategoryItems)
 
     this.props.dispatch(setCategoryItems(getCategoryItems));
