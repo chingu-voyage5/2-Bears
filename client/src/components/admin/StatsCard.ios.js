@@ -53,26 +53,26 @@ class StatsCard extends Component {
   // }
 
   handleActionButton() {
-   let customers = this.state.customers
-   let index = this.state.index
-   let action = this.state.action
-   if (action == 'Scan' ) {
-     this.setState({ action: `Serve drinks` })
-   } else if (action === `Serve drinks`) {
-     this.setState({ action: `Serve firstCourse` })
-   } else if (action === `Serve firstCourse`) {
-     this.setState({ action: `Serve secondCourse` })
-   } else if (action === `Serve secondCourse`) {
-     this.setState({ action: `Done` })
-   } else if (action === `Done`) {
-     const deletingCard = this.state.activeCardKey
-     this.setState({
-       action: `Scan`,
-       customers : this.state.customers.splice( customers[index], 1),
-       activeCardKey : null
-     })
-     this.props.parentFlatlist.refreshFlatlist(deletingCard)
-   }
+    let customers = this.state.customers
+    let index = this.state.index
+    let action = this.state.action
+    if (action == 'Scan' ) {
+      this.setState({ action: `Serve drinks` })
+    } else if (action === `Serve drinks`) {
+      this.setState({ action: `Serve firstCourse` })
+    } else if (action === `Serve firstCourse`) {
+      this.setState({ action: `Serve secondCourse` })
+    } else if (action === `Serve secondCourse`) {
+      this.setState({ action: `Done` })
+    } else if (action === `Done`) {
+      const deletingCard = this.state.activeCardKey
+      this.setState({
+        action: `Scan`,
+        customers : this.state.customers.splice( customers[index], 1),
+        activeCardKey : null
+      })
+      this.props.parentFlatlist.refreshFlatlist(deletingCard)
+    }
   }
 
   render() {

@@ -17,7 +17,9 @@
 //  },
 // })
 
-export default [
+export default {
+  models: 'foodItems',
+  data: [
     {
       id: '001',
       category: 'Soup',
@@ -247,4 +249,5 @@ export default [
       starRating: 4.5,
       reviews: 1072,
     },
-  ]
+  ],
+}

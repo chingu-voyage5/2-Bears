@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  Platform,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -10,9 +11,12 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import StatsCard from './StatsCard';
+import { BottomNav } from '../common'
 import customers from '../../SeedData/ordersSeed'
 
-const numColumns = 3.5;
+const bottomNavHeight = 50
+const androidTopNavHeight = 80
+const iosTopNavHeight = 60
 class StatsList extends Component {
   constructor (props) {
     super (props);
@@ -52,33 +56,49 @@ class StatsList extends Component {
 
   render() {
     return (
-        <View style={{flex: 1}}>
-          <View>
-            <FlatList
-              extraData={this.state}
-              data={this.state.customers}
-              showsVerticalScrollIndicator={false}
-              style={styles.container}
-              renderItem={this.renderItem}
-              keyExtractor= {(item, index) => `${index}`}
-            />
-          </View>
+      <View style={{flex: 1}}>
+        <View>
+          <FlatList
+            extraData={this.state}
+            data={this.state.customers}
+            showsVerticalScrollIndicator={false}
+            style={styles.flatlist}
+            renderItem={this.renderItem}
+            keyExtractor= {(item, index) => `${index}`}
+          />
         </View>
+        <BottomNav
+          topValue={ 0 }
+          openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
+          linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
+          linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
+          linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
+          linkOneScene={Actions.cart}
+          linkTwoScene={Actions.main}
+          linkThreeScene={Actions.auth}
+        />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  flatlist: {
     // flex: 1,
-    marginBottom: 50,
-    // marginHorizontal: 0,
+    ...Platform.select({
+      android: {
+        height: ((Dimensions.get('window').height) - androidTopNavHeight) - bottomNavHeight,
+      },
+      ios: {
+        height: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+      }
+    }),
   },
   openTimes: {
     paddingTop: 15,
     paddingBottom: 25,
     fontSize: 20,
-    left: (Dimensions.get('window').width / 2) - 125,
+    // left: (Dimensions.get('window').width / 2) - 125,
   },
   slideupText: {
     paddingTop: 20,
@@ -87,35 +107,3 @@ const styles = StyleSheet.create({
 });
 
 export default(StatsList);
-
-
-// menuOneCourseOneOptionOne={item.menuOne.courseOne.optionOne}
-// menuOneCourseOneOptionTwo={item.menuOne.courseOne.optionTwo}
-// menuOneCourseOneOptionThree={item.menuOne.courseOne.optionThree}
-// menuOneCourseTwoOptionOne={item.menuOne.courseTwo.optionOne}
-// menuOneCourseTwoOptionTwo={item.menuOne.courseTwo.optionTwo}
-// menuOneCourseTwoOptionThree={item.menuOne.courseTwo.optionThree}
-// menuOneCourseThreeOptionOne={item.menuOne.courseThree.optionOne}
-// menuOneCourseThreeOptionTwo={item.menuOne.courseThree.optionTwo}
-// menuOneCourseThreeOptionThree={item.menuOne.courseThree.optionThree}
-// menuOneCourseFourOptionOne={item.menuOne.courseFour.optionOne}
-// menuOneCourseFourOptionTwo={item.menuOne.courseFour.optionTwo}
-// menuOneCourseFourOptionThree={item.menuOne.courseFour.optionThree}
-// menuOneCourseFiveOptionOne={item.menuOne.courseFive.optionOne}
-// menuOneCourseFiveOptionTwo={item.menuOne.courseFive.optionOne}
-// menuOneCourseFiveOptionThree={item.menuOne.courseFive.optionOne}
-// menuTwoCourseOneOptionOne={item.menuTwo.courseOne.optionOne}
-// menuTwoCourseOneOptionTwo={item.menuTwo.courseOne.optionTwo}
-// menuTwoCourseOneOptionThree={item.menuTwo.courseOne.optionThree}
-// menuTwoCourseTwoOptionOne={item.menuTwo.courseTwo.optionOne}
-// menuTwoCourseTwoOptionTwo={item.menuTwo.courseTwo.optionTwo}
-// menuTwoCourseTwoOptionThree={item.menuTwo.courseTwo.optionThree}
-// menuTwoCourseThreeOptionOne={item.menuTwo.courseThree.optionOne}
-// menuTwoCourseThreeOptionTwo={item.menuTwo.courseThree.optionTwo}
-// menuTwoCourseThreeOptionThree={item.menuTwo.courseThree.optionThree}
-// menuTwoCourseFourOptionOne={item.menuTwo.courseFour.optionOne}
-// menuTwoCourseFourOptionTwo={item.menuTwo.courseFour.optionTwo}
-// menuTwoCourseFourOptionThree={item.menuTwo.courseFive.optionThree}
-// menuTwoCourseFiveOptionOne={item.menuTwo.courseFive.optionOne}
-// menuTwoCourseFiveOptionTwo={item.menuTwo.courseFive.optionTwo}
-// menuTwoCourseFiveOptionThree={item.menuTwo.courseFive.optionThree}

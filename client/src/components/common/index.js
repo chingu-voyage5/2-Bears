@@ -12,3 +12,5 @@ export * from './Spinner';
 export * from './PlateImage';
 export * from './RoundAddButton';
 export * from './StarRating';
+export * from './StatsProgressBar';
+export * from './ProgressBarContainer';
