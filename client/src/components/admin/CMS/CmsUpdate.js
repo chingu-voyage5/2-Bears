@@ -5,8 +5,9 @@ import { FloatingInput } from '../../common'
 import CmsPreview from './CmsPreview';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
-import * as itemActions from '../../../actions';
+import * as itemActions from '../../../actions/itemActions';
 import { bindActionCreators} from 'redux';
+
 
  class CmsUpdate extends Component {
     constructor(props){
@@ -15,9 +16,10 @@ import { bindActionCreators} from 'redux';
         this.state ={
             Name:props.title,
             Description:props.description,
-            image:'',
-            price:2.45,
-            type:'food'
+            image:props.image,
+            price:props.price,
+            type:props.type,
+            id:props.id
         }
         this.updateInput = this.updateInput.bind(this);
     }
@@ -35,9 +37,10 @@ import { bindActionCreators} from 'redux';
         })
     }
   render() {
-      console.log(this.props);
+      console.log('THIS IS THE UPDATE CMS CONSTOLE>LOG',this.props);
       const previewImage =  this.state.image === '' ?soupImage:this.state.image;
       const {Name, Description,image,price,type} = this.state;
+      const {id} = this.props;
     return (
       <View>
         <Text style={styles.title}>Component Preview</Text>
@@ -50,8 +53,9 @@ import { bindActionCreators} from 'redux';
           <View style={styles.card}>
           <View style={styles.cardSection}>
         <FloatingInput
+            update={true}
             label={'Name'}
-            value={this.state.Name}
+            value={this.props.title}
             name='Name'
             ChangeText={this.updateInput}
             
@@ -60,8 +64,9 @@ import { bindActionCreators} from 'redux';
         </View>
         <View style={styles.cardSection}>
         <FloatingInput
+            update={true}
             label={'Description'}
-            value={this.state.Description}
+            value={this.props.description}
             name='Description'
             ChangeText={this.updateInput}
             
@@ -78,7 +83,7 @@ import { bindActionCreators} from 'redux';
             title="Post"
             color="#841584"
             onPress={()=> {
-                this.props.itemActions.createItem(Name,Description,previewImage,price,type)
+                this.props.itemActions.updateItem(Name,Description,previewImage,price,type,id)
                 return this.setState({Name:'',Description:'',image:'',price:0,type:''})
             } }
          />

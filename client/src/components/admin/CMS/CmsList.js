@@ -20,14 +20,14 @@ import CmsUpdate from './CmsUpdate';
         this.handleModal = this.handleModal.bind(this);
     }
     handleModal = (props) =>{
-        console.log(props)
         this.setState({
             modal:true,
             price:props.price,
             title:props.title,
             description:props.description,
             type:props.type,
-            image:props.image
+            image:props.image,
+            id:props.id
         })
         console.log(this.state)
 
@@ -42,16 +42,23 @@ import CmsUpdate from './CmsUpdate';
      
     const itemList = _.map(this.props.items,(item,i)=>{
         return(
-            <CmsItem handleModal={this.handleModal} key={i} image={item.image} price={item.price} title={item.name} description={item.desc}/>
+            <CmsItem handleModal={this.handleModal} id={item.id} key={i} image={item.image} price={item.price} title={item.name} description={item.desc}/>
         )
     }) 
-      const {modal,title,description} = this.state;
+      const {modal,title,description,image,id,price,type} = this.state;
     return (
 
       <View style={styles.container}>
         <Modal onRequestClose={()=>{alert('leave?')}} visible={modal} animationType={'slide'}>
         <View style={{flex:1}}>
-                <CmsUpdate title description/>
+                <CmsUpdate
+                 title={title}
+                 description={description}
+                 price={price}
+                 id={id}
+                 type={type}
+                 image={image}
+                 />
             <Button title="back" onPress={()=>this.postModal()}/>
         </View>
         </Modal>

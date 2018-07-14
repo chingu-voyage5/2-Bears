@@ -16,6 +16,7 @@ import Settings from './components/admin/Settings';
 import Scan from './components/admin/Scan';
 import MainCms from './components/admin/CMS/MainCms';
 import CmsCreate from './components/admin/CMS/CmsForm';
+import CmsUpdate from './components/admin/CMS/CmsUpdate';
 
 class RouterComponent extends Component {
 
@@ -60,6 +61,7 @@ class RouterComponent extends Component {
             <Scene key="settings" component={ Settings } />
             <Scene key='cms' component={ MainCms } title={"Manage Items"}/>
             <Scene key='cmsCreate' component={ CmsCreate } title={"Create Item"}/>
+            <Scene key='cmsUpdate' component={CmsUpdate} title={'update'}/>
           </Scene>
 
         </Drawer>
