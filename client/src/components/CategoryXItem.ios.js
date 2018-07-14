@@ -8,11 +8,8 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
-// import { connect } from 'react-redux';
-// import { employeeUpdate, employeeCreate } from '../actions';
-// onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
 
-class CategoryX extends Component {
+class CategoryXItem extends Component {
   constructor(props) {
     super(props);
 
@@ -34,6 +31,10 @@ class CategoryX extends Component {
     this.triggerLike = this.triggerLike.bind(this);
   }
 
+  componentWillMount() {
+    console.log(this)
+  }
+
   triggerLike() {
     this.setState({
       liked: !this.state.liked
@@ -47,8 +48,9 @@ class CategoryX extends Component {
   }
 
   _setMaxHeight(event){
+    console.log(event.nativeEvent.layout)
     this.setState({
-        maxHeight: event.nativeEvent.layout.height
+        maxHeight: (event.nativeEvent.layout.height) + 100 // nativeEvent.layoutHeight isn't the correct height for some reason. Added 100 to see text for now.
     });
   }
 
@@ -57,6 +59,17 @@ class CategoryX extends Component {
       minHeight: event.nativeEvent.layout.height,
     });
   }
+
+  hideOnExpand() {
+    console.log('hits hide on expand function')
+    this.state.expanded ? { height:0, width: 0 } : {display: 'block' }
+  }
+
+  // hideOnExpand2() {
+    // (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 190}]}
+  //   console.log('hits hideonexpand  2222222 function')
+  //   this.state.expanded ? { height: 0 } : { height: 190 }
+  // }
 
   toggle() {
     let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
@@ -94,7 +107,7 @@ class CategoryX extends Component {
               <Text style={styles.cardTitle} onLayout={this._setMinHeight.bind(this)}>
                 {this.props.title}
               </Text>
-              <Text style={[styles.cardDescription, (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 90}]} onLayout={this._setMaxHeight.bind(this)}>
+              <Text style={[styles.cardDescription, this.hideOnExpand.bind(this)]} onLayout={this._setMaxHeight.bind(this)}>
                 {this.props.description}
               </Text>
             </Animated.View>
@@ -138,9 +151,8 @@ const styles = StyleSheet.create({
   },
   cardDescription: {
     width: 150,
-    // height: 90,
     paddingTop: 20,
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     color: '#000',
   },
   cardReview: {
@@ -158,11 +170,4 @@ const styles = StyleSheet.create({
   }
 });
 
-// const mapStateToProps = (state) => {
-//   const { name, phone, shift } = state.employeeForm;
-
-//   return { name, phone, shift };
-// };
-
-export default(CategoryX);
-// export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
+export default(CategoryXItem);

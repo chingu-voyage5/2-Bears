@@ -10,11 +10,8 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
-// import { connect } from 'react-redux';
-// import { employeeUpdate, employeeCreate } from '../actions';
-// onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
 
-class CategoryX extends Component {
+class CategoryXItem extends Component {
   constructor(props) {
     super(props);
 
@@ -34,6 +31,10 @@ class CategoryX extends Component {
       ]
     }
     this.triggerLike = this.triggerLike.bind(this);
+  }
+
+  componentWillMount() {
+    console.log(this)
   }
 
   triggerLike() {
@@ -170,11 +171,4 @@ const styles = StyleSheet.create({
   }
 });
 
-// const mapStateToProps = (state) => {
-//   const { name, phone, shift } = state.employeeForm;
-
-//   return { name, phone, shift };
-// };
-
-export default(CategoryX);
-// export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
+export default(CategoryXItem);

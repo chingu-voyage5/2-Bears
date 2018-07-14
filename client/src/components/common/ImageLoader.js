@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
@@ -16,7 +17,7 @@ class ImageLoader extends Component {
     super(props);
 
     this.state = {
-      item : props.item,
+      category : props.category,
       numColumns : props.numColumns,
     }
     this.handlePressIn = this.handlePressIn.bind(this);
@@ -34,12 +35,13 @@ class ImageLoader extends Component {
   }
 
   handlePressOut() {
+    console.log('clicked on: ', this.props)
     Animated.spring(this.animatedValue, {
       toValue: 1,
       friction: 3,
       tension: 40
     }).start()
-    Actions.categoryXList();
+    Actions.categoryXList({category: this.state.category});
   }
 
   render() {
@@ -58,24 +60,28 @@ class ImageLoader extends Component {
       >
         <View style={{flex:1}}>
           <Animated.View style={[styles.item, animatedStyle]}>
+<<<<<<< HEAD
             <View>
               <Text style={styles.itemText}>{this.props.item.key}</Text>
             </View>
+=======
+            <Text style={styles.itemText}>{this.props.category}</Text>
+>>>>>>> admin-stats
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>
-      );
-    }
-  };
+    );
+  }
+};
 
-  const styles = {
-    item: {
+const styles = {
+  item: {
     backgroundColor: '#4d243d',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
     margin: 1,
-    height: Dimensions.get('window').width / 3 //this.numColumns
+    height: Dimensions.get('window').width / 3
   },
   itemInvisible: {
     backgroundColor: 'transparent',
@@ -83,6 +89,6 @@ class ImageLoader extends Component {
   itemText: {
     color: '#fff',
   },
-  };
+};
 
 export { ImageLoader };

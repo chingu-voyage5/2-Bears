@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { Dimensions, ScrollView, View, Text, TouchableWithoutFeedback, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+<<<<<<< HEAD
 import { loginUser } from '../actions/login';
 import { Card, CardSection, Button, Spinner } from './common';
+=======
+import { loginUser } from '../actions';
+import { Card, CardSection, FloatingInput, SolidButton, Spinner } from './common';
+>>>>>>> admin-stats
 
 class LoginForm extends Component {
 
@@ -35,10 +40,11 @@ class LoginForm extends Component {
 
     handleLoginClick() {
         // console.log('this is the props on line 26', this.props);
-        const email = this.state.email;
-        const password = this.state.password;
-        const creds = { email: email, password: password };
-        this.props.dispatch(loginUser(creds));
+        // const email = this.state.email;
+        // const password = this.state.password;
+        // const creds = { email: email, password: password };
+        // this.props.dispatch(loginUser(creds));
+        Actions.main()
     }
 
     measure(layout) {
@@ -55,6 +61,7 @@ class LoginForm extends Component {
           <View style={styles.titleStyle}>
             <Text style={styles.titleText}>Log In</Text>
           </View>
+          
           <View style={styles.cardStyle}>
             <View style={styles.inputSection}>
               <TextInput
@@ -72,14 +79,12 @@ class LoginForm extends Component {
               onChangeText={ text => this.passwordChange(text)}
             />
             </View>
-
-
           </View>
 
           <View style={[styles.buttonSection, {justifyContent: 'center'}]}>
-            <Button onPress={() => this.handleLoginClick()}>
+            <SolidButton onPress={() => this.handleLoginClick()}>
             Login
-            </Button>
+            </SolidButton>
             <View style={styles.signupText}>
               <Text style={styles.text}>First time here?</Text>
                 <TouchableWithoutFeedback onPress={ Actions.register }>
