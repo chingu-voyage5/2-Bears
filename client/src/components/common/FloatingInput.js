@@ -105,10 +105,6 @@ class FloatingInput extends Component {
           onBlur={() => this.handleInputBlur()}
           onLayout={event => {
             const layout = event.nativeEvent.layout;
-            console.log('height:', layout.height);
-            console.log('width:', layout.width);
-            console.log('x:', layout.x);
-            console.log('y:', layout.y);
           }}
         />
       </View>

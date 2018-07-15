@@ -25,7 +25,7 @@ import CmsUpdate from './CmsUpdate';
             price:props.price,
             title:props.title,
             description:props.description,
-            type:props.type,
+            category:props.category,
             image:props.image,
             id:props.id
         })
@@ -40,12 +40,12 @@ import CmsUpdate from './CmsUpdate';
     
   render() {
      
-    const itemList = _.map(this.props.items,(item,i)=>{
+    const itemList = _.map(this.props.cms,(item,i)=>{
         return(
             <CmsItem handleModal={this.handleModal} id={item.id} key={i} image={item.image} price={item.price} title={item.name} description={item.desc}/>
         )
     }) 
-      const {modal,title,description,image,id,price,type} = this.state;
+      const {modal,title,description,image,id,price,category} = this.state;
     return (
 
       <View style={styles.container}>
@@ -56,7 +56,7 @@ import CmsUpdate from './CmsUpdate';
                  description={description}
                  price={price}
                  id={id}
-                 type={type}
+                 type={category}
                  image={image}
                  />
             <Button title="back" onPress={()=>this.postModal()}/>

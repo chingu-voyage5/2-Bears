@@ -1,68 +1,74 @@
 import React, { Component } from 'react';
-import Interactable from 'react-native-interactable';
 import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
   FlatList,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableWithoutFeedback,
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { BottomNav, ImageLoader } from '../common'
 import CmsPreview from '../admin/CMS/CmsPreview';
+import{ BottomNav, ImageLoader } from '../common'
+import { getCategories } from '../../actions'
 
 const numColumns = 3
-const categories = [
-  { key: 'Category1' }, { key: 'Category2' }, { key: 'Category3' }, { key: 'Category4' }, { key: 'Category5' }, { key: 'Category6' }, { key: 'Category7' }, { key: 'Category8' }, { key: 'Category9' }, { key: 'Category10' }, { key: 'Category11' }, { key: 'Category12' }, { key: 'category13' },
-]
+const bottomNavHeight = 50
+const androidTopNavHeight = 80
+const iosTopNavHeight = 60
 
-const formatData = (data, numColumns) => {
-  const numberOfFullRows = Math.floor(data.length / numColumns);
 
-  let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
-  while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-    data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
-    numberOfElementsLastRow++;
-  }
-  return data;
-};
+
+
+
+
+
 
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
     this._deltaY = new Animated.Value(0);
+    this.props.dispatch(getCategories());
   }
+
   renderItem = ({ item, index }) => {
-    console.log(item);
+    console.log(item.category)
     return (
-      <CmsPreview 
-      imageUrl={item.image}
-      title={item.name}
-      description={item.desc}/>
+      <ImageLoader item={item} category={item.category}/>
     );
   };
 
   render() {
-  
+    const formatData = (data, numColumns) => {
+      if(data){
+      const numberOfFullRows = Math.floor(data.length / numColumns);
+    
+      let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+      while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+        numberOfElementsLastRow++;
+      }
+    
+      return data;
+    }
+    };
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <View>
           <FlatList
-            data={this.props.items}
-            keyExtractor={item => item.key}
+            data={ formatData( this.props.categories, numColumns)}
+            keyExtractor={item => 'c' + item.key}
             renderItem={this.renderItem}
             numColumns={numColumns}
             style={styles.flatlist}
           />
         </View>
         <BottomNav
-          topValue={ -140 }
+          topValue={ 0 }
           openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
@@ -81,7 +87,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flatlist: {
-    marginBottom: 50
+    // minHeight: '92%',
+    // minHeight: '94%',
+    ...Platform.select({
+      android: {
+        height: ((Dimensions.get('window').height) - androidTopNavHeight) - bottomNavHeight,
+      },
+      ios: {
+        height: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+      }
+    }),
   },
   openTimes: {
     paddingTop: 15,
@@ -94,6 +109,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 });
-const mapStateToProps = state => state;
+
+
+const mapStateToProps = (state) => {
+  console.log('THIS IS REDUX STATE',state.items.newCategoriesList);
+  return {
+    categories: state.items.newCategoriesList,
+  };
+};
+
+// const mapDispatchToProps =() => {
+//   return {
+//     getCategoryItems
+//   }
+// }
 
 export default connect(mapStateToProps)(CategoriesList);

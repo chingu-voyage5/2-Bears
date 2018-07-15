@@ -6,15 +6,18 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 
-class Stats extends Component {
+class QRGenerator extends Component {
   render() {
     return (
-    <Text>STATS</Text>
+      <QRCode
+        value="THIS IS SO COOL"
+      />
     );
-  }
+  };
 }
 
 const styles = StyleSheet.create({})
 
-export default(Stats);
+export default(QRGenerator);

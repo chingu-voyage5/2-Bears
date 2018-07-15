@@ -11,9 +11,9 @@ class StarRating extends Component {
 		let ratings = this.props.ratings;
 		let stars = [];
 		for (var i = 1; i <= 5; i++) {
-			let path = require('../../images/star-filled.png');
+			let path = require('../../assets/images/star-filled.png');
 			if (i > ratings) {
-				path = require('../../images/star-unfilled.png');
+				path = require('../../assets/images/star-unfilled.png');
 			}
 			stars.push((<Image style={styles.image} source={path} key={i} />));
 		}

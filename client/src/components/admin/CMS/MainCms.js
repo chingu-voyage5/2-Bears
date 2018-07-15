@@ -14,9 +14,10 @@ class MainCms extends Component {
         this.setState({search:val})
     }
   render() {
+      console.log(this.props)
       const SearchInput = 
-      this.props.items.filter(item => item.name.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1 
-      || item.type.toUpperCase().indexOf(this.state.search.toUpperCase())> -1)
+      this.props.cms.filter(item => item.title.toUpperCase().indexOf(this.state.search.toUpperCase()) > -1 
+      || item.category.toUpperCase().indexOf(this.state.search.toUpperCase())> -1)
     return (
       <View style={styles.container}>
         <TextInput

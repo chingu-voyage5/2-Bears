@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 
+
 class Scan extends Component {
   render() {
     return (

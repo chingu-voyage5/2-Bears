@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
+import { connect} from 'react-redux';
 import {
   Dimensions,
   FlatList,
@@ -7,22 +8,43 @@ import {
   Text,
   View,
 } from 'react-native';
-import { BottomNav } from '../common';
-import CategoryX from './CategoryX';
-const data = [
-  { key: 'Meal1' }, { key: 'Meal2' }, { key: 'Meal3' }, { key: 'Meal4' }, { key: 'Meal5' }, { key: 'Meal6' }, { key: 'Meal7' }, { key: 'Meal8' }, { key: 'Meal9' }, { key: 'Meal10' }, { key: 'Meal11' }, { key: 'Meal12' }, { key: 'Meal13' },
-]
-import { connect} from 'react-redux';
-import CmsPreview from '../admin/CmsPreview';
+import { BottomNav } from './common';
+import CategoryXItem from './CategoryXItem';
+import categoryDetails from '../SeedData/orderItemSeed';
+import { setCategoryItems } from '../actions'
+
+const bottomNavHeight = 50
+const iosTopNavHeight = 60
 class CategoryXList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      category: this.props.category
+    }
+    this.props.dispatch(setCategoryItems());
+  }
+
+  componentWillMount(){
+    const categoryPick = this.props.category
+    console.log('picked the category: ', categoryPick)
+
+    getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
+    hasSameCategory = (a) => ('category', a.category == categoryPick)
+
+    const getCategoryItems = getItemsOfSame(categoryDetails.data, hasSameCategory)
+    console.log(getCategoryItems)
+
+    this.props.dispatch(setCategoryItems(getCategoryItems));
+  }
+
   renderItem = ({ item, index }) => {
     return (
       <View>
-       <CmsPreview 
-      imageUrl={item.image}
-         title={item.name}
-         description={item.desc}
-     />
+        <CategoryXItem
+          title={item.title}
+          description={item.description}
+        />
       </View>
     );
   };
@@ -32,14 +54,14 @@ class CategoryXList extends Component {
       <View style={{flex: 1}}>
         <View>
           <FlatList
-            data={data}
+            data={this.props.categoryItems}
             style={styles.container}
             renderItem={this.renderItem}
-            keyExtractor={item => item.key}
+            keyExtractor={item => item.id}
           />
         </View>
         <BottomNav
-          topValue={ -140 }
+          topValue={ 0 }
           openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
@@ -55,8 +77,8 @@ class CategoryXList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    marginTop: 20,
+    paddingTop: 20,
+    minHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
   },
   openTimes: {
     paddingTop: 15,
@@ -72,4 +94,12 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => state;
 
 
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    categoryItems: state.items.categoryItems,
+  };
+};
+
 export default connect(mapStateToProps)(CategoryXList);
+

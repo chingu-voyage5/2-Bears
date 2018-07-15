@@ -1,6 +1,6 @@
 export * from './BottomNav';
-export * from './Button';
-export * from './ButtonTwo';
+export * from './SolidButton';
+export * from './OutlineButton';
 export * from './Card';
 export * from './CardSection';
 export * from './Header';
@@ -12,3 +12,5 @@ export * from './Spinner';
 export * from './PlateImage';
 export * from './RoundAddButton';
 export * from './StarRating';
+export * from './StatsProgressBar';
+export * from './ProgressBarContainer';

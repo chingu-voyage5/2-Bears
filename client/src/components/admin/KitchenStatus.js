@@ -10,7 +10,7 @@ import {
 class KitchenStatus extends Component {
   render() {
     return (
-    <Text>KITCHENSTATUS</Text>
+      <Text>KITCHENSTATUS</Text>
     );
   }
 }
