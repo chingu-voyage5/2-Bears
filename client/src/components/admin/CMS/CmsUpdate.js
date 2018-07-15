@@ -14,12 +14,12 @@ import { bindActionCreators} from 'redux';
         super(props);
 
         this.state ={
-            Name:props.title,
-            Description:props.description,
-            image:props.image,
-            price:props.price,
-            type:props.type,
-            id:props.id
+            title:this.props.title,
+            description:this.props.description,
+            image:this.props.image,
+            price:this.props.price,
+            type:this.props.type,
+            id:this.props.id
         }
         this.updateInput = this.updateInput.bind(this);
     }
@@ -37,26 +37,26 @@ import { bindActionCreators} from 'redux';
         })
     }
   render() {
-      console.log('THIS IS THE UPDATE CMS CONSTOLE>LOG',this.props);
+      console.log('THIS IS THE UPDATE CMS CONSTOLE>LOG',this.props,this.state);
       const previewImage =  this.state.image === '' ?soupImage:this.state.image;
-      const {Name, Description,image,price,type} = this.state;
+      const {title, description,image,price,category} = this.state;
       const {id} = this.props;
     return (
       <View>
         <Text style={styles.title}>Component Preview</Text>
          <CmsPreview
            imageUrl={previewImage}
-            title={this.state.Name}
-            description={this.state.Description}
+            title={this.state.title === ''?this.props.title:this.state.title}
+            description={this.state.description === ''?this.props.description:this.state.description}
          />
     
           <View style={styles.card}>
           <View style={styles.cardSection}>
         <FloatingInput
             update={true}
-            label={'Name'}
-            value={this.props.title}
-            name='Name'
+            label={'Title'}
+            value={this.state.title}
+            name='title'
             ChangeText={this.updateInput}
             
         />
@@ -66,8 +66,8 @@ import { bindActionCreators} from 'redux';
         <FloatingInput
             update={true}
             label={'Description'}
-            value={this.props.description}
-            name='Description'
+            value={this.state.description}
+            name='description'
             ChangeText={this.updateInput}
             
         />
@@ -83,8 +83,8 @@ import { bindActionCreators} from 'redux';
             title="Post"
             color="#841584"
             onPress={()=> {
-                this.props.itemActions.updateItem(Name,Description,previewImage,price,type,id)
-                return this.setState({Name:'',Description:'',image:'',price:0,type:''})
+                this.props.itemActions.updateItem(title,description,previewImage,price,category,id)
+                return this.setState({title:'',description:'',image:'',price:0,category:''})
             } }
          />
         </View>

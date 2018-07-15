@@ -4,6 +4,7 @@ export default initialState=[
     image:"https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg",
     courseType: 'courseOne',
     title: 'Rice Soup',
+    description:'this is the best soup',
     quantity: {
       adultQuantity: 75,
       kidQuantity: 25,
@@ -15,10 +16,11 @@ export default initialState=[
     }
   },
   {id: '001',
-  category: 'Soup',
+  category: 'food',
   image:"https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg",
   courseType: 'courseOne',
-  title: 'Rice Soup',
+  title: 'Rock Soup',
+  description:'this is the best soup',
   quantity: {
     adultQuantity: 75,
     kidQuantity: 25,
@@ -33,7 +35,8 @@ export default initialState=[
 category: 'Soup',
 image:"https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg",
 courseType: 'courseOne',
-title: 'Rice Soup',
+title: 'Chicken Soup',
+description:"this is the best soup i've ever tried",
 quantity: {
   adultQuantity: 75,
   kidQuantity: 25,
@@ -45,10 +48,11 @@ price: {
 }
 },
 {id: '003',
-category: 'Soup',
+category: 'pickle',
 image:"https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg",
 courseType: 'courseOne',
-title: 'Rice Soup',
+title: 'Pepperoni pizza',
+description:'this is the best soup in the world',
 quantity: {
 adultQuantity: 75,
 kidQuantity: 25,

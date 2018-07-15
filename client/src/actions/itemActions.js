@@ -1,26 +1,27 @@
 import * as types from './types';
 
-export const createItem = (name,desc,image,price,type) =>{
+export const createItem = (title,description,image,price,category) =>{
     return{
       type: types.CREATE_ITEM,
       payload:{
-                name,
-                desc,
+                title,
+                category,
+                description,
                 image,
                 price,
-                type
+                
        }
     }
 }
-export const updateItem = (name,desc,image,price,type,id) =>{
+export const updateItem = (title,description,image,price,category,id) =>{
     return{
       type: types.UPDATE_ITEM,
       payload:{
-                name,
-                desc,
+                title,
+                description,
                 image,
                 price,
-                type,
+                category,
                 id
        }
     }

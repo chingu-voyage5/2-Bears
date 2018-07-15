@@ -39,10 +39,10 @@ import CmsUpdate from './CmsUpdate';
     }
     
   render() {
-     
-    const itemList = _.map(this.props.cms,(item,i)=>{
+        console.log('this is list props',this.props)
+    const itemList = _.map(this.props.items,(item,i)=>{
         return(
-            <CmsItem handleModal={this.handleModal} id={item.id} key={i} image={item.image} price={item.price} title={item.name} description={item.desc}/>
+            <CmsItem handleModal={this.handleModal} id={item.id} key={i} image={item.image} price={item.price} title={item.title} description={item.description}/>
         )
     }) 
       const {modal,title,description,image,id,price,category} = this.state;

@@ -8,7 +8,7 @@ class FloatingInput extends Component {
     this.state = {
       label: this.props.label,
       ellipsis: '',
-      value: props.value,
+      value:this.props.value,
       onChangeText: this.props.onChangeText,
       placeholder: this.props.placeholder || '',
       secureTextEntry: this.props.secureTextEntry,
@@ -35,10 +35,11 @@ class FloatingInput extends Component {
       ellipsis: '...',
     });
   }
-
+  
   handleInputBlur() {
-    if ( this.state.value == this.props.value || '' ) {
-      this.setState({ isFocused: false,
+
+    if ( this.state.value == this.props.value || ''  ) {
+      this.setState({ isFocused: true,
         underlineColor: 'rgba(0, 0, 0, 0.12)',
         labelColor: 'rgba(63, 81, 181, 0.75)',
         labelMarginBottom: 3,

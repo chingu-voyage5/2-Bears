@@ -10,8 +10,8 @@ class MainCms extends Component {
             search:''
         }
     }
-    handleSearch=(val)=>{
-        this.setState({search:val})
+    handleSearch=(search)=>{
+        this.setState({search})
     }
   render() {
       console.log(this.props)

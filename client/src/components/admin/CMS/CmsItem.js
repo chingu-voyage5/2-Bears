@@ -6,6 +6,7 @@ import {  View, Text, StyleSheet,Image,Button, Modal,TouchableOpacity } from 're
 export default CmsItem = (props)=>{
     
         const shortDescription = (num)=>{
+            console.log(props)
             var a = props.description.split('');
             if(a.length > num){
                 a.splice(num);
@@ -15,8 +16,7 @@ export default CmsItem = (props)=>{
             return props.description
         }
         
-        const prices = ()=>(<Text style={styles.price}>${props.price.adult}</Text>,
-                        <Text style={styles.price}>${props.price.children}</Text>);
+        
 
      const {title,price,description,type,image } = props;
     return (
@@ -27,7 +27,8 @@ export default CmsItem = (props)=>{
       <View style={{flexDirection:"row",justifyContent:'space-between'}}>
        <Text style={styles.title}>{props.title}</Text>
       <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-       {props.price.children?prices:<Text style={styles.price}>${props.price}</Text>}
+        <Text style={styles.price}><Text style={{color:'black'}}>Adult </Text>${props.price.adult}</Text>
+        <Text style={styles.price}><Text style={{color:'black'}}>kid </Text>${props.price.kid}</Text> 
        </View>
        </View>
         <Text style={styles.description}>{shortDescription(30)}</Text>
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
     description:{},
     price:{
         color:'#60BD7A',
-        marginTop: 3,},
+        marginTop: 3,
+        marginRight:4},
     image:{
         width:'25%',
         height:'100%',
