@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.horcrux.svg.SvgPackage;
-import com.horcrux.svg.SvgPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.wix.interactable.Interactable;
 import com.facebook.react.ReactNativeHost;
@@ -30,7 +29,6 @@ public class MainApplication extends Application implements ReactApplication {
             new MainReactPackage(),
             new SvgPackage(),
             new ImagePickerPackage(),
-            new SvgPackage(),
             new SplashScreenReactPackage(),
             new Interactable()
       );
