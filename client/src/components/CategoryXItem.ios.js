@@ -61,15 +61,9 @@ class CategoryXItem extends Component {
   }
 
   hideOnExpand() {
-    console.log('hits hide on expand function')
+    // console.log('hits hide on expand function')
     this.state.expanded ? { height:0, width: 0 } : {display: 'block' }
   }
-
-  // hideOnExpand2() {
-    // (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 190}]}
-  //   console.log('hits hideonexpand  2222222 function')
-  //   this.state.expanded ? { height: 0 } : { height: 190 }
-  // }
 
   toggle() {
     let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
