@@ -1,15 +1,61 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Interactable from 'react-native-interactable';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import CartItem from './CartItem';
 
 class Cart extends Component {
+
+  renderItem = ({ item, index }) => {
+    console.log(item.category)
+    return (
+      <CartItem item={item} category={item.category}/>
+    );
+  };
   render() {
     return (
-    <Text>CART</Text>
+      <View style={styles.container}>
+      <View style={styles.header}>
+      <Text>CART</Text>
+      <TouchableOpacity style={styles.backButton} onPress={()=>this.props.actions.closeCart()}>
+      <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
+      </View>
+  
+     <View style={styles.listContainer}>
+     
+          <FlatList
+            data={  this.props.cart}
+            keyExtractor={item => 'c' + item.key}
+            renderItem={this.renderItem}
+            
+          />
+        </View>
+     
+    </View>
     );
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex:1
+  },
+  backButton:{
+    backgroundColor:'#5A66D1',
+    width:'15%',
+    height:25,
+    borderRadius: 3,
+  },
+  backButtonText:{
+    color:'white',
+    textAlign:'center',
+    fontSize: 16,
 
-export default(Cart);
+  },
+  listContainer:{
+
+  }
+
+})
+
+
+export default (Cart);

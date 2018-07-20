@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import CmsPreview from '../admin/CMS/CmsPreview';
-import{ BottomNav, ImageLoader } from '../common'
+import{ BottomNav, ImageLoader} from '../common'
+import CardActionButton from '../common/CartActionButton';
 import { getCategories } from '../../actions'
 
 const numColumns = 3
@@ -58,6 +59,7 @@ class CategoriesList extends Component {
     console.log(this.props)
     return (
       <View style={styles.container}>
+       <CardActionButton/>
         <View>
           <FlatList
             data={ formatData( this.props.categories, numColumns)}
@@ -85,6 +87,7 @@ class CategoriesList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position:'relative'
   },
   flatlist: {
     // minHeight: '92%',

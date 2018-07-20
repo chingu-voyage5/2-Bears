@@ -13,6 +13,8 @@ import { BottomNav } from '../common';
 import CategoryXItem from '../CategoryXItem.android';
 import categoryDetails from '../../SeedData/orderItemSeed';
 import { setCategoryItems } from '../../actions'
+import {bindActionCreators} from 'redux';
+import * as cartAct from '../../actions/cartActions';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 80
@@ -44,11 +46,14 @@ class CategoryXList extends Component {
       <CategoryXItem
         title={item.title}
         description={item.description}
+        price={item.price}
+        cartActions={this.props.cartActions}
       />
     );
   };
 
   render() {
+    console.log(this.props)
     return (
         <View style={{flex: 1}}>
           <View>
@@ -91,12 +96,18 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapDispatchToProps = dispatch =>{
+  return{
+    cartActions:bindActionCreators(cartAct,dispatch),
+    dispatch
+  }
+}
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     categoryItems: state.items.categoryItems,
+    state
   };
 };
 
-export default connect(mapStateToProps)(CategoryXList);
+export default connect(mapStateToProps,mapDispatchToProps)(CategoryXList);

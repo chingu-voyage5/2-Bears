@@ -92,6 +92,8 @@ class CategoryX extends Component {
         { scale: bouncyHeart }
       ]
     }
+    console.log('this is the cart')
+    const {title,description,image,price} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
         <PlateImage />
@@ -124,12 +126,12 @@ class CategoryX extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton onPress={Actions.cart} />
+        <RoundAddButton onPress={this.props.cartActions.addToCart(title,descrition,soupImage,price.adult)} />
       </View>
     );
   }
 }
-
+const soupImage = 'https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg';
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
