@@ -55,5 +55,11 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>I need this camera bro</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This App stores photos take in the camera Roll.</string>
+	<key>Privacy - Location When In Use Usage Description</key>
+	<string></string>
 </dict>
 </plist>
