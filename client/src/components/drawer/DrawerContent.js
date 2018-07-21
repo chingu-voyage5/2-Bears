@@ -23,7 +23,7 @@ import * as actions from '../../actions/cartActions';
     console.log(this.props)
     return (
       <View style={styles.container}>
-          <Text style={styles.item} onPress={()=> this.props.cartActions.openCart()}>Cart</Text>
+          <Text style={styles.item} onPress={()=> this.props.cartActions.toggleCart()}>Cart</Text>
           <Text style={styles.item} onPress={()=> Actions.stats()}>Stats</Text>
           <Text style={styles.item} onPress={()=> Actions.scan()}>Scan</Text>
           <Text style={styles.item} onPress={()=> Actions.drinks()}>Drinks</Text>
@@ -32,7 +32,7 @@ import * as actions from '../../actions/cartActions';
           <Text style={styles.item} onPress={()=> Actions.cmsCreate()}>Create Item</Text>
           <Text style={styles.item} onPress={()=> Actions.cms()}>Content Management</Text>
           <Text style={styles.item} onPress={()=> Actions.settings()}>Settings</Text>
-          <Modal visible={this.props.cartModal} animationType={'slide'}>
+          <Modal onRequestClose={()=> console.log('close modal')} visible={this.props.cartModal} animationType={'slide'}>
         <View style={{flex:1}}>
               <Cart actions={this.props.cartActions} cart={this.props.cart} />
             <Button title="back" onPress={()=>this.closeModal()}/>

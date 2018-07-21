@@ -15,6 +15,7 @@ import categoryDetails from '../../SeedData/orderItemSeed';
 import { setCategoryItems } from '../../actions'
 import {bindActionCreators} from 'redux';
 import * as cartAct from '../../actions/cartActions';
+import CartActionButton from '../common/CartActionButton';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 80
@@ -47,6 +48,7 @@ class CategoryXList extends Component {
         title={item.title}
         description={item.description}
         price={item.price}
+        image={item.image}
         cartActions={this.props.cartActions}
       />
     );
@@ -57,6 +59,7 @@ class CategoryXList extends Component {
     return (
         <View style={{flex: 1}}>
           <View>
+            <CartActionButton/>
             <FlatList
               data={this.props.categoryItems}
               style={styles.container}
@@ -70,7 +73,7 @@ class CategoryXList extends Component {
             linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
             linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
             linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
-            linkOneScene={Actions.cart}
+            linkOneScene={()=>this.props.cartActions.toggleCart()}
             linkTwoScene={Actions.categoriesList}
             linkThreeScene={Actions.auth}
           />

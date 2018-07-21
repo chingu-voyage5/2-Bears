@@ -15,7 +15,7 @@ class Cart extends Component {
       <View style={styles.container}>
       <View style={styles.header}>
       <Text>CART</Text>
-      <TouchableOpacity style={styles.backButton} onPress={()=>this.props.actions.closeCart()}>
+      <TouchableOpacity style={styles.backButton} onPress={()=>this.props.actions.toggleCart()}>
       <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
       </View>
@@ -24,7 +24,7 @@ class Cart extends Component {
      
           <FlatList
             data={  this.props.cart}
-            keyExtractor={item => 'c' + item.key}
+            keyExtractor={item => 'c' + item.key || item.index}
             renderItem={this.renderItem}
             
           />

@@ -11,6 +11,6 @@ export const SET_CATEGORY_ITEMS = 'SET_CATEGORY_ITEMS';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-export const OPEN_CART = 'OPEN_CART';
-export const CLOSE_CART = 'CLOSE_CART';
+export const TOGGLE_CART = 'TOGGLE_CART';
+
 

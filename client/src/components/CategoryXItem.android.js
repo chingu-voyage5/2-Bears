@@ -30,7 +30,7 @@ class CategoryXItem extends Component {
         new Animated.Value(0),
       ]
     }
-    this.addToCart = this.addToCart.bind(this);
+   
     this.triggerLike = this.triggerLike.bind(this);
   }
 
@@ -83,10 +83,6 @@ class CategoryXItem extends Component {
         }
     ).start();
   }
-  addToCart(){
-    const {title,description,price} = this.props;
-    this.props.cartActions.addToCart(title,description,soupImage,price.adult)
-  }
   render() {
     const bouncyHeart = this.state.scale.interpolate({
       inputRange: [0, 1, 2],
@@ -97,11 +93,10 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
-    console.log('categoryXitem props',this.props)
     const {title,description,image,price} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
-        <PlateImage />
+        <PlateImage image={image} />
         <View style={styles.card}>
           <TouchableWithoutFeedback
           onPress={this.toggle.bind(this)}
@@ -131,7 +126,7 @@ class CategoryXItem extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton onPress={()=>this.addToCart()} />
+        <RoundAddButton onPress={()=> this.props.cartActions.addToCart(title,description,image,price)} />
       </View>
     
       

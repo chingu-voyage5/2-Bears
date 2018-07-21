@@ -14,6 +14,8 @@ import CmsPreview from '../admin/CMS/CmsPreview';
 import{ BottomNav, ImageLoader} from '../common'
 import CardActionButton from '../common/CartActionButton';
 import { getCategories } from '../../actions'
+import * as cartAct from '../../actions/cartActions';
+import {bindActionCreators } from 'redux';
 
 const numColumns = 3
 const bottomNavHeight = 50
@@ -59,7 +61,6 @@ class CategoriesList extends Component {
     console.log(this.props)
     return (
       <View style={styles.container}>
-       <CardActionButton/>
         <View>
           <FlatList
             data={ formatData( this.props.categories, numColumns)}
@@ -75,7 +76,7 @@ class CategoriesList extends Component {
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
           linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
-          linkOneScene={Actions.cart}
+          linkOneScene={()=>this.props.cartActions.toggleCart()}
           linkTwoScene={Actions.main}
           linkThreeScene={Actions.auth}
         />
@@ -121,10 +122,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps =() => {
-//   return {
-//     getCategoryItems
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    cartActions:bindActionCreators(cartAct,dispatch),
+    dispatch
+  }
+}
 
-export default connect(mapStateToProps)(CategoriesList);
+export default connect(mapStateToProps,mapDispatchToProps)(CategoriesList);

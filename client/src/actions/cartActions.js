@@ -1,19 +1,12 @@
 import * as types from './types';
 
-export const openCart = ()=>{
-    return {
-        type:types.OPEN_CART,
-        payload:true
-    }
-}
-export const closeCart = ()=>{
+export const toggleCart = ()=>{
     return{
-        type:types.CLOSE_CART,
-        payload:false
+        type:types.TOGGLE_CART
     }
 }
 
-export const addToCart = ({ title,description,image,price,category,id})=>{
+export const addToCart = (title,description,image,price,category,id)=>{
     return{
         type:types.ADD_TO_CART,
         payload:{

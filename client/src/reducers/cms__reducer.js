@@ -1,9 +1,9 @@
 import {CREATE_ITEM, UPDATE_ITEM} from '../actions/types';
-import intialState from '../SeedData/cmsData';
+import intialState from '../SeedData/orderItemSeed';
 
 
 
-export default (state = intialState, action) => {
+export default (state = intialState.data, action) => {
   console.log(action)
   switch (action.type) {
     case CREATE_ITEM:

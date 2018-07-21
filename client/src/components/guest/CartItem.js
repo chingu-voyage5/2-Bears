@@ -7,41 +7,33 @@ export default CartItem = (props)=>{
     
         const shortDescription = (num)=>{
             console.log(props)
-            var a = props.description.split('');
+            var a = props.item.description.split('');
             if(a.length > num){
                 a.splice(num);
             var b = a.join('') + '...';
                 return b
             }
-            return props.description
+            return props.item.description
         }
         
         
 
-     const {title,price,description,type,image } = props;
+     const {title,price,description,image } = props.item;
     return (
       <View style={styles.container}>
      <View style={{flexDirection:'row', width:'75%'}}>
-      <Image style={styles.image} source={{uri:props.image}}/>
+      <Image style={styles.image} source={{uri:image}}/>
       <View style={{flexDirection:"column",width:'80%',marginLeft:5}}>
       <View style={{flexDirection:"row",justifyContent:'space-between'}}>
-       <Text style={styles.title}>{props.title}</Text>
+       <Text style={styles.title}>{title}</Text>
       <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <Text style={styles.price}><Text style={{color:'black'}}>Adult </Text>${props.price.adult}</Text>
-        <Text style={styles.price}><Text style={{color:'black'}}>kid </Text>${props.price.kid}</Text> 
+        <Text style={styles.price}><Text style={{color:'black'}}>Adult </Text>${price.adult}</Text>
+        <Text style={styles.price}><Text style={{color:'black'}}>kid </Text>${price.kid}</Text> 
        </View>
        </View>
         <Text style={styles.description}>{shortDescription(30)}</Text>
         </View>
         </View>
-        
-        <TouchableOpacity
-         style={styles.button}
-         onPress={()=>props.handleModal(props)}
-       >
-         <Text style={{color:'white'}}> update </Text>
-       </TouchableOpacity>
-    
       </View>
     );
 
@@ -49,7 +41,7 @@ export default CartItem = (props)=>{
 
 const styles = StyleSheet.create({
     container:{
-        flex:2,
+        flex:1,
         borderColor: '#D3D3D3',
         borderBottomWidth:1,
         borderRadius:2 ,

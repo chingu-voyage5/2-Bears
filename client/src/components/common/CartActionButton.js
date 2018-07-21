@@ -7,8 +7,12 @@ class CartActionButton extends Component {
   render() {
     return (
        
-       <TouchableOpacity style={styles.cartButton} onPress={()=> this.props.cartActions.openCart()}>
+       <TouchableOpacity style={styles.cartButton} onPress={()=> this.props.cartActions.toggleCart()}>
         <Text style={styles.cartText}>Cart</Text>
+        {this.props.cart.length != 0?
+        <View style={styles.counterContainer}><Text style={styles.counterText}>{this.props.cart.length}</Text></View>:
+        <Text></Text>}
+        
         </TouchableOpacity>
 
     )
@@ -17,13 +21,13 @@ class CartActionButton extends Component {
 }
 const styles = StyleSheet.create({
     cartButton:{
-        width:'15%',
-        height:'10%',
+        width:50,
+        height:50,
         borderRadius:1000,
         backgroundColor:'#f55',
         position:'absolute',
-        right:25,
-        bottom:45,
+        right:15,
+        top:15,
         zIndex: 1000,
         alignItems: 'center',
         
@@ -32,8 +36,16 @@ const styles = StyleSheet.create({
         color:'white',
         flex:1,
         textAlign:'center',
-        alignItems:'center',
-        alignContent: 'center',
+        
+    },
+    counterContainer:{
+     height:20,
+     width:20,
+     borderRadius:100,
+     backgroundColor:'white'
+    },
+    counterText:{
+        textAlign:'center'
     }
 })
 
