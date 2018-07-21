@@ -4,12 +4,12 @@ const db = require('../config/database');
 // Table Definitions
 
 const User = db.define('user', {
-    user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-    },
+    // user_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false,
+    //     primaryKey: true,
+    //     autoIncrement: true,
+    // },
   fName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -41,12 +41,12 @@ const User = db.define('user', {
 });
 
 const Orders= db.define('orders', {
-  order_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-  },
+  // order_id: {
+  //     type: Sequelize.INTEGER,
+  //     allowNull: false,
+  //     primaryKey: true,
+  //     autoIncrement: true,
+  // },
   order_details: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -58,12 +58,12 @@ const Orders= db.define('orders', {
 });
 
 const Order_Items = db.define('order_items', {
-  order_item_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-  },
+  // order_item_id: {
+  //     type: Sequelize.INTEGER,
+  //     allowNull: false,
+  //     primaryKey: true,
+  //     autoIncrement: true,
+  // },
   order_item_quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -79,12 +79,12 @@ const Order_Items = db.define('order_items', {
 });
 
 const Food_Items = db.define('food_items', {
-    food_item_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-    },
+    // food_item_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false,
+    //     primaryKey: true,
+    //     autoIncrement: true,
+    // },
     food_name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -97,26 +97,47 @@ const Food_Items = db.define('food_items', {
         type: Sequelize.FLOAT,
         allowNull: true,
     },
+    food_category_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
 })
+
+// const Food_Category = db.define('food_category', {
+//     food_category_id: {
+//         type: Sequelize.INTEGER,
+//         allowNull: false,
+//         primaryKey: true,
+//         autoIncrement: true,
+//     },
+//     food_category_name: {
+//         type: Sequelize.STRING,
+//         allowNull: false,
+//     },
+// })
 
 
 
 // Relation Definitions
-Orders.hasMany(Order_Items, { foreignKey: { name: 'order_id', allowNull: true }, onDelete: 'CASCADE' });
-Order_Items.belongsTo(Orders, { foreignKey: { name: 'order_id', allowNull: true }, onDelete: 'CASCADE' });
-Order_Items.hasOne(Food_Items, { foreignKey: { name: 'order_item_id', allowNull: true }, onDelete: 'CASCADE' });
+Orders.hasMany(Order_Items, { foreignKey: { name: 'orders_id', allowNull: true }, onDelete: 'CASCADE' });
+Order_Items.belongsTo(Orders, { foreignKey: { name: 'orders_id', allowNull: true }, onDelete: 'CASCADE' });
 
-Food_Items.hasMany(Order_Items, { foreignKey: { name: 'order_id', allowNull: true }, onDelete: 'CASCADE' });
-
-Orders.belongsTo(User, {foreignKey: {name: 'user_id', allowNull: true}, onDelete: 'CASCADE'});
 User.hasMany(Orders,{foreignKey: {name: 'user_id', allowNull: true}, onDelete: 'CASCADE'});
+Orders.belongsTo(User, {foreignKey: {name: 'user_id', allowNull: true}, onDelete: 'CASCADE'});
 
+Food_Items.hasMany(Order_Items, { foreignKey: { name: 'food_items_id', allowNull: true }, onDelete: 'CASCADE' });
+Order_Items.belongsTo(Food_Items, { foreignKey: { name: 'food_items_id', allowNull: true }, onDelete: 'CASCADE' });
+
+
+// Food_Category.hasMany(Food_Items,  {foreignKey: { name: 'food_item_id', allowNull: true}, onDelete: 'CASCADE'});
+// Food_Items.belongsTo(Food_Category, { foreignKey: { name: 'food_category_id', allowNull: true }, onDelete: 'CASCADE' })
 
 
 User.sync()
     .then( ()=> Orders.sync())
-    .then( ()=> Order_Items.sync())
     .then( ()=> Food_Items.sync())
+    .then( ()=> Order_Items.sync())
+    // .then( ()=> Food_Category.sync())
     .catch( err => console.log(err))
 
 
@@ -124,5 +145,6 @@ module.exports = {
     User,
     Order_Items,
     Orders,
-    Food_Items
+    Food_Items,
+    // Food_Category
 };
