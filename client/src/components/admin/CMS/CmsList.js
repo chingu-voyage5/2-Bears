@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet,Modal,Button} from 'react-native';
+import { Text, View, StyleSheet,Modal,Button,FlatList} from 'react-native';
 import CmsItem from './CmsItem';
 import {Actions} from 'react-native-router-flux';
 import _ from 'lodash';
@@ -37,15 +37,16 @@ import CmsUpdate from './CmsUpdate';
             modal:false
         })
     }
-    
-  render() {
-        console.log('this is list props',this.props)
-    const itemList = _.map(this.props.items,(item,i)=>{
+    itemList = ({item,index})=>{
+        console.log('THIS IS THE ITEMLIST PROPS',item)
         return(
-            <CmsItem handleModal={this.handleModal} id={item.id} key={i} image={item.image} price={item.price} title={item.title} description={item.description}/>
+            <CmsItem handleModal={this.handleModal} id={item.id} key={index} image={item.image} price={item.price.adult} title={item.title} description={item.description}/>
         )
-    }) 
+    };
+  render() {
+ 
       const {modal,title,description,image,id,price,category} = this.state;
+      console.log(this.props)
     return (
 
       <View style={styles.container}>
@@ -62,10 +63,12 @@ import CmsUpdate from './CmsUpdate';
             <Button title="back" onPress={()=>this.postModal()}/>
         </View>
         </Modal>
-    
-        <ScrollView contentContainerStyle={{flex:1,flexWrap:'wrap'}}>
-        {itemList}
-        </ScrollView>
+        <View style={styles.listContainer}>
+        <FlatList 
+            data={this.props.items}
+            renderItem={this.itemList}
+        />
+        </View>
 
         {/* <Button
         style={styles.button}
@@ -88,6 +91,9 @@ const styles = StyleSheet.create({
     },
     button:{
         backgroundColor:'#FF0000'
+    },
+    listContainer:{
+        flex:1
     }
 
 })
