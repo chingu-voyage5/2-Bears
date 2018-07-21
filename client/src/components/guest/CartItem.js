@@ -27,8 +27,8 @@ export default CartItem = (props)=>{
       <View style={{flexDirection:"row",justifyContent:'space-between'}}>
        <Text style={styles.title}>{title}</Text>
       <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <Text style={styles.price}><Text style={{color:'black'}}>Adult </Text>${price.adult}</Text>
-        <Text style={styles.price}><Text style={{color:'black'}}>kid </Text>${price.kid}</Text> 
+        <Text style={styles.price}><Text style={{color:'black'}}></Text>${price.adult}</Text>
+       
        </View>
        </View>
         <Text style={styles.description}>{shortDescription(30)}</Text>

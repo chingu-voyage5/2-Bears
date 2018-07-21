@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button} from 'react-native'
+import { Text, View, StyleSheet, Button,TextInput} from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { FloatingInput } from '../../common'
 import CmsPreview from './CmsPreview';
@@ -19,7 +19,8 @@ import { bindActionCreators} from 'redux';
             image:this.props.image,
             price:this.props.price,
             type:this.props.type,
-            id:this.props.id
+            id:this.props.id,
+            numberInput:''
         }
         this.updateInput = this.updateInput.bind(this);
     }
@@ -35,6 +36,10 @@ import { bindActionCreators} from 'redux';
         this.setState({
             [name]:value
         })
+    }
+    onNumberChange(value){
+        console.log(value);
+        this.setState({numberInput:value})
     }
   render() {
       console.log('THIS IS THE UPDATE CMS CONSTOLE>LOG',this.props,this.state);
@@ -71,7 +76,13 @@ import { bindActionCreators} from 'redux';
             ChangeText={this.updateInput}
             
         />
-         
+        <TextInput 
+            style={styles.numberInput}
+            keyboardType = 'numeric'
+            placeholder='price'
+            onChangeText = {(text)=> this.onNumberChange(text)}
+            value = {this.state.myNumber}
+            /> 
         </View>
         <Button
             style={styles.button}
@@ -126,6 +137,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         alignSelf: 'center',
         // paddingTop: 15,
+      },
+      numberInput:{
+        flex:1
       }
 })
 const mapStateToProps = (state)=>{

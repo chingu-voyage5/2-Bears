@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button} from 'react-native'
+import { Text, View, StyleSheet, Button,TextInput} from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { FloatingInput } from '../../common'
 import CmsPreview from './CmsPreview';
@@ -13,11 +13,11 @@ import { bindActionCreators} from 'redux';
         super(props);
 
         this.state ={
-            Name:'',
-            Description:'',
+            title:'',
+            description:'',
             image:'',
-            price:2.45,
-            type:'food'
+            price:'',
+            category:'food'
         }
         this.updateInput = this.updateInput.bind(this);
     }
@@ -34,10 +34,13 @@ import { bindActionCreators} from 'redux';
             [name]:value
         })
     }
+    onNumberInput(value){
+        this.setState({price:value})
+    }
   render() {
       console.log(this.props);
       const previewImage =  this.state.image === '' ?soupImage:this.state.image;
-      const {Name, Description,image,price,type} = this.state;
+      const {title, description,image,price,category} = this.state;
     return (
       <View>
         <Text style={styles.title}>Component Preview</Text>
@@ -50,9 +53,9 @@ import { bindActionCreators} from 'redux';
           <View style={styles.card}>
           <View style={styles.cardSection}>
         <FloatingInput
-            label={'Name'}
+            label={'Title'}
             value={this.state.Name}
-            name='Name'
+            name='title'
             ChangeText={this.updateInput}
             
         />
@@ -62,11 +65,17 @@ import { bindActionCreators} from 'redux';
         <FloatingInput
             label={'Description'}
             value={this.state.Description}
-            name='Description'
+            name='description'
             ChangeText={this.updateInput}
             
         />
-         
+        <TextInput
+             style={styles.numberInput}
+            keyboardType = 'numeric'
+            placeholder='price'
+            onChangeText = {(text)=> this.onNumberInput(text)}
+            value = {this.state.price}
+            /> 
         </View>
         <Button
             style={styles.button}
@@ -78,7 +87,7 @@ import { bindActionCreators} from 'redux';
             title="Post"
             color="#841584"
             onPress={()=> {
-                this.props.itemActions.createItem(Name,Description,previewImage,price,type)
+                this.props.itemActions.createItem(title,description,previewImage,price,category)
                 return this.setState({Name:'',Description:'',image:'',price:0,type:''})
             } }
          />

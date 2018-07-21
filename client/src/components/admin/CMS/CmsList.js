@@ -57,7 +57,7 @@ import CmsUpdate from './CmsUpdate';
                  description={description}
                  price={price}
                  id={id}
-                 type={category}
+                 category={category}
                  image={image}
                  />
             <Button title="back" onPress={()=>this.postModal()}/>

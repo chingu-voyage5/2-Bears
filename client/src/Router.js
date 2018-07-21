@@ -19,6 +19,7 @@ import MainCms from './components/admin/CMS/MainCms';
 import CmsCreate from './components/admin/CMS/CmsForm';
 import CmsUpdate from './components/admin/CMS/CmsUpdate';
 
+
 class RouterComponent extends Component {
 
     constructor(props) {
@@ -37,23 +38,24 @@ class RouterComponent extends Component {
           <Drawer
             hideNavBar
             key="drawer"
-            contentComponent={DrawerContent}
-            drawerWidth={300}
-            title={"2 Bears"}
+            drawerImage={require('./assets/images/menu_icon3.png')}
+            contentComponent={DrawerContent }
+            drawerWidth={275}
+            
           >
             <Scene key="auth" title={"2 Bears"}>
-              <Scene key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} initial />
+              <Scene   key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} initial />
               <Scene key="register" component={RegisterForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} />
             </Scene>
 
-            <Scene key="main" title={"2 Bears"}>
-              <Scene key="categoriesList" component={ CategoriesList } initial />
+            <Scene  key="main" >
+              <Scene  key="categoriesList" component={ CategoriesList } initial />
               <Scene key="categoryXList" component={ CategoryXList } />
               <Scene key="cart" component={ Cart } />
               <Scene key="about" component={ About } />
             </Scene>
 
-            <Scene key="admin" title={"2 Bears"}>
+            <Scene  key="admin" title={"2 Bears"}>
               <Scene key="scan" component={ Scan } />
               <Scene key="stats" component={ StatsList }  initial />
               <Scene key="statsItem" component={ StatsItem } />

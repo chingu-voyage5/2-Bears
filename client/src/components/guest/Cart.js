@@ -7,7 +7,7 @@ class Cart extends Component {
   renderItem = ({ item, index }) => {
     console.log(item.category)
     return (
-      <CartItem item={item} category={item.category}/>
+      <CartItem item={item} key={item.id}category={item.category}/>
     );
   };
   render() {
@@ -24,9 +24,7 @@ class Cart extends Component {
      
           <FlatList
             data={  this.props.cart}
-            keyExtractor={item => 'c' + item.key || item.index}
             renderItem={this.renderItem}
-            
           />
         </View>
      
