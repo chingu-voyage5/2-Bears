@@ -35,7 +35,7 @@ import * as actions from '../../actions/cartActions';
           <Modal onRequestClose={()=> console.log('close modal')} visible={this.props.cartModal} animationType={'slide'}>
         <View style={{flex:1}}>
               <Cart actions={this.props.cartActions} cart={this.props.cart} />
-            <Button title="back" onPress={()=>this.props.cartActions.toggleCart()}/>
+            
         </View>
         </Modal>
       </View>

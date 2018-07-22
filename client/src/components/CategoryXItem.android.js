@@ -93,7 +93,7 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
-    const {title,description,image,price} = this.props;
+    const {title,description,image,price,category,id} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
         <PlateImage image={image} />
@@ -126,7 +126,7 @@ class CategoryXItem extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton onPress={()=> this.props.cartActions.addToCart(title,description,image,price)} />
+        <RoundAddButton onPress={()=> this.props.cartActions.addToCart(title,description,image,price,category,id)} />
       </View>
     
       

@@ -9,7 +9,7 @@ class CartActionButton extends Component {
        
        <TouchableOpacity style={styles.cartButton} onPress={()=> this.props.cartActions.toggleCart()}>
        <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
-        <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
+       {/* <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} /> */}
         {this.props.cart.length != 0?
         <View style={styles.counterContainer}><Text style={styles.counterText}>{this.props.cart.length}</Text></View>:
         <Text ></Text>}

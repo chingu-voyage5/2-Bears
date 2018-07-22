@@ -49,6 +49,8 @@ class CategoryXList extends Component {
         description={item.description}
         price={item.price}
         image={item.image}
+        category={item.category}
+        id={item.id}
         cartActions={this.props.cartActions}
       />
     );

@@ -21,18 +21,18 @@ export default CartItem = (props)=>{
      const {title,price,description,image } = props.item;
     return (
       <View style={styles.container}>
-     <View style={{flexDirection:'row', width:'75%'}}>
+     <View style={{flexDirection:'row', width:'100%'}}>
       <Image style={styles.image} source={{uri:image}}/>
-      <View style={{flexDirection:"column",width:'80%',marginLeft:5}}>
+      <View style={{flexDirection:"column",width:'67%',marginLeft:5}}>
       <View style={{flexDirection:"row",justifyContent:'space-between'}}>
        <Text style={styles.title}>{title}</Text>
-      <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <Text style={styles.price}><Text style={{color:'black'}}></Text>${price.adult}</Text>
-       
-       </View>
+       <Text style={styles.price}><Text style={{color:'black'}}></Text>${price.adult}</Text>
        </View>
         <Text style={styles.description}>{shortDescription(30)}</Text>
         </View>
+        <TouchableOpacity style={styles.button}>
+            {/* <Image style={styles.trash} /> */}
+        </TouchableOpacity>
         </View>
       </View>
     );
@@ -51,31 +51,40 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFFFFF',
         flexWrap:'wrap',
         justifyContent:'space-between',
+        alignSelf: 'flex-end',
         
     
     }
         ,
     title:{
-        fontSize: 18,
+        fontSize: 17,
         color:'black'
     },
     description:{},
     price:{
         color:'#60BD7A',
         marginTop: 3,
-        marginRight:4},
+        marginRight:4,
+        position:'absolute',
+        right:5,
+         },
     image:{
-        width:'25%',
+        width:'20%',
         height:'100%',
         borderRadius:2
     },
-    button:{  
-    width:'15%',  
+    button:{
+    height:27,
+    width:30,  
     alignSelf: 'center',
     backgroundColor:'red',
     padding:5,
     borderRadius:3,
-    backgroundColor:'#5A66D1',
     marginRight: 5,
+    alignItems: 'center',
+    },
+    trash:{
+    width:'9s0%',
+    height:'100%'
     }
 })
