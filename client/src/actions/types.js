@@ -12,5 +12,6 @@ export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const TOGGLE_CART = 'TOGGLE_CART';
+export const DELETE_CART_ITEM = 'DELETE_CART_ITEM';
 
 

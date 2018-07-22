@@ -17,8 +17,8 @@ export default CartItem = (props)=>{
         }
         
         
-
-     const {title,price,description,image } = props.item;
+        console.log
+     const {title,price,description,image,id } = props.item;
     return (
       <View style={styles.container}>
      <View style={{flexDirection:'row', width:'100%'}}>
@@ -30,7 +30,7 @@ export default CartItem = (props)=>{
        </View>
         <Text style={styles.description}>{shortDescription(30)}</Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>props.actions.deleteCartItem(id)} style={styles.button}>
             {/* <Image style={styles.trash} /> */}
         </TouchableOpacity>
         </View>

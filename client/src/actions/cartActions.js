@@ -5,7 +5,12 @@ export const toggleCart = ()=>{
         type:types.TOGGLE_CART
     }
 }
-
+export const deleteCartItem= (id)=>{
+    return{
+        type:types.DELETE_CART_ITEM,
+        payload:{id }
+    }
+}
 export const addToCart = (title,description,image,price,category,id)=>{
     return{
         type:types.ADD_TO_CART,
