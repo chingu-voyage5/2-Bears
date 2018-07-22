@@ -38,7 +38,7 @@ class RouterComponent extends Component {
           <Drawer
             hideNavBar
             key="drawer"
-            drawerImage={require('./assets/images/menu_icon3.png')}
+            drawerImage={require('./assets/images/menu_icon.png')}
             contentComponent={DrawerContent }
             drawerWidth={275}
             
