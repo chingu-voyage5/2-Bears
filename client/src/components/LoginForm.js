@@ -8,15 +8,14 @@ import { Card, CardSection, FloatingInput, SolidButton, Spinner } from './common
 class LoginForm extends Component {
 
     constructor(props) {
-        super(props);
+      super(props);
 
-        this.state = {
-            email: '',
-            password: '',
-
-        }
-       this.updateInput = this.updateInput.bind(this);
-        const { dispatch, errorMessage, isAuthenticated } = this.props
+      this.state = {
+        email: '',
+        password: '',
+      }
+      this.updateInput = this.updateInput.bind(this);
+      const { dispatch, errorMessage, isAuthenticated } = this.props
     }
 
     updateInput = (value,name) =>{
@@ -77,13 +76,14 @@ class LoginForm extends Component {
             Login
             </SolidButton>
             <View style={styles.signupText}>
-              <Text style={styles.text}>First time here?
+              <Text style={styles.text}>First time here?</Text>
                 <TouchableWithoutFeedback onPress={ Actions.register }>
-                  <Text style={styles.signupLink }>
-                    Sign up
-                  </Text>
+                  <View>
+                    <Text style={styles.signupLink }>
+                      Sign up
+                    </Text>
+                  </View>
                 </TouchableWithoutFeedback>
-              </Text>
             </View>
           </View>
 
