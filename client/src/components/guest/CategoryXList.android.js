@@ -25,22 +25,22 @@ class CategoryXList extends Component {
 
     this.state = {
       category: this.props.category,
+    
     }
     this.props.dispatch(setCategoryItems());
   }
 
   componentWillMount() {
     const categoryPick = this.props.category
-    console.log('picked the category: ', categoryPick)
 
     getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
     hasSameCategory = (a) => ('category', a.category == categoryPick)
 
     const getCategoryItems = getItemsOfSame(categoryDetails.data, hasSameCategory)
-    console.log(getCategoryItems)
 
     this.props.dispatch(setCategoryItems(getCategoryItems));
   }
+
 
   renderItem = ({ item, index }) => {
     return (
@@ -57,7 +57,7 @@ class CategoryXList extends Component {
   };
 
   render() {
-    console.log(this.props)
+    
     return (
         <View style={{flex: 1}}>
           <View>
@@ -111,7 +111,7 @@ const mapDispatchToProps = dispatch =>{
 const mapStateToProps = (state) => {
   return {
     categoryItems: state.items.categoryItems,
-    state
+    cart:state.cart
   };
 };
 

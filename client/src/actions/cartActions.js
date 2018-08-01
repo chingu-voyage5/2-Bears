@@ -20,7 +20,9 @@ export const addToCart = (title,description,image,price,category,id)=>{
              image,
              description,
              category,
-             id
+             id,
+             quantity:1
         }
     }
 }
+

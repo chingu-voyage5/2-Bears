@@ -17,21 +17,23 @@ export default CartItem = (props)=>{
         }
         
         
-        console.log
-     const {title,price,description,image,id } = props.item;
+        
+     const {title,price,description,image,id,quantity } = props.item;
     return (
       <View style={styles.container}>
      <View style={{flexDirection:'row', width:'100%'}}>
       <Image style={styles.image} source={{uri:image}}/>
-      <View style={{flexDirection:"column",width:'67%',marginLeft:5}}>
+      <View style={{flexDirection:"column",width:'67%',marginLeft:5,justifyContent:'space-between'}}>
       <View style={{flexDirection:"row",justifyContent:'space-between'}}>
-       <Text style={styles.title}>{title}</Text>
-       <Text style={styles.price}><Text style={{color:'black'}}></Text>${price.adult}</Text>
+       <Text>x {quantity}</Text>
+       <Text style={styles.price}><Text style={{color:'black'}}></Text>${(price.adult * quantity).toFixed(2)}</Text>
        </View>
+       <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{shortDescription(30)}</Text>
         </View>
+        
         <TouchableOpacity onPress={()=>props.actions.deleteCartItem(id)} style={styles.button}>
-            {/* <Image style={styles.trash} /> */}
+            <Image style={styles.trash} source={props.item.icon}/>
         </TouchableOpacity>
         </View>
       </View>
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
         borderRadius:2 ,
         flexDirection: 'row',
         width:'100%',
-        maxHeight:50,
+        height:70,
         backgroundColor:'#FFFFFF',
         flexWrap:'wrap',
         justifyContent:'space-between',
@@ -57,16 +59,18 @@ const styles = StyleSheet.create({
     }
         ,
     title:{
-        fontSize: 17,
+        fontSize: 20,
         color:'black'
     },
-    description:{},
+    description:{
+        fontSize: 15,
+    },
     price:{
         color:'#60BD7A',
-        marginTop: 3,
-        marginRight:4,
-        position:'absolute',
-        right:5,
+        // marginTop: 3,
+        // marginRight:4,
+        // position:'absolute',
+        // right:5,
          },
     image:{
         width:'20%',

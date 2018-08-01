@@ -5,13 +5,16 @@ import { bindActionCreators } from 'redux';
 import * as cartAct from '../../actions/cartActions';
 class CartActionButton extends Component {
   render() {
+      const cartCount = this.props.cart.reduce((accumulator,currentVal)=>{
+          return currentVal.quantity + accumulator
+      },0)
     return (
        
        <TouchableOpacity style={styles.cartButton} onPress={()=> this.props.cartActions.toggleCart()}>
        <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
-       {/* <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} /> */}
+       <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
         {this.props.cart.length != 0?
-        <View style={styles.counterContainer}><Text style={styles.counterText}>{this.props.cart.length}</Text></View>:
+        <View style={styles.counterContainer}><Text style={styles.counterText}>{cartCount}</Text></View>:
         <Text ></Text>}
         </View>
         </TouchableOpacity>
@@ -38,8 +41,8 @@ const styles = StyleSheet.create({
         width:30,
         height:30,
         position:'absolute',
-        right:11,
-        bottom:12
+        right:10,
+        bottom:10
         
     },
     counterContainer:{
@@ -48,8 +51,8 @@ const styles = StyleSheet.create({
      borderRadius:100,
      backgroundColor:'white',
      position:'absolute',
-     right:14,
-     bottom:12
+     left:1,
+     
     },
     counterText:{
         textAlign:'center'

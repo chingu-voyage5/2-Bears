@@ -38,14 +38,15 @@ class CategoriesList extends Component {
   }
 
   renderItem = ({ item, index }) => {
-    console.log(item.category)
+    
     return (
       <ImageLoader item={item} category={item.category}/>
     );
   };
 
   render() {
-    const formatData = (data, numColumns) => {
+    const formatData =  (data, numColumns) => {
+      
       if(data){
       const numberOfFullRows = Math.floor(data.length / numColumns);
     
@@ -58,7 +59,6 @@ class CategoriesList extends Component {
       return data;
     }
     };
-    console.log(this.props)
     return (
       <View style={styles.container}>
         <View>
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-  console.log('THIS IS REDUX STATE',state.items.newCategoriesList);
   return {
     categories: state.items.newCategoriesList,
   };

@@ -9,7 +9,8 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
+import { Heart, StarRating, RoundAddButton, PlateImage } from './common';
+import _ from 'lodash';
 
 class CategoryXItem extends Component {
   constructor(props) {
@@ -34,9 +35,6 @@ class CategoryXItem extends Component {
     this.triggerLike = this.triggerLike.bind(this);
   }
 
-  componentWillMount() {
-    console.log(this)
-  }
 
   triggerLike() {
     this.setState({
@@ -63,8 +61,7 @@ class CategoryXItem extends Component {
     });
   }
 
-  hideOnExpand() {
-    console.log('hits function')
+  hideOnExpand() {s
     this.state.expanded ? { height:0, width: 0 } : { display: 'block' }
   }
 
@@ -93,7 +90,7 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
-    const {title,description,image,price,category,id} = this.props;
+    const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
         <PlateImage image={image} />
@@ -126,7 +123,9 @@ class CategoryXItem extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton onPress={()=> this.props.cartActions.addToCart(title,description,image,price,category,id)} />
+        <RoundAddButton onPress={()=> { 
+           cartActions.addToCart(title,description,image,price,category,id)
+           }} />
       </View>
     
       

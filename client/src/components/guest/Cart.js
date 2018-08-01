@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import CartItem from './CartItem';
 
+
 class Cart extends Component {
 
   renderItem = ({ item, index }) => {
-    console.log(item.category)
     return (
-      <CartItem item={item} key={item.id}category={item.category} actions={this.props.actions}/>
+      <CartItem icon={122} item={item} key={item.id}category={item.category} actions={this.props.actions}/>
     );
   };
   render() {
+    const cartQuantity = this.props.cart.reduce((acumulator,currentVal)=>{
+      return acumulator + currentVal.quantity
+    },0);
+    const total = this.props.cart.reduce((acumulator,currentVal)=>{
+       return acumulator + (currentVal.price.adult * currentVal.quantity)
+      },0)
     return (
       <View style={styles.container}>
       <View style={styles.header}>
@@ -31,12 +37,17 @@ class Cart extends Component {
             renderItem={this.renderItem}
           />
         </View>
+        <View style={styles.totalContainer}>
+          <Text style={styles.totalTop}>{total.toFixed(2)}</Text>
+          <Text  style={styles.totalTax}>Tax +${(tax * cartQuantity).toFixed(2)}</Text>
+        </View>
+          <Text style={{alignContent:'flex-end'}} > Total: ${((tax * cartQuantity) + total).toFixed(2)}</Text>
         </View>
     </View>
     );
   }
 }
-
+const tax = .85;
 const styles = StyleSheet.create({
   container:{
     flex:1,
@@ -75,8 +86,27 @@ const styles = StyleSheet.create({
     width:'95%',
     height:'50%',
     borderWidth: 1,
+    borderTopWidth: 0,
     borderColor: '#DEDEDE',
   
+  },
+  totalContainer:{
+    borderBottomWidth: 2,
+    borderBottomColor:'black',
+    width:'95%',
+    position:'relative',
+    flexDirection: 'column',
+    height:40
+
+  },
+  totalTop:{
+    position:'absolute',
+    right:2
+  },
+  totalTax:{
+    position:'absolute',
+    right:2,
+    top:18
   }
 
 })
