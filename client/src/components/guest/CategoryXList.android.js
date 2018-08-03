@@ -45,6 +45,7 @@ class CategoryXList extends Component {
   renderItem = ({ item, index }) => {
     return (
       <CategoryXItem
+        cart={this.props.cart}
         title={item.title}
         description={item.description}
         price={item.price}
