@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 
 class PlateImage extends Component {
+  
 	render() {
+    
 		return (
       <View style={styles.plate}>
-        <Text style={styles.plateText}>IMG</Text>
+        {this.props.image?<Image style={styles.image} source={{uri:this.props.image}}/>:<Text style={styles.plateText}>IMG</Text>}
       </View>
 		);
 	}
@@ -43,6 +45,12 @@ const styles = StyleSheet.create({
   plateText: {
     color: '#000',
   },
+  image:{
+    width:'100%',
+    height:"100%",
+   
+    borderRadius:25
+  }
 });
 
 export { PlateImage };

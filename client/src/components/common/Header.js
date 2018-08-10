@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 const Header = (props) => {
   const { textStyle, viewStyle } = styles;
