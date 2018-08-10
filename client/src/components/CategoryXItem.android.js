@@ -57,7 +57,7 @@ class CategoryXItem extends Component {
   }
 
   _setMinHeight(event){
-    console.log(event)
+    // console.log(event)
     this.setState({
       minHeight: event.nativeEvent.layout.height,
     });
@@ -111,9 +111,7 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
-    const counterCount = this.props.cart.filter(item=> item.id == this.props.id).length > 0?
-    this.props.cart.filter(item=> item.id == this.props.id)[0]:0;
-    console.log(this.props.cart,'this is it',this.props.id)
+ 
     const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>

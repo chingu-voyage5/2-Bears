@@ -33,7 +33,7 @@ export default CartItem = (props)=>{
         </View>
         
         <TouchableOpacity onPress={()=>props.actions.deleteCartItem(id)} style={styles.button}>
-            <Image style={styles.trash} source={props.item.icon}/>
+            <Text style={styles.trash}>_</Text>
         </TouchableOpacity>
         </View>
       </View>
@@ -78,17 +78,23 @@ const styles = StyleSheet.create({
         borderRadius:2
     },
     button:{
+    position:'relative',
     height:27,
-    width:30,  
+    width:30,
+    borderColor:'red',
+    borderWidth:1,  
     alignSelf: 'center',
-    backgroundColor:'red',
+    backgroundColor:'white',
     padding:5,
     borderRadius:3,
     marginRight: 5,
     alignItems: 'center',
     },
     trash:{
-    width:'9s0%',
-    height:'100%'
+    position:'absolute',
+    bottom:9,
+    color:'black',
+    fontSize:20,
+    
     }
 })

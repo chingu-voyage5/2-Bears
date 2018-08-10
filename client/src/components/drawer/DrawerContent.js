@@ -31,6 +31,7 @@ import * as actions from '../../actions/cartActions';
           <Text style={styles.item} onPress={()=> Actions.main()}>Guests</Text>
           <Text style={styles.item} onPress={()=> Actions.cmsCreate()}>Create Item</Text>
           <Text style={styles.item} onPress={()=> Actions.cms()}>Content Management</Text>
+          <Text style={styles.item} onPress={()=> Actions.categoryXList()}>categoryXItem</Text>
           <Text style={styles.item} onPress={()=> Actions.settings()}>Settings</Text>
           <Modal onRequestClose={()=> console.log('close modal')} visible={this.props.cartModal} animationType={'slide'}>
         <View style={{flex:1}}>

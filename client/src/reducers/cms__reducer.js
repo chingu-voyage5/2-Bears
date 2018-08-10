@@ -4,7 +4,7 @@ import intialState from '../SeedData/orderItemSeed';
 
 
 export default (state = intialState.data, action) => {
-  console.log(action)
+  // console.log(action)
   switch (action.type) {
     case CREATE_ITEM:
       return [ ...state, {...action.payload,id:state.reduce((maxId, todo)=> Math.max(todo.id,maxId),-1) +1} ];

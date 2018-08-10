@@ -7,7 +7,7 @@ class Cart extends Component {
 
   renderItem = ({ item, index }) => {
     return (
-      <CartItem icon={122} item={item} key={item.id}category={item.category} actions={this.props.actions}/>
+      <CartItem  item={item} key={item.id}category={item.category} actions={this.props.actions}/>
     );
   };
   render() {
