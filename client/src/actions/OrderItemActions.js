@@ -23,7 +23,7 @@ export const getCategories = () => {
 
 
 export const setCategoryItems = (categoryItems) => {
-  console.log('accessed setcategoryItems', categoryItems)
+  // console.log('accessed setcategoryItems', categoryItems)
   return {
     type: SET_CATEGORY_ITEMS,
     payload: categoryItems,

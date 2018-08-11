@@ -1,33 +1,21 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Animated } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { StatsProgressBar } from './index'
 
-class ProgressBarContainer extends Component {
   constructor(props) {
     super(props);
+class ProgressBarContainer extends Component {
 
     this.state = {
       progress1: 0,
     };
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        progress1: this.state.progress1 + 0.1,
-        duration1: 1, //was 300 but values don't seem to get any smaller
-      });
-    }, 1000); // dones't work with a value less than 1000 for some reason.
-  }
-
   render() {
+    const { step } = this.props;
     return (
       <View style={styles.container}>
-        <StatsProgressBar
-          row
-          progress1={this.state.progress1}
-          duration1={100} //was 500 was 500 but values don't seem to get any smaller
-        />
+        <StatsProgressBar step={step} />
       </View>
     );
   }
