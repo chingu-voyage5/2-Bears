@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import CartItem from './CartItem';
-
+import { bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as actions from '../../actions/cartActions';
+import { Actions } from 'react-native-router-flux';
 
 class Cart extends Component {
 
   renderItem = ({ item, index }) => {
     return (
-      <CartItem  item={item} key={item.id}category={item.category} actions={this.props.actions}/>
+      <CartItem  item={item} key={item.id}category={item.category} actions={this.props.cartActions}/>
     );
   };
   render() {
+    console.log("CART PROPS",this.props)
     const cartQuantity = this.props.cart.reduce((acumulator,currentVal)=>{
       return acumulator + currentVal.quantity
     },0);
@@ -22,7 +26,7 @@ class Cart extends Component {
       <View style={styles.header}>
       <Text style={styles.headerText}>CART</Text>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.backButton} onPress={()=>this.props.actions.toggleCart()}>
+      <TouchableOpacity style={styles.backButton} onPress={()=>Actions.pop()}>
       <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
       </View>
@@ -112,4 +116,9 @@ const styles = StyleSheet.create({
 })
 
 
-export default (Cart);
+const mapDispatchToProps = dispatch =>{
+  return{ cartActions:bindActionCreators(actions,dispatch)}
+}
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps,mapDispatchToProps)(Cart)

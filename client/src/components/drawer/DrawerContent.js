@@ -23,7 +23,7 @@ import * as actions from '../../actions/cartActions';
     console.log(this.props)
     return (
       <View style={styles.container}>
-          <Text style={styles.item} onPress={()=> this.props.cartActions.toggleCart()}>Cart</Text>
+          <Text style={styles.item} onPress={()=>Actions.cart()}>Cart</Text>
           <Text style={styles.item} onPress={()=> Actions.stats()}>Stats</Text>
           <Text style={styles.item} onPress={()=> Actions.scan()}>Scan</Text>
           <Text style={styles.item} onPress={()=> Actions.drinks()}>Drinks</Text>

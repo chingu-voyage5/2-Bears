@@ -25,12 +25,14 @@ class CategoryXList extends Component {
 
     this.state = {
       category: this.props.category,
+      categoryItems:this.props.categoryItems
     
     }
     this.props.dispatch(setCategoryItems());
   }
 
   componentWillMount() {
+    console.log(this.props)
     const categoryPick = this.props.category
 
     getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
@@ -58,6 +60,7 @@ class CategoryXList extends Component {
   };
 
   render() {
+
     
     return (
         <View style={{flex: 1}}>

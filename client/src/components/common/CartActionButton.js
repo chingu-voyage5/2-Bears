@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View,StyleSheet,TouchableOpacity,Image } from 'react-native'
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {Actions} from 'react-native-router-flux';
 import * as cartAct from '../../actions/cartActions';
 class CartActionButton extends Component {
   render() {
@@ -10,7 +11,7 @@ class CartActionButton extends Component {
       },0)
     return (
        
-       <TouchableOpacity style={styles.cartButton} onPress={()=> this.props.cartActions.toggleCart()}>
+       <TouchableOpacity style={styles.cartButton} onPress={()=> Actions.cart()}>
        <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
        <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
         {this.props.cart.length != 0?

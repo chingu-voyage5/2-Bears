@@ -18,7 +18,7 @@ export default CartItem = (props)=>{
         
         
         
-     const {title,price,description,image,id,quantity } = props.item;
+     const {title,price,description,image,id,quantity,category } = props.item;
     return (
       <View style={styles.container}>
      <View style={{flexDirection:'row', width:'100%'}}>
@@ -34,6 +34,10 @@ export default CartItem = (props)=>{
         
         <TouchableOpacity onPress={()=>props.actions.deleteCartItem(id)} style={styles.button}>
             <Text style={styles.trash}>_</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress={()=>props.actions.addToCart(title,description,image,price,category,id)} style={styles.button}>
+            <Text style={styles.trash}>+</Text>
         </TouchableOpacity>
         </View>
       </View>
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     padding:5,
     borderRadius:3,
-    marginRight: 5,
+    marginRight: 0,
     alignItems: 'center',
     },
     trash:{
