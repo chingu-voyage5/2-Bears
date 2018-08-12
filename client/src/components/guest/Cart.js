@@ -8,6 +8,10 @@ import { Actions } from 'react-native-router-flux';
 
 class Cart extends Component {
 
+  // componentWillMount() {
+  //   Actions.refresh({key: 'cart', hideNavBar: true});
+  // }
+
   renderItem = ({ item, index }) => {
     return (
       <CartItem  item={item} key={item.id}category={item.category} actions={this.props.cartActions}/>
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: 'center',
     left:15,
-    top:13
+    top:10,
   },
   backButtonText:{
     color:'white',
@@ -90,12 +94,25 @@ const styles = StyleSheet.create({
 
   },
   header:{
+    position: 'absolute',
+    // top: -56,
+    top: 10,
     width:'100%',
     height:50,
     flexDirection: 'row',
     position:'relative',
     marginBottom: 40,
-},
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
   headerText:{
     position:'absolute',
     left:'41%',

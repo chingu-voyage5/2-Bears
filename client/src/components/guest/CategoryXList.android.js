@@ -79,7 +79,7 @@ class CategoryXList extends Component {
             linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
             linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
             linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
-            linkOneScene={()=>this.props.cartActions.toggleCart()}
+            linkOneScene={()=>Actions.push('cart', {hideNavBar: true})}
             linkTwoScene={Actions.categoriesList}
             linkThreeScene={Actions.auth}
           />
