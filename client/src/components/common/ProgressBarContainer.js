@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { StatsProgressBar } from './index'
 
+class ProgressBarContainer extends Component {
   constructor(props) {
     super(props);
-class ProgressBarContainer extends Component {
 
     this.state = {
       progress1: 0,
