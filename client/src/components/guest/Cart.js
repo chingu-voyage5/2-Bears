@@ -1,12 +1,37 @@
 import React, { Component } from 'react';
-import { StyleSheet, Platform, Text, View, TouchableOpacity, FlatList } from 'react-native';
-import CartItem from './CartItem';
-import { bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import * as actions from '../../actions/cartActions';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Platform, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import RNPrint from 'react-native-print';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import {connect} from 'react-redux';
+import { bindActionCreators} from 'redux';
+import * as actions from '../../actions/cartActions';
+import CartItem from './CartItem';
 
 class Cart extends Component {
+  state = {
+    selectedPrinter: null
+  }
+
+  async printPDF() {
+    let htmlText='<h1>Current order</h1>';
+    console.log("items in the cart" + JSON.stringify(this.props.cart));
+    for (let i in this.props.cart) {
+      const {title, price, description, image, id} = this.props.cart[i];
+      htmlText = htmlText +
+                `<img src=${image} width='20%' height='20%' borderRadius:2>` +
+                `<h2>${title}</h2>` +
+                `<p>${description}</p>` +
+                `<p>adult price: ${price.adult}</p>`
+    }
+    const results = await RNHTMLtoPDF.convert({
+      html: `${htmlText}`,
+      fileName: 'test',
+      base64: true,
+    })
+
+    await RNPrint.print({ filePath: results.filePath })
+  }
 
   // componentWillMount() {
   //   Actions.refresh({key: 'cart', hideNavBar: true});
@@ -17,6 +42,8 @@ class Cart extends Component {
       <CartItem  item={item} key={item.id}category={item.category} actions={this.props.cartActions}/>
     );
   };
+
+
   render() {
     console.log("CART PROPS",this.props)
     const cartQuantity = this.props.cart.reduce((acumulator,currentVal)=>{
@@ -44,6 +71,7 @@ class Cart extends Component {
               data={  this.props.cart}
               renderItem={this.renderItem}
             />
+            <Button onPress={this.printPDF.bind(this)} title="Print" />
           </View>
           <View style={styles.totalContainer}>
             <Text style={styles.totalTop}>{total.toFixed(2)}</Text>

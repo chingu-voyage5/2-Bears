@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  Platform,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -10,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, OutlineButton, PlateImage, ProgressBarContainer } from '../common'
+import { OutlineButton, ProgressBarContainer } from '../common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -138,8 +139,18 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     borderRadius: 15,
-    elevation: 2,
+    // elevation: 2,
     minHeight: 100,
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowOffset:{ width: 3,  height: 3, },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
   },
   cardTitle: {
     color: '#000',
