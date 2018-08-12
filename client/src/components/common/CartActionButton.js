@@ -5,35 +5,50 @@ import { bindActionCreators } from 'redux';
 import {Actions} from 'react-native-router-flux';
 import * as cartAct from '../../actions/cartActions';
 class CartActionButton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isThereACount: false,
+    }
+  }
+
   render() {
       const cartCount = this.props.cart.reduce((accumulator,currentVal)=>{
           return currentVal.quantity + accumulator
       },0)
     return (
-        <TouchableOpacity style={styles.cartButton} onPress={()=>Actions.push('cart', {hideNavBar: true})}>
-        <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
-        <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
-        {this.props.cart.length != 0?
-        <View style={styles.counterContainer}><Text style={styles.counterText}>{cartCount}</Text></View>:
-        <Text ></Text>}
+        <View style={styles.cartWrapper}>
+          <TouchableOpacity style={styles.cartButton} onPress={()=>Actions.push('cart', {hideNavBar: true})}>
+            <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
+              <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
+            </View>
+          </TouchableOpacity>
+          {
+            this.props.cart.length !== 0
+            ? <View style={[styles.counterContainer, styles.counterContainerBehind]} />
+            : <Text></Text>
+          }
+          {
+            this.props.cart.length != 0
+          ? <View style={[styles.counterContainer, styles.counterContainerFront]}>
+              <Text style={styles.counterText}>{cartCount}</Text>
+            </View>
+          : <Text></Text>
+          }
         </View>
-        </TouchableOpacity>
     )
   }
 
 }
 const styles = StyleSheet.create({
-  cartButton:{
-    position:'absolute',
-    width:35,
-    height:35,
-    borderRadius:1000,
-    backgroundColor:'#f55',
-    right:8,
-    top:-46,
-    zIndex: 1000,
-    alignItems: 'center',
+  cartWrapper:{
+    position: 'absolute',
+    top:-55,
+    right: 0,
+    height: 55,
+    width: 55,
     justifyContent: 'center',
+    alignItems: 'center',
     ...Platform.select({
       android: {
         elevation: 3,
@@ -45,6 +60,16 @@ const styles = StyleSheet.create({
       }
     })
   },
+  cartButton: {
+    position:'absolute',
+    width:35,
+    height:35,
+    borderRadius:1000,
+    backgroundColor:'#f55',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
   cartImage:{
     width:20,
     height:20,
@@ -54,15 +79,25 @@ const styles = StyleSheet.create({
 
   },
   counterContainer:{
+    justifyContent: 'center',
+    alignItems: 'center',
     height:20,
     width:20,
     borderRadius:100,
-    backgroundColor:'white',
     position:'absolute',
-    left:1,
+    top: 6,
+    right:8,
+  },
+  counterContainerFront:{
+    zIndex: 1000,
+  },
+  counterContainerBehind:{
+    backgroundColor: '#f55',
+    zIndex: -1,
   },
   counterText:{
-      textAlign:'center'
+    color: 'white',
+    textAlign:'center'
   }
 })
 
