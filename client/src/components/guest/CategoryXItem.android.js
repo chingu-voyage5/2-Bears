@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import {
   Animated,
-  Dimensions,
-  FlatList,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common';
-import _ from 'lodash';
+import { Heart, StarRating, RoundAddButton, PlateImage } from '../common';
+// import _ from 'lodash';
 
 class CategoryXItem extends Component {
   constructor(props) {
@@ -37,7 +35,6 @@ class CategoryXItem extends Component {
     this.triggerLike = this.triggerLike.bind(this);
   }
 
-
   triggerLike() {
     this.setState({
       liked: !this.state.liked
@@ -63,7 +60,8 @@ class CategoryXItem extends Component {
     });
   }
 
-  hideOnExpand() {s
+  hideOnExpand() {
+    console.log('hits hide on expand function')
     this.state.expanded ? { height:0, width: 0 } : { display: 'block' }
   }
 
@@ -82,6 +80,7 @@ class CategoryXItem extends Component {
         }
     ).start();
   }
+
   updateCount(type){
     if(type === 'delete'){
       if(this.state.count === 0){
@@ -90,17 +89,17 @@ class CategoryXItem extends Component {
       this.setState({
         count:this.state.count -1
       })
-     }
-     else if(type === 'add'){
-      this.setState({
-        count:this.state.count + 1
-      })
-     }
-     else if(type === 'count'){
-       return;
-     }
-    
+    }
+    else if(type === 'add'){
+    this.setState({
+      count:this.state.count + 1
+    })
+    }
+    else if(type === 'count'){
+      return;
+    }
   }
+
   render() {
     const bouncyHeart = this.state.scale.interpolate({
       inputRange: [0, 1, 2],
@@ -111,7 +110,6 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
- 
     const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
@@ -153,11 +151,10 @@ class CategoryXItem extends Component {
            cartActions.deleteCartItem(id);
            }} />
       </View>
-    
-      
     );
   }
 }
+
 const soupImage = 'https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg';
 const styles = StyleSheet.create({
   card: {

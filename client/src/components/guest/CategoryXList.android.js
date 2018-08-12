@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
@@ -8,14 +9,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import CmsPreview from '../admin/CMS/CmsPreview';
 import { BottomNav } from '../common';
-import CategoryXItem from '../CategoryXItem.android';
-import categoryDetails from '../../SeedData/orderItemSeed';
+import CategoryXItem from './CategoryXItem';
 import { setCategoryItems } from '../../actions'
-import {bindActionCreators} from 'redux';
 import * as cartAct from '../../actions/cartActions';
 import CartActionButton from '../common/CartActionButton';
+import categoryDetails from '../../SeedData/orderItemSeed';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 80

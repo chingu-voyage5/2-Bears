@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
+import {bindActionCreators} from 'redux';
 import { connect} from 'react-redux';
 import {
   Dimensions,
@@ -8,10 +9,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import { BottomNav } from './common';
+import { BottomNav } from '../common';
 import CategoryXItem from './CategoryXItem';
-import categoryDetails from '../SeedData/orderItemSeed';
-import { setCategoryItems } from '../actions'
+import { setCategoryItems } from '../../actions';
+import * as cartAct from '../../actions/cartActions';
+import CartActionButton from '../common/CartActionButton';
+import categoryDetails from '../../SeedData/orderItemSeed';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 60
