@@ -20,7 +20,7 @@ import * as actions from '../../actions/cartActions';
     this.props.cartActions.closeCart();
   }
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <View style={styles.container}>
           <Text style={styles.item} onPress={()=>Actions.cart()}>Cart</Text>

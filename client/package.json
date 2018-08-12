@@ -2,8 +2,8 @@
   "name": "Bears2",
   "version": "0.0.1",
   "private": true,
-  "rnpm":{
-    "assets":[
+  "rnpm": {
+    "assets": [
       "./src/assets/images"
     ]
   },

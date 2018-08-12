@@ -35,6 +35,10 @@ class CategoryXItem extends Component {
     console.log(this)
   }
 
+  componentWillUpdate(nextProps, nextState){
+    console.log('CategoryXItem updated');
+  }
+
   triggerLike() {
     this.setState({
       liked: !this.state.liked

@@ -18,6 +18,10 @@ class LoginForm extends Component {
       const { dispatch, errorMessage, isAuthenticated } = this.props
     }
 
+    componentWillUpdate(nextProps, nextState){
+      console.log('login updated');
+    }
+
     updateInput = (value,name) =>{
       this.setState({
           [name]:value
