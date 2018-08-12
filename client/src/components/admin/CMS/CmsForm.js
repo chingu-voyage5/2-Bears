@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button,TextInput} from 'react-native'
+import { Text, View, Platform, StyleSheet, Button,TextInput} from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { FloatingInput } from '../../common'
 import CmsPreview from './CmsPreview';
@@ -43,6 +43,7 @@ import { bindActionCreators} from 'redux';
       const {title, description,image,price,category} = this.state;
     return (
       <View>
+      <View style={styles.fakeNav}/>
         <Text style={styles.title}>Component Preview</Text>
          <CmsPreview
            imageUrl={previewImage}
@@ -98,7 +99,23 @@ import { bindActionCreators} from 'redux';
 }
 const soupImage = 'https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg';
 const styles = StyleSheet.create({
-    container:{},
+  fakeNav: {
+    position: 'absolute',
+    top: -56,
+    width: '100%',
+    height: 55,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
     NameInput:{
         width:'100%',
         backgroundColor:'#f2f2f2f2'

@@ -4,8 +4,10 @@ import { Actions } from 'react-native-router-flux';
 import {
   Dimensions,
   FlatList,
+  Platform,
   StyleSheet,
   Text,
+  ScrollView,
   View,
 } from 'react-native';
 import CmsPreview from '../admin/CMS/CmsPreview';
@@ -59,19 +61,18 @@ class CategoryXList extends Component {
   };
 
   render() {
-
-    
     return (
         <View style={{flex: 1}}>
-          <View>
-            <CartActionButton/>
+          <View style={styles.fakeNav}/>
+          <CartActionButton/>
+          <ScrollView style={styles.scrollView}>
             <FlatList
               data={this.props.categoryItems}
               style={styles.container}
               renderItem={ this.renderItem}
               keyExtractor={item => item.id}
             />
-          </View>
+          </ScrollView>
           <BottomNav
             topValue={ 0 }
             openTimes={<Text style={styles.openTimes} >8:00AM to 22:00AM</Text>}
@@ -88,9 +89,33 @@ class CategoryXList extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 20,
+  fakeNav: {
+    position: 'absolute',
+    top: -56,
+    width: '100%',
+    height: 55,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
+  scrollView: {
     minHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+    maxHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+  },
+  container: {
+    // paddingTop: 20,
+    // marginBottom: 60,
+    // minHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
+    minHeight: '100%',
+    // maxHeight: ((Dimensions.get('window').height) - iosTopNavHeight) - bottomNavHeight,
   },
   openTimes: {
     paddingTop: 15,

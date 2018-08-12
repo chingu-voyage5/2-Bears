@@ -34,12 +34,11 @@ import * as actions from '../../actions/cartActions';
           <Text style={styles.item} onPress={()=> Actions.categoryXList()}>categoryXItem</Text>
           <Text style={styles.item} onPress={()=> Actions.settings()}>Settings</Text>
           <Modal onRequestClose={()=> console.log('close modal')} visible={this.props.cartModal} animationType={'slide'}>
-        <View style={{flex:1}}>
+            <View style={{flex:1}}>
               <Cart actions={this.props.cartActions} cart={this.props.cart} />
-            
-        </View>
-        </Modal>
-      </View>
+            </View>
+          </Modal>
+    </View>
     );
   }
 }

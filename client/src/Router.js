@@ -41,7 +41,7 @@ class RouterComponent extends Component {
             drawerImage={require('./assets/images/menu_icon.png')}
             contentComponent={DrawerContent }
             drawerWidth={275}
-            
+            navigationBarStyle={{backgroundColor: 'transparent'}}
           >
             <Scene key="auth" title={"2 Bears"}>
               <Scene   key="login" component={LoginForm} hideNavBar isAuthenticated={isAuthenticated} errorMessage={errorMessage} dispatch={dispatch} initial />

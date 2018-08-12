@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View,StyleSheet,TouchableOpacity,Image } from 'react-native'
+import { Text, Platform, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Actions} from 'react-native-router-flux';
@@ -10,54 +10,60 @@ class CartActionButton extends Component {
           return currentVal.quantity + accumulator
       },0)
     return (
-       
-       <TouchableOpacity style={styles.cartButton} onPress={()=> Actions.cart()}>
-       <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
-       <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
+        <TouchableOpacity style={styles.cartButton} onPress={()=> Actions.cart()}>
+        <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
+        <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
         {this.props.cart.length != 0?
         <View style={styles.counterContainer}><Text style={styles.counterText}>{cartCount}</Text></View>:
         <Text ></Text>}
         </View>
         </TouchableOpacity>
-
     )
   }
 
 }
 const styles = StyleSheet.create({
-    cartButton:{
-        width:50,
-        height:50,
-        borderRadius:1000,
-        backgroundColor:'#f55',
-        position:'absolute',
-        right:15,
-        top:15,
-        zIndex: 1000,
-        alignItems: 'center',
-        justifyContent: 'center',
-        
-    },
-    cartImage:{
-        width:30,
-        height:30,
-        position:'absolute',
-        right:10,
-        bottom:10
-        
-    },
-    counterContainer:{
-     height:20,
-     width:20,
-     borderRadius:100,
-     backgroundColor:'white',
-     position:'absolute',
-     left:1,
-     
-    },
-    counterText:{
-        textAlign:'center'
-    }
+  cartButton:{
+    position:'absolute',
+    width:35,
+    height:35,
+    borderRadius:1000,
+    backgroundColor:'#f55',
+    right:8,
+    top:-46,
+    zIndex: 1000,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
+  cartImage:{
+    width:20,
+    height:20,
+    position:'absolute',
+    right:8,
+    bottom:8
+
+  },
+  counterContainer:{
+    height:20,
+    width:20,
+    borderRadius:100,
+    backgroundColor:'white',
+    position:'absolute',
+    left:1,
+  },
+  counterText:{
+      textAlign:'center'
+  }
 })
 
 const mapDispatchToProps = dispatch =>{

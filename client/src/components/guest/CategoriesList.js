@@ -35,7 +35,7 @@ class CategoriesList extends Component {
   }
 
   renderItem = ({ item, index }) => {
-    
+
     return (
       <ImageLoader item={item} category={item.category}/>
     );
@@ -43,21 +43,22 @@ class CategoriesList extends Component {
 
   render() {
     const formatData =  (data, numColumns) => {
-      
+
       if(data){
       const numberOfFullRows = Math.floor(data.length / numColumns);
-    
+
       let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
       while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
         data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
         numberOfElementsLastRow++;
       }
-    
+
       return data;
     }
     };
     return (
       <View style={styles.container}>
+        <View style={styles.fakeNav}/>
         <View>
           <FlatList
             data={ formatData( this.props.categories, numColumns)}
@@ -86,6 +87,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position:'relative'
+  },
+  fakeNav: {
+    position: 'absolute',
+    top: -56,
+    width: '100%',
+    height: 55,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
   },
   flatlist: {
     // minHeight: '92%',

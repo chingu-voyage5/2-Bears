@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Animated,
+  Dimensions,
+  FlatList,
   Platform,
   StyleSheet,
   Text,
-  TouchableWithoutFeedback,
-  View,
+  View
 } from 'react-native';
 
-class KitchenStatus extends Component {
-  render() {
-    return (
-      <View>
-        <View style={styles.fakeNav}/>
-        <Text>KITCHENSTATUS</Text>
-      </View>
-    );
-  }
+const FakeNav = () => {
+  return(
+    <View style={styles.fakeNav}/>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -39,4 +36,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default(KitchenStatus);
+export { FakeNav };

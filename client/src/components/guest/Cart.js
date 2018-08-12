@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Platform, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import CartItem from './CartItem';
 import { bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -23,6 +23,7 @@ class Cart extends Component {
       },0)
     return (
       <View style={styles.container}>
+        <View style={styles.fakeNav}/>
         <View style={styles.header}>
           <Text style={styles.headerText}>CART</Text>
           <View style={styles.buttonContainer}>
@@ -54,6 +55,23 @@ const tax = .85;
 const styles = StyleSheet.create({
   container:{
     flex:1,
+  },
+  fakeNav: {
+    position: 'absolute',
+    top: -56,
+    width: '100%',
+    height: 55,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
   },
   backButton:{
     backgroundColor:'#5A66D1',

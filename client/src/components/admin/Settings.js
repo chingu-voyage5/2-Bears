@@ -56,29 +56,29 @@ class Settings extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const {
-    numberofCourses,
-    numberofOptionsCourseOne,
-    numberofOptionsCourseTwo,
-    numberofOptionsCourseThree,
-    numberofOptionsCourseFour,
-    numberofOptionsCourseFive,
-    numberofMenue,
-    numberofDrinks,
-  } = state.Setting;
+// const mapStateToProps = (state) => {
+//   const {
+//     numberofCourses,
+//     numberofOptionsCourseOne,
+//     numberofOptionsCourseTwo,
+//     numberofOptionsCourseThree,
+//     numberofOptionsCourseFour,
+//     numberofOptionsCourseFive,
+//     numberofMenue,
+//     numberofDrinks,
+//   } = state.Setting;
 
-  return {
-    numberofCourses,
-    numberofOptionsCourseOne,
-    numberofOptionsCourseTwo,
-    numberofOptionsCourseThree,
-    numberofOptionsCourseFour,
-    numberofOptionsCourseFive,
-    numberofMenue,
-    numberofDrinks,
-  };
-};
+//   return {
+//     numberofCourses,
+//     numberofOptionsCourseOne,
+//     numberofOptionsCourseTwo,
+//     numberofOptionsCourseThree,
+//     numberofOptionsCourseFour,
+//     numberofOptionsCourseFive,
+//     numberofMenue,
+//     numberofDrinks,
+//   };
+// };
 
 const styles = StyleSheet.create({
   container: {

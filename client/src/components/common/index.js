@@ -3,6 +3,7 @@ export * from './SolidButton';
 export * from './OutlineButton';
 export * from './Card';
 export * from './CardSection';
+export * from './FakeNav';
 export * from './Header';
 export * from './Heart';
 export * from './Input';
