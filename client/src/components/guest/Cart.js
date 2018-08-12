@@ -1,15 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Platform, Button } from 'react-native';
 import CartItem from './CartItem';
 
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import RNPrint from 'react-native-print';
 
 class Cart extends Component {
+  state = {
+    selectedPrinter: null
+  }
+
+  async printPDF() {
+    let htmlText='<h1>Current order</h1>';
+    console.log("items in the cart" + JSON.stringify(this.props.cart));
+    for (let i in this.props.cart) {
+      const {title, price, description, image, id} = this.props.cart[i];
+      htmlText = htmlText + 
+              `<img src=${image} width='20%' height='20%' borderRadius:2>` +
+               `<h2>${title}</h2>` +
+               `<p>${description}</p>` +
+               `<p>adult price: ${price.adult}</p>`
+                
+    }
+    const results = await RNHTMLtoPDF.convert({
+      html: `${htmlText}`,
+      fileName: 'test',
+      base64: true,
+    })
+
+    await RNPrint.print({ filePath: results.filePath })
+  }
 
   renderItem = ({ item, index }) => {
     return (
       <CartItem  item={item} key={item.id}category={item.category} actions={this.props.actions}/>
     );
   };
+
+  
   render() {
     const cartQuantity = this.props.cart.reduce((acumulator,currentVal)=>{
       return acumulator + currentVal.quantity
@@ -28,14 +56,15 @@ class Cart extends Component {
       </View>
       </View>
         <View style={{flex:1,width:'100%',alignItems:'center'}}>
-     <View style={styles.listContainer}>
-     
+        <View style={styles.listContainer}>
           <FlatList
             inverted
-            style={{flex:1 }}
-            data={  this.props.cart}
+            style={{flex:1}}
+            data={this.props.cart}
             renderItem={this.renderItem}
           />
+          // print options code
+          <Button onPress={this.printPDF.bind(this)} title="Print" />
         </View>
         <View style={styles.totalContainer}>
           <Text style={styles.totalTop}>{total.toFixed(2)}</Text>
