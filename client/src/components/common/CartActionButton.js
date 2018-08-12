@@ -10,7 +10,7 @@ class CartActionButton extends Component {
           return currentVal.quantity + accumulator
       },0)
     return (
-        <TouchableOpacity style={styles.cartButton} onPress={()=> Actions.cart()}>
+        <TouchableOpacity style={styles.cartButton} onPress={()=>Actions.push('cart', {hideNavBar: true})}>
         <View style={{flex:1,width:'100%',height:'100%',position:'relative' }}>
         <Image source={require('../../assets/images/cartInverted2.png')} style={styles.cartImage} />
         {this.props.cart.length != 0?
