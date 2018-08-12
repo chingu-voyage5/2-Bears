@@ -27,12 +27,17 @@ class StatsList extends Component {
     }
   }
 
+  componentWillMount(nextProps, nextState){
+    console.log('statslist mounted');
+  }
+  componentWillUpdate(nextProps, nextState){
+    console.log('statslist updated');
+  }
+
   refreshFlatlist = (deletedKey) => {
-    console.log(deletedKey)
     this.setState({
       deletedCardKey : deletedKey,
     })
-    console.log(customers)
   }
 
   renderItem = ({ item, index }) => {

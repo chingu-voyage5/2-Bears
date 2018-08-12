@@ -22,19 +22,16 @@ const bottomNavHeight = 50
 const androidTopNavHeight = 80
 const iosTopNavHeight = 60
 
-
-
-
-
-
-
-
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
     this._deltaY = new Animated.Value(0);
     this.props.dispatch(getCategories());
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    console.log('categorieslist updated');
   }
 
   renderItem = ({ item, index }) => {
