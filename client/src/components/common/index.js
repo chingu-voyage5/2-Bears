@@ -10,6 +10,7 @@ export * from './FloatingInput';
 export * from './ImageLoader';
 export * from './Spinner';
 export * from './PlateImage';
+export * from './CountPill';
 export * from './RoundAddButton';
 export * from './StarRating';
 export * from './StatsProgressBar';

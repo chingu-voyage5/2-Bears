@@ -9,8 +9,10 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common';
+import { CountPill, Heart, PlateImage, StarRating } from './common';
 import _ from 'lodash';
+
+console.log(CountPill);
 
 class CategoryXItem extends Component {
   constructor(props) {
@@ -90,16 +92,16 @@ class CategoryXItem extends Component {
       this.setState({
         count:this.state.count -1
       })
-     }
-     else if(type === 'add'){
+    }
+    else if(type === 'add'){
       this.setState({
         count:this.state.count + 1
       })
-     }
-     else if(type === 'count'){
-       return;
-     }
-    
+    }
+    else if(type === 'count'){
+      return;
+    }
+
   }
   render() {
     const bouncyHeart = this.state.scale.interpolate({
@@ -111,7 +113,7 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
- 
+
     const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
@@ -145,16 +147,18 @@ class CategoryXItem extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton  type='add' updateCount={this.updateCount} onPress={()=> { 
-           cartActions.addToCart(title,description,image,price,category,id)
-           }} />
-            <RoundAddButton type='count' count={this.state.count} />
-           <RoundAddButton updateCount={this.updateCount} type='delete' onPress={()=> { 
-           cartActions.deleteCartItem(id);
-           }} />
+        <CountPill
+          updateCount={this.updateCount}
+          count={this.state.count}
+          cartActions={cartActions}
+          title={title}
+          description={description}
+          image={image}
+          price={price}
+          category={category}
+          id={id}
+        />
       </View>
-    
-      
     );
   }
 }
@@ -186,7 +190,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff'
   },
   fakeOverflowCard: {
-    // fakes overflow but requires more markup
+    // fakes overlap of plate image on card behind in android but requires more markup
     backgroundColor: "transparent",
     width: '100%',
     marginVertical: 10,

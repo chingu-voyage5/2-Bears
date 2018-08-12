@@ -23,31 +23,30 @@ class Cart extends Component {
       },0)
     return (
       <View style={styles.container}>
-      <View style={styles.header}>
-      <Text style={styles.headerText}>CART</Text>
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.backButton} onPress={()=>Actions.pop()}>
-      <Text style={styles.backButtonText}>Back</Text>
-      </TouchableOpacity>
-      </View>
-      </View>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>CART</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.backButton} onPress={()=>Actions.pop()}>
+              <Text style={styles.backButtonText}>Back</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         <View style={{flex:1,width:'100%',alignItems:'center'}}>
-     <View style={styles.listContainer}>
-     
-          <FlatList
-            inverted
-            style={{flex:1 }}
-            data={  this.props.cart}
-            renderItem={this.renderItem}
-          />
-        </View>
-        <View style={styles.totalContainer}>
-          <Text style={styles.totalTop}>{total.toFixed(2)}</Text>
-          <Text  style={styles.totalTax}>Tax +${(tax * cartQuantity).toFixed(2)}</Text>
-        </View>
+          <View style={styles.listContainer}>
+            <FlatList
+              inverted
+              style={{flex:1 }}
+              data={  this.props.cart}
+              renderItem={this.renderItem}
+            />
+          </View>
+          <View style={styles.totalContainer}>
+            <Text style={styles.totalTop}>{total.toFixed(2)}</Text>
+            <Text  style={styles.totalTax}>Tax +${(tax * cartQuantity).toFixed(2)}</Text>
+          </View>
           <Text style={{alignContent:'flex-end'}} > Total: ${((tax * cartQuantity) + total).toFixed(2)}</Text>
         </View>
-    </View>
+      </View>
     );
   }
 }
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopWidth: 0,
     borderColor: '#DEDEDE',
-  
+
   },
   totalContainer:{
     borderBottomWidth: 2,

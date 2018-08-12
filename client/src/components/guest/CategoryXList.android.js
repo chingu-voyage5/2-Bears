@@ -26,7 +26,6 @@ class CategoryXList extends Component {
     this.state = {
       category: this.props.category,
       categoryItems:this.props.categoryItems
-    
     }
     this.props.dispatch(setCategoryItems());
   }
