@@ -9,12 +9,12 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { CountPill, Heart, PlateImage, StarRating } from './common';
-import _ from 'lodash';
+import { CountPill, Heart, PlateImage, StarRating } from '../common';
+// import _ from 'lodash';
 
 console.log(CountPill);
 
-class CategoryXItem extends Component {
+class FoodItem extends Component {
   constructor(props) {
     super(props);
 
@@ -84,6 +84,7 @@ class CategoryXItem extends Component {
         }
     ).start();
   }
+
   updateCount(type){
     if(type === 'delete'){
       if(this.state.count === 0){
@@ -101,9 +102,10 @@ class CategoryXItem extends Component {
     else if(type === 'count'){
       return;
     }
-
   }
+
   render() {
+    const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     const bouncyHeart = this.state.scale.interpolate({
       inputRange: [0, 1, 2],
       outputRange: [1, .8, 1]
@@ -113,8 +115,6 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
-
-    const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
         <PlateImage image={image} />
@@ -204,4 +204,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default(CategoryXItem);
+export default(FoodItem);

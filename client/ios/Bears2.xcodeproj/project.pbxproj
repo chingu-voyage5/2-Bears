@@ -58,6 +58,10 @@
 		2AD94A4ADFEA4277A9EADEE0 /* trash_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = D888279560E84744812EB455 /* trash_icon2.png */; };
 		A2557D37FC4B45B2AB303503 /* x_icon_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A88AD1F5A494E4D947ED7CF /* x_icon_inverted.png */; };
 		89505F8F90A94595B5405509 /* x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 19ECC886D12C4B86B860A9D2 /* x_icon.png */; };
+		D2BB257398FD4EBAA9CBCBBC /* circle-menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E03F4402214FE28BDBE730 /* circle-menu-icon.png */; };
+		CA370EB71C334D24AE29A076 /* hamburger-side-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 125B722EF9794F3A80E73CB6 /* hamburger-side-menu.png */; };
+		432558D4A4AA4A4082311844 /* menu-icon-svg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5632099C4FEF4F33AF0D27F4 /* menu-icon-svg.jpg */; };
+		49A045C21B004D789130248E /* Shopping-Cart-PNG.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3B8F2442E84201A11EA2F0 /* Shopping-Cart-PNG.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,6 +414,10 @@
 		D888279560E84744812EB455 /* trash_icon2.png */ = {isa = PBXFileReference; name = "trash_icon2.png"; path = "../src/assets/images/trash_icon2.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4A88AD1F5A494E4D947ED7CF /* x_icon_inverted.png */ = {isa = PBXFileReference; name = "x_icon_inverted.png"; path = "../src/assets/images/x_icon_inverted.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		19ECC886D12C4B86B860A9D2 /* x_icon.png */ = {isa = PBXFileReference; name = "x_icon.png"; path = "../src/assets/images/x_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		34E03F4402214FE28BDBE730 /* circle-menu-icon.png */ = {isa = PBXFileReference; name = "circle-menu-icon.png"; path = "../src/assets/images/circle-menu-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		125B722EF9794F3A80E73CB6 /* hamburger-side-menu.png */ = {isa = PBXFileReference; name = "hamburger-side-menu.png"; path = "../src/assets/images/hamburger-side-menu.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5632099C4FEF4F33AF0D27F4 /* menu-icon-svg.jpg */ = {isa = PBXFileReference; name = "menu-icon-svg.jpg"; path = "../src/assets/images/menu-icon-svg.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DE3B8F2442E84201A11EA2F0 /* Shopping-Cart-PNG.png */ = {isa = PBXFileReference; name = "Shopping-Cart-PNG.png"; path = "../src/assets/images/Shopping-Cart-PNG.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -736,6 +744,10 @@
 				D888279560E84744812EB455 /* trash_icon2.png */,
 				4A88AD1F5A494E4D947ED7CF /* x_icon_inverted.png */,
 				19ECC886D12C4B86B860A9D2 /* x_icon.png */,
+				34E03F4402214FE28BDBE730 /* circle-menu-icon.png */,
+				125B722EF9794F3A80E73CB6 /* hamburger-side-menu.png */,
+				5632099C4FEF4F33AF0D27F4 /* menu-icon-svg.jpg */,
+				DE3B8F2442E84201A11EA2F0 /* Shopping-Cart-PNG.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1235,6 +1247,10 @@
 				2AD94A4ADFEA4277A9EADEE0 /* trash_icon2.png in Resources */,
 				A2557D37FC4B45B2AB303503 /* x_icon_inverted.png in Resources */,
 				89505F8F90A94595B5405509 /* x_icon.png in Resources */,
+				D2BB257398FD4EBAA9CBCBBC /* circle-menu-icon.png in Resources */,
+				CA370EB71C334D24AE29A076 /* hamburger-side-menu.png in Resources */,
+				432558D4A4AA4A4082311844 /* menu-icon-svg.jpg in Resources */,
+				49A045C21B004D789130248E /* Shopping-Cart-PNG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

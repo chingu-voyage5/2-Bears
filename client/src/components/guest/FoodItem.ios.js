@@ -7,13 +7,15 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
+import { CountPill, Heart, PlateImage, StarRating } from '../common'
 
-class CategoryXItem extends Component {
+class FoodItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      count:this.props.cart.filter(item=> item.id == this.props.id).length > 0?
+      this.props.cart.filter(item=> item.id == this.props.id)[0].quantity:0 ,
       title : props.title,
       expanded : false,
       animation : new Animated.Value(16),
@@ -28,6 +30,7 @@ class CategoryXItem extends Component {
         new Animated.Value(0),
       ]
     }
+    this.updateCount = this.updateCount.bind(this);
     this.triggerLike = this.triggerLike.bind(this);
   }
 
@@ -69,12 +72,6 @@ class CategoryXItem extends Component {
     this.state.expanded ? { height:0, width: 0 } : {display: 'block' }
   }
 
-  // hideOnExpand2() {
-    // (!this.state.expanded) && {height: 0} || this.state.expanded && {height: 190}]}
-  //   console.log('hits hideonexpand  2222222 function')
-  //   this.state.expanded ? { height: 0 } : { height: 190 }
-  // }
-
   toggle() {
     let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
     finalValue       = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
@@ -91,7 +88,27 @@ class CategoryXItem extends Component {
     ).start();
   }
 
+  updateCount(type){
+    if(type === 'delete'){
+      if(this.state.count === 0){
+        return;
+      }
+      this.setState({
+        count:this.state.count -1
+      })
+    }
+    else if(type === 'add'){
+      this.setState({
+        count:this.state.count + 1
+      })
+    }
+    else if(type === 'count'){
+      return;
+    }
+  }
+
   render() {
+    const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     const bouncyHeart = this.state.scale.interpolate({
       inputRange: [0, 1, 2],
       outputRange: [1, .8, 1]
@@ -133,7 +150,17 @@ class CategoryXItem extends Component {
           </View>
         </TouchableWithoutFeedback>
         <PlateImage />
-        <RoundAddButton onPress={Actions.cart} />
+        <CountPill
+          updateCount={this.updateCount}
+          count={this.state.count}
+          cartActions={cartActions}
+          title={title}
+          description={description}
+          image={image}
+          price={price}
+          category={category}
+          id={id}
+        />
       </View>
     );
   }
@@ -174,4 +201,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default(CategoryXItem);
+export default(FoodItem);

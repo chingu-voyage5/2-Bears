@@ -8,10 +8,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import { BottomNav } from './common';
-import CategoryXItem from './CategoryXItem';
-import categoryDetails from '../SeedData/orderItemSeed';
-import { setCategoryItems } from '../actions'
+import FoodItem from './FoodItem';
+import { BottomNav } from '../common';
+import { setCategoryItems } from '../../actions'
+import categoryDetails from '../../SeedData/orderItemSeed';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 60
@@ -41,7 +41,7 @@ class CategoryXList extends Component {
   renderItem = ({ item, index }) => {
     return (
       <View>
-        <CategoryXItem
+        <FoodItem
           title={item.title}
           description={item.description}
         />

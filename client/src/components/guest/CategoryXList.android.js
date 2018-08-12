@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
@@ -10,14 +11,13 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import CmsPreview from '../admin/CMS/CmsPreview';
+import FoodItem from './FoodItem';
 import { BottomNav } from '../common';
-import CategoryXItem from '../CategoryXItem.android';
-import categoryDetails from '../../SeedData/orderItemSeed';
-import { setCategoryItems } from '../../actions'
-import {bindActionCreators} from 'redux';
+import CmsPreview from '../admin/CMS/CmsPreview';
+import { setCategoryItems } from '../../actions';
 import * as cartAct from '../../actions/cartActions';
 import CartActionButton from '../common/CartActionButton';
+import categoryDetails from '../../SeedData/orderItemSeed';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 80
@@ -47,7 +47,7 @@ class CategoryXList extends Component {
 
   renderItem = ({ item, index }) => {
     return (
-      <CategoryXItem
+      <FoodItem
         cart={this.props.cart}
         title={item.title}
         description={item.description}
