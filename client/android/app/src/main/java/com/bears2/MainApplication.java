@@ -3,14 +3,16 @@ package com.bears2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.horcrux.svg.SvgPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.christopherdro.RNPrint.RNPrintPackage;
 import com.wix.interactable.Interactable;
+import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.imagepicker.ImagePickerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +28,13 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
+          new MainReactPackage(),
+            new RNHTMLtoPDFPackage(),
             new SvgPackage(),
-            new ImagePickerPackage(),
             new SplashScreenReactPackage(),
-            new Interactable()
+            new RNPrintPackage(),
+            new Interactable(),
+            new ImagePickerPackage()
       );
     }
 
