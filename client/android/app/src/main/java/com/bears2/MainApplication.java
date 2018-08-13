@@ -3,6 +3,7 @@ package com.bears2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.reactnative.camera.RNCameraPackage;
 import com.christopherdro.RNPrint.RNPrintPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.horcrux.svg.SvgPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RNCameraPackage(),
             new RNPrintPackage(),
             new RNHTMLtoPDFPackage(),
             new SvgPackage(),

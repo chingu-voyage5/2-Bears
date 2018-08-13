@@ -68,7 +68,7 @@ class FoodItem extends Component {
   }
 
   hideOnExpand() {
-    console.log('hits hide on expand function')
+    // console.log('hits hide on expand function')
     this.state.expanded ? { height:0, width: 0 } : {display: 'block' }
   }
 
