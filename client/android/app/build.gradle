@@ -137,14 +137,14 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-camera')
-    compile project(':react-native-print')
-    compile project(':react-native-html-to-pdf')
-    compile project(':react-native-svg')
-    compile project(':react-native-splash-screen')
-    compile project(':react-native-interactable')
-    compile project(':react-native-image-picker')
-    compile (project(':react-native-svg')) {
+    implementation project(':react-native-camera')
+    implementation project(':react-native-print')
+    implementation project(':react-native-html-to-pdf')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-interactable')
+    implementation project(':react-native-image-picker')
+    implementation (project(':react-native-svg')) {
         exclude group: "com.android.support", module: "appcompat-v7"
     }
     implementation fileTree(dir: "libs", include: ["*.jar"])

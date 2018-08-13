@@ -33,7 +33,6 @@ class Scan extends Component {
     }
 }
 
-// const styles = StyleSheet.create({})
 const styles = StyleSheet.create({
     centerText: {
         flex: 1,
