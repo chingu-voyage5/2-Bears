@@ -35,6 +35,7 @@
 			</dict>
 		</dict>
 	</dict>
+  <key>UIAppFonts</key>
 	<key>NSCameraUsageDescription</key>
 	<string>I need this camera bro</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

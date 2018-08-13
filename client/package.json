@@ -2,6 +2,11 @@
   "name": "Bears2",
   "version": "0.0.1",
   "private": true,
+  "rnpm": {
+    "assets": [
+      "./src/assets/images"
+    ]
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -13,9 +18,11 @@
     "react-native": "0.55.4",
     "react-native-camera": "^1.1.4",
     "react-native-drawer": "^2.5.0",
+    "react-native-html-to-pdf": "^0.6.0",
     "react-native-image-picker": "^0.26.10",
     "react-native-interactable": "^0.1.10",
     "react-native-qrcode-scanner": "^1.0.1",
+    "react-native-print": "^0.5.0",
     "react-native-qrcode-svg": "^5.1.0",
     "react-native-router-flux": "^4.0.0-beta.31",
     "react-native-splash-screen": "^3.0.1",

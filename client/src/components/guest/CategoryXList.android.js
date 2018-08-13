@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
@@ -8,11 +9,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import CmsPreview from '../admin/CMS/CmsPreview';
 import { BottomNav } from '../common';
-import CategoryXItem from '../CategoryXItem.android';
-import categoryDetails from '../../SeedData/orderItemSeed';
+import CategoryXItem from './CategoryXItem';
 import { setCategoryItems } from '../../actions'
+import * as cartAct from '../../actions/cartActions';
+import CartActionButton from '../common/CartActionButton';
+import categoryDetails from '../../SeedData/orderItemSeed';
 
 const bottomNavHeight = 50
 const iosTopNavHeight = 80
@@ -22,36 +24,44 @@ class CategoryXList extends Component {
 
     this.state = {
       category: this.props.category,
+    
     }
     this.props.dispatch(setCategoryItems());
   }
 
   componentWillMount() {
     const categoryPick = this.props.category
-    console.log('picked the category: ', categoryPick)
 
     getItemsOfSame = (inputArray, callback) => inputArray.filter(callback)
     hasSameCategory = (a) => ('category', a.category == categoryPick)
 
     const getCategoryItems = getItemsOfSame(categoryDetails.data, hasSameCategory)
-    console.log(getCategoryItems)
 
     this.props.dispatch(setCategoryItems(getCategoryItems));
   }
 
+
   renderItem = ({ item, index }) => {
     return (
       <CategoryXItem
+        cart={this.props.cart}
         title={item.title}
         description={item.description}
+        price={item.price}
+        image={item.image}
+        category={item.category}
+        id={item.id}
+        cartActions={this.props.cartActions}
       />
     );
   };
 
   render() {
+    
     return (
         <View style={{flex: 1}}>
           <View>
+            <CartActionButton/>
             <FlatList
               data={this.props.categoryItems}
               style={styles.container}
@@ -65,7 +75,7 @@ class CategoryXList extends Component {
             linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
             linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
             linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
-            linkOneScene={Actions.cart}
+            linkOneScene={()=>this.props.cartActions.toggleCart()}
             linkTwoScene={Actions.categoriesList}
             linkThreeScene={Actions.auth}
           />
@@ -91,12 +101,18 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapDispatchToProps = dispatch =>{
+  return{
+    cartActions:bindActionCreators(cartAct,dispatch),
+    dispatch
+  }
+}
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     categoryItems: state.items.categoryItems,
+    cart:state.cart
   };
 };
 
-export default connect(mapStateToProps)(CategoryXList);
+export default connect(mapStateToProps,mapDispatchToProps)(CategoryXList);

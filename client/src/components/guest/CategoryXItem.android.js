@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import {
   Animated,
-  Dimensions,
-  FlatList,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from '../common'
+import { Heart, StarRating, RoundAddButton, PlateImage } from '../common';
+// import _ from 'lodash';
 
-// import { connect } from 'react-redux';
-// import { employeeUpdate, employeeCreate } from '../actions';
-// onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
-
-class CategoryX extends Component {
+class CategoryXItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      count:this.props.cart.filter(item=> item.id == this.props.id).length > 0?
+      this.props.cart.filter(item=> item.id == this.props.id)[0].quantity:0 ,
       title : props.title,
       expanded : false,
       animation : new Animated.Value(16),
@@ -34,6 +31,7 @@ class CategoryX extends Component {
         new Animated.Value(0),
       ]
     }
+    this.updateCount = this.updateCount.bind(this);
     this.triggerLike = this.triggerLike.bind(this);
   }
 
@@ -56,13 +54,14 @@ class CategoryX extends Component {
   }
 
   _setMinHeight(event){
+    // console.log(event)
     this.setState({
       minHeight: event.nativeEvent.layout.height,
     });
   }
 
   hideOnExpand() {
-    console.log('hits function')
+    console.log('hits hide on expand function')
     this.state.expanded ? { height:0, width: 0 } : { display: 'block' }
   }
 
@@ -82,6 +81,25 @@ class CategoryX extends Component {
     ).start();
   }
 
+  updateCount(type){
+    if(type === 'delete'){
+      if(this.state.count === 0){
+        return;
+      }
+      this.setState({
+        count:this.state.count -1
+      })
+    }
+    else if(type === 'add'){
+    this.setState({
+      count:this.state.count + 1
+    })
+    }
+    else if(type === 'count'){
+      return;
+    }
+  }
+
   render() {
     const bouncyHeart = this.state.scale.interpolate({
       inputRange: [0, 1, 2],
@@ -92,9 +110,10 @@ class CategoryX extends Component {
         { scale: bouncyHeart }
       ]
     }
+    const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.fakeOverflowCard}>
-        <PlateImage />
+        <PlateImage image={image} />
         <View style={styles.card}>
           <TouchableWithoutFeedback
           onPress={this.toggle.bind(this)}
@@ -124,12 +143,19 @@ class CategoryX extends Component {
             </View>
           </TouchableWithoutFeedback>
         </View>
-        <RoundAddButton onPress={Actions.cart} />
+        <RoundAddButton  type='add' updateCount={this.updateCount} onPress={()=> { 
+           cartActions.addToCart(title,description,image,price,category,id)
+           }} />
+            <RoundAddButton type='count' count={this.state.count} />
+           <RoundAddButton updateCount={this.updateCount} type='delete' onPress={()=> { 
+           cartActions.deleteCartItem(id);
+           }} />
       </View>
     );
   }
 }
 
+const soupImage = 'https://img.taste.com.au/9W7uMD8-/w720-h480-cfill-q80/taste/2016/11/pumpkin-and-chive-soup-75984-1.jpeg';
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
@@ -171,11 +197,4 @@ const styles = StyleSheet.create({
   }
 });
 
-// const mapStateToProps = (state) => {
-//   const { name, phone, shift } = state.employeeForm;
-
-//   return { name, phone, shift };
-// };
-
-export default(CategoryX);
-// export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
+export default(CategoryXItem);

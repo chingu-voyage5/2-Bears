@@ -27,8 +27,7 @@ export default CmsItem = (props)=>{
       <View style={{flexDirection:"row",justifyContent:'space-between'}}>
        <Text style={styles.title}>{props.title}</Text>
       <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <Text style={styles.price}><Text style={{color:'black'}}>Adult </Text>${props.price.adult}</Text>
-        <Text style={styles.price}><Text style={{color:'black'}}>kid </Text>${props.price.kid}</Text> 
+        <Text style={styles.price}><Text style={{color:'black'}}></Text>${props.price}</Text> 
        </View>
        </View>
         <Text style={styles.description}>{shortDescription(30)}</Text>

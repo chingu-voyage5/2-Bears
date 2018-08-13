@@ -60,7 +60,6 @@ import {GET_CATEGORIES,SET_CATEGORY_ITEMS} from '../actions/types';
 // }
 
 export default (state = {}, action) => {
-  console.log(action)
 
   switch (action.type) {
     case GET_CATEGORIES:

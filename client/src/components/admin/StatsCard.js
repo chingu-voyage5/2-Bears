@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  Platform,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -10,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, OutlineButton, PlateImage, ProgressBarContainer } from '../common'
+import { OutlineButton, ProgressBarContainer } from '../common'
 // import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 // onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -31,10 +32,9 @@ class StatsCard extends Component {
       action : props.action,
       menuOne: props.menuOne,
       menuTwo: props.menuTwo,
-      activeCardKey : this.props.item.key,
+      activeCardKey : this.props.index,
     }
   }
-
   // getMenuOneOrderstats() {
   //   const menuOne = this.props.menuOne
   //   menuOne.map(x => {
@@ -61,24 +61,23 @@ class StatsCard extends Component {
     } else if (action === `Serve firstCourse`) {
       this.setState({ action: `Serve secondCourse` })
     } else if (action === `Serve secondCourse`) {
-      this.setState({ action: `Done` })
-    } else if (action === `Done`) {
+      this.setState({ action: `Close out` })
+    } else if (action === `Close out`) {
       const deletingCard = this.state.activeCardKey
       this.setState({
         action: `Scan`,
-        customers : this.state.customers.splice( customers[index], 1),
+        customers : this.state.customers.splice( index, 1), //deletes the card for the order that has been fully served
         activeCardKey : null
       })
-      this.props.parentFlatlist.refreshFlatlist(deletingCard)
+      this.props.parentFlatlist.refreshFlatlist(deletingCard) //passes the index of the card to be deleted to parent component func
     }
   }
 
   render() {
+    const { action } = this.state;
     return (
-        <View style={styles.card}>
-          <TouchableWithoutFeedback
-            onPress={Actions.statsItem}
-          >
+      <View style={styles.card}>
+        <TouchableWithoutFeedback onPress={Actions.statsItem}>
           <View>
             <View style={{paddingTop: 22, paddingHorizontal: '5%',}}>
               <Text style={styles.cardTitle}>{this.props.id}</Text>
@@ -124,10 +123,10 @@ class StatsCard extends Component {
                 {this.state.action}
               </OutlineButton>
             </View>
-            <ProgressBarContainer />
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
+            <ProgressBarContainer step={action} />
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }
@@ -140,8 +139,18 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     borderRadius: 15,
-    elevation: 2,
+    // elevation: 2,
     minHeight: 100,
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowOffset:{ width: 3,  height: 3, },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
   },
   cardTitle: {
     color: '#000',

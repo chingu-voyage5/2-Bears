@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import org.reactnative.camera.RNCameraPackage;
+import com.christopherdro.RNPrint.RNPrintPackage;
+import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.horcrux.svg.SvgPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.wix.interactable.Interactable;
@@ -29,6 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new RNCameraPackage(),
+            new RNPrintPackage(),
+            new RNHTMLtoPDFPackage(),
             new SvgPackage(),
             new ImagePickerPackage(),
             new SplashScreenReactPackage(),

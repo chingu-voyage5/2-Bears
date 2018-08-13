@@ -11,20 +11,16 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import CmsPreview from '../admin/CMS/CmsPreview';
-import{ BottomNav, ImageLoader } from '../common'
+import{ BottomNav, ImageLoader} from '../common'
+import CardActionButton from '../common/CartActionButton';
 import { getCategories } from '../../actions'
+import * as cartAct from '../../actions/cartActions';
+import {bindActionCreators } from 'redux';
 
 const numColumns = 3
 const bottomNavHeight = 50
 const androidTopNavHeight = 80
 const iosTopNavHeight = 60
-
-
-
-
-
-
-
 
 class CategoriesList extends Component {
   constructor(props) {
@@ -34,15 +30,20 @@ class CategoriesList extends Component {
     this.props.dispatch(getCategories());
   }
 
+  componentWillUpdate(nextProps, nextState){
+    console.log('categorieslist updated');
+  }
+
   renderItem = ({ item, index }) => {
-    console.log(item.category)
+    
     return (
       <ImageLoader item={item} category={item.category}/>
     );
   };
 
   render() {
-    const formatData = (data, numColumns) => {
+    const formatData =  (data, numColumns) => {
+      
       if(data){
       const numberOfFullRows = Math.floor(data.length / numColumns);
     
@@ -55,7 +56,6 @@ class CategoriesList extends Component {
       return data;
     }
     };
-    console.log(this.props)
     return (
       <View style={styles.container}>
         <View>
@@ -73,7 +73,7 @@ class CategoriesList extends Component {
           linkOneElement={<Text style={[styles.slideupText, {paddingTop: 0}]} >Cart</Text>}
           linkTwoElement={<Text style={styles.slideupText} >Food Categories</Text>}
           linkThreeElement={<Text style={styles.slideupText} >Login</Text>}
-          linkOneScene={Actions.cart}
+          linkOneScene={()=>this.props.cartActions.toggleCart()}
           linkTwoScene={Actions.main}
           linkThreeScene={Actions.auth}
         />
@@ -85,6 +85,7 @@ class CategoriesList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position:'relative'
   },
   flatlist: {
     // minHeight: '92%',
@@ -112,16 +113,16 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-  console.log('THIS IS REDUX STATE',state.items.newCategoriesList);
   return {
     categories: state.items.newCategoriesList,
   };
 };
 
-// const mapDispatchToProps =() => {
-//   return {
-//     getCategoryItems
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    cartActions:bindActionCreators(cartAct,dispatch),
+    dispatch
+  }
+}
 
-export default connect(mapStateToProps)(CategoriesList);
+export default connect(mapStateToProps,mapDispatchToProps)(CategoriesList);

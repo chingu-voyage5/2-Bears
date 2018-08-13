@@ -7,13 +7,16 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Heart, StarRating, RoundAddButton, PlateImage } from './common'
+import { Heart, StarRating, RoundAddButton, PlateImage } from '../common';
+
 
 class CategoryXItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      count:this.props.cart.filter(item=> item.id == this.props.id).length > 0?
+      this.props.cart.filter(item=> item.id == this.props.id)[0].quantity:0 ,
       title : props.title,
       expanded : false,
       animation : new Animated.Value(16),
@@ -28,11 +31,8 @@ class CategoryXItem extends Component {
         new Animated.Value(0),
       ]
     }
+    this.updateCount = this.updateCount.bind(this);
     this.triggerLike = this.triggerLike.bind(this);
-  }
-
-  componentWillMount() {
-    console.log(this)
   }
 
   triggerLike() {
@@ -81,6 +81,25 @@ class CategoryXItem extends Component {
     ).start();
   }
 
+  updateCount(type){
+    if(type === 'delete'){
+      if(this.state.count === 0){
+        return;
+      }
+      this.setState({
+        count:this.state.count -1
+      })
+    }
+    else if(type === 'add'){
+    this.setState({
+      count:this.state.count + 1
+    })
+    }
+    else if(type === 'count'){
+      return;
+    }
+  }
+
   render() {
     const bouncyHeart = this.state.scale.interpolate({
       inputRange: [0, 1, 2],
@@ -91,6 +110,7 @@ class CategoryXItem extends Component {
         { scale: bouncyHeart }
       ]
     }
+    const {title,description,image,price,category,id,cartActions, cart, update} = this.props;
     return (
       <View style={styles.card}>
         <TouchableWithoutFeedback
@@ -123,7 +143,13 @@ class CategoryXItem extends Component {
           </View>
         </TouchableWithoutFeedback>
         <PlateImage />
-        <RoundAddButton onPress={Actions.cart} />
+        <RoundAddButton  type='add' updateCount={this.updateCount} onPress={()=> { 
+          cartActions.addToCart(title,description,image,price,category,id)
+          }} />
+           <RoundAddButton type='count' count={this.state.count} />
+          <RoundAddButton updateCount={this.updateCount} type='delete' onPress={()=> { 
+          cartActions.deleteCartItem(id);
+          }} />
       </View>
     );
   }
