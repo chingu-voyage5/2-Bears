@@ -62,6 +62,7 @@ class StatsList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <View style={styles.fakeNav}/>
         <View>
           <FlatList
             extraData={this.state}
@@ -88,6 +89,23 @@ class StatsList extends Component {
 }
 
 const styles = StyleSheet.create({
+  fakeNav: {
+    position: 'absolute',
+    top: -56,
+    width: '100%',
+    height: 55,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
   flatlist: {
     // flex: 1,
     ...Platform.select({

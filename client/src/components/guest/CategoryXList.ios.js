@@ -44,7 +44,7 @@ class CategoryXList extends Component {
   renderItem = ({ item, index }) => {
     return (
       <View>
-        <CategoryXItem
+        <FoodItem
           title={item.title}
           description={item.description}
         />

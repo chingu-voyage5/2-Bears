@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-
-// import {
-//   Animated,
-//   StyleSheet,
-//   Text,
-//   TouchableWithoutFeedback,
-//   View,
-// } from 'react-native';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -42,7 +33,6 @@ class Scan extends Component {
     }
 }
 
-// const styles = StyleSheet.create({})
 const styles = StyleSheet.create({
     centerText: {
         flex: 1,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Animated,
+  Platform,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -10,11 +11,32 @@ import {
 class DrinkStatus extends Component {
   render() {
     return (
-    <Text>DRINKSTATUS</Text>
+      <View>
+        <View style={styles.fakeNav}/>
+        <Text>DRINKSTATUS</Text>
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  fakeNav: {
+    position: 'absolute',
+    top: -56,
+    width: '100%',
+    height: 55,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowOffset:{  width: -1,  height: 5,  },
+        shadowColor: '#000',
+        shadowOpacity: .05,
+      }
+    })
+  },
+})
 
 export default(DrinkStatus);

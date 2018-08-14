@@ -14,13 +14,13 @@ const RoundAddButton = ({ onPress, children ,type,count,updateCount}) => {
     if(type !== 'count'){
     onPress()
     updateCount(type)
-     }
+    }
 
   }
   return (
     <View>
       <TouchableWithoutFeedback onPress={()=>{newOnPress(type)}}>
-        <View style={type === "count"?styles.cartCount:typeStyle}>
+        <View style={type === "count"? styles.cartCount : typeStyle}>
           <Text style={styles.addCartText}>{type === "count"?count:typeText}</Text>
         </View>
       </TouchableWithoutFeedback>

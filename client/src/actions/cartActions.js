@@ -15,13 +15,13 @@ export const addToCart = (title,description,image,price,category,id)=>{
     return{
         type:types.ADD_TO_CART,
         payload:{
-             title,
-             price,
-             image,
-             description,
-             category,
-             id,
-             quantity:1
+            title,
+            price,
+            image,
+            description,
+            category,
+            id,
+            quantity:1
         }
     }
 }

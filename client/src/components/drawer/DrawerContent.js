@@ -16,6 +16,8 @@ import * as actions from '../../actions/cartActions';
     this.closeModal = this.closeModal.bind(this);
   }
  
+  // Actions.refresh({key: 'cart', hideNavBar: true})
+
   closeModal(){
     this.props.cartActions.closeCart();
   }
@@ -23,7 +25,7 @@ import * as actions from '../../actions/cartActions';
     // console.log(this.props)
     return (
       <View style={styles.container}>
-          <Text style={styles.item} onPress={()=> this.props.cartActions.toggleCart()}>Cart</Text>
+          <Text style={styles.item} onPress={()=>Actions.push('cart', {hideNavBar: true})}>Cart</Text>
           <Text style={styles.item} onPress={()=> Actions.stats()}>Stats</Text>
           <Text style={styles.item} onPress={()=> Actions.scan()}>Scan</Text>
           <Text style={styles.item} onPress={()=> Actions.drinks()}>Drinks</Text>
@@ -34,12 +36,11 @@ import * as actions from '../../actions/cartActions';
           <Text style={styles.item} onPress={()=> Actions.categoryXList()}>categoryXItem</Text>
           <Text style={styles.item} onPress={()=> Actions.settings()}>Settings</Text>
           <Modal onRequestClose={()=> console.log('close modal')} visible={this.props.cartModal} animationType={'slide'}>
-        <View style={{flex:1}}>
+            <View style={{flex:1}}>
               <Cart actions={this.props.cartActions} cart={this.props.cart} />
-            
-        </View>
-        </Modal>
-      </View>
+            </View>
+          </Modal>
+    </View>
     );
   }
 }
