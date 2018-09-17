@@ -1,22 +1,25 @@
 import * as Sequelize from "sequelize";
 import db from "../config/database";
 
-// Table Definitions
+const dbInstance = db.instance;
 
-export const User = db.define("user", {
-  // user_id: {
-  //     type: Sequelize.INTEGER,
-  //     allowNull: false,
-  //     primaryKey: true,
-  //     autoIncrement: true,
-  // },
+export interface IUser {
+  fName: string;
+  lName: string;
+  username: string | null;
+  email: string;
+  password: string;
+  image: string;
+  userType: number;
+}
+
+// Table Definitions
+export const User = dbInstance.define<IUser, {}>("user", {
   fName: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   lName: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   username: {
     type: Sequelize.STRING,
@@ -24,11 +27,9 @@ export const User = db.define("user", {
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   image: {
     type: Sequelize.TEXT,
@@ -36,41 +37,36 @@ export const User = db.define("user", {
   },
   userType: {
     type: Sequelize.INTEGER,
-    allowNull: false
   }
 });
 
-export const Orders = db.define("orders", {
-  // order_id: {
-  //     type: Sequelize.INTEGER,
-  //     allowNull: false,
-  //     primaryKey: true,
-  //     autoIncrement: true,
-  // },
+export interface IOrder {
+  order_date_ordered: Date,
+  order_details?: string;
+}
+
+export const Orders = dbInstance.define<IOrder, {}>("orders", {
   order_details: {
     type: Sequelize.STRING,
     allowNull: true
   },
   order_date_ordered: {
     type: Sequelize.DATE,
-    allowNull: false
   }
 });
 
-export const Order_Items = db.define("order_items", {
-  // order_item_id: {
-  //     type: Sequelize.INTEGER,
-  //     allowNull: false,
-  //     primaryKey: true,
-  //     autoIncrement: true,
-  // },
+export interface IOrderItem {
+  order_item_quantity: number;
+  order_item_price: string;
+  order_item_details?: string;
+
+}
+export const Order_Items = dbInstance.define<IOrderItem, {}>("order_items", {
   order_item_quantity: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
   order_item_price: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   order_item_details: {
     type: Sequelize.STRING,
@@ -78,16 +74,15 @@ export const Order_Items = db.define("order_items", {
   }
 });
 
-export const Food_Items = db.define("food_items", {
-  // food_item_id: {
-  //     type: Sequelize.INTEGER,
-  //     allowNull: false,
-  //     primaryKey: true,
-  //     autoIncrement: true,
-  // },
+export interface IFoodItem {
+  food_name: string;
+  food_details?: string;
+  food_price?: number;
+  food_category_name: string;
+}
+export const Food_Items = dbInstance.define<IFoodItem, {}>("food_items", {
   food_name: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   food_details: {
     type: Sequelize.STRING,
@@ -99,7 +94,6 @@ export const Food_Items = db.define("food_items", {
   },
   food_category_name: {
     type: Sequelize.STRING,
-    allowNull: false
   }
 });
 
