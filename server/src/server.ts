@@ -2,11 +2,10 @@ import * as express from "express";
 import * as dotenv from "dotenv";
 import * as bodyparser from "body-parser";
 import { createServer } from "http";
-import * as router from "../db/api/routes/index";
+import router from "../db/api/routes";
 
-if (process.env.NODE_ENV !== "production") {
-  dotenv.load();
-}
+dotenv.config();
+dotenv.load();
 
 const app = express();
 
