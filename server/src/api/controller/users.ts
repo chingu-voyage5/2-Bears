@@ -10,7 +10,10 @@ router.post("/adduser", async (req, res) => {
     const { email } = req.body;
     const hasUser = await db.User.findOne({ where: { email } });
 
-    if (hasUser) return res.status(404).send("That email is taken. Please try another email.");
+    if (hasUser)
+      return res
+        .status(404)
+        .send("That email is taken. Please try another email.");
 
     const { password, fName, lName, username, image } = req.body;
 
@@ -41,7 +44,7 @@ router.get("/:email/:password", async (req, res) => {
 
     const isCorrect = await bcrypt.compare(password, user.password);
 
-    if(!isCorrect) return res.status(402).send('Incorrect password')
+    if (!isCorrect) return res.status(402).send("Incorrect password");
     return res.status(200).send({ user });
   } catch (error) {
     return res.status(500).send(error);

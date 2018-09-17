@@ -2,7 +2,7 @@ import * as express from "express";
 import * as dotenv from "dotenv";
 import * as bodyparser from "body-parser";
 import { createServer } from "http";
-import router from "../db/api/routes";
+import router from "./api/routes";
 
 dotenv.config();
 dotenv.load();
@@ -38,11 +38,18 @@ server.listen(PORT);
 // });
 
 // Catches errors to routes.
-app.use((err: any, _: express.Request, res: express.Response, next: express.NextFunction) => {
-  if (res.headersSent) {
-    return next(err);
+app.use(
+  (
+    err: any,
+    _: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    if (res.headersSent) {
+      return next(err);
+    }
+    res.status(500).send(err);
   }
-  res.status(500).send(err);
-});
+);
 
 export default app;
