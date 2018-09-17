@@ -4,6 +4,7 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
+    "precommit": "lint-staged",
     "transpile": "tsc --watch",
     "start": "nodemon build/server.js",
     "dev": "concurrently 'npm:transpile' 'npm:start'"
@@ -30,8 +31,17 @@
     "gulp-env": "^0.4.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-util": "^3.0.8",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
     "nodemon": "^1.18.4",
+    "prettier": "^1.14.2",
     "tslint": "^5.11.0",
     "typescript": "^3.0.3"
+  },
+  "lint-staged": {
+    "*.{ts,json}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
