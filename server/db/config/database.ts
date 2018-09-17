@@ -1,23 +1,29 @@
-import * as Sequelize from "sequelize";
+import * as Sql from "sequelize";
 
-let db: Sequelize.Sequelize;
+export default class Postgres {
+  private static _instance: Sql.Sequelize;
 
-if (process.env.ESQL_URL) {
-  console.log("this is the esqlurl", process.env.ESQL_URL);
-  db = new Sequelize(process.env.ESQL_URL, {
-    dialect: "postgres"
-  });
-  console.log("Connected to remote db");
-} else {
-  db = new Sequelize("Bears-02", "root", "", {
-    host: "localhost",
-    dialect: "mysql"
-  });
-  console.log("connected to db locally");
+  static get instance() {
+    if(this._instance) {
+      if (process.env.ESQL_URL) {
+        console.log("Connecting to remote db");
+        this._instance = new Sql(process.env.ESQL_URL, {
+          dialect: "postgres"
+        });
+      }
+      else {
+        console.log("Connecting to db locally");
+        this._instance = new Sql("Bears-02", "root", "", {
+          host: "localhost",
+          dialect: "mysql"
+        });
+      }
+
+      this._instance.authenticate()
+        .then(() => "Connection has been established successfully.")
+        .catch(err => console.error("Unable to connect to the database:", err));
+    }
+
+    return this._instance;
+  }
 }
-
-db.authenticate()
-  .then(() => console.log("Connection has been established successfully."))
-  .catch(err => console.error("Unable to connect to the database:", err));
-
-export default db;
