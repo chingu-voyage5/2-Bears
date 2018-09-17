@@ -5,7 +5,8 @@
   "main": "build/server.js",
   "scripts": {
     "transpile": "tsc --watch",
-    "start": "nodemon build/server.js"
+    "start": "nodemon build/server.js",
+    "dev": "concurrently 'npm:transpile' 'npm:start'"
   },
   "author": "",
   "license": "ISC",
@@ -14,15 +15,16 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
     "sequelize": "^4.38.1",
-    "sequelize-cli": "^4.1.1",
     "sequelize-fixtures": "^0.7.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^2.0.0",
     "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
     "@types/node": "^10.9.4",
+    "@types/sequelize": "^4.27.25",
+    "concurrently": "^4.0.1",
     "dotenv": "^6.0.0",
     "gulp": "^3.9.1",
     "gulp-env": "^0.4.0",
