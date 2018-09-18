@@ -1,7 +1,7 @@
 import { User } from "../../models";
-import { UserInstance, UserAttributes } from "../../models/User";
+import { Instance, Attributes } from "../../models/User";
 import BaseRepository from "./BaseRepository";
 
-class UserRepository extends BaseRepository<UserInstance, UserAttributes> {}
+class UserRepository extends BaseRepository<Instance, Attributes> {}
 
 export default new UserRepository(User);
