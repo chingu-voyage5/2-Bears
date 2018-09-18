@@ -1,7 +1,7 @@
-import { Sequelize, Model, STRING, UUID, TEXT, INTEGER } from "sequelize";
+import { Sequelize, STRING, UUID, TEXT, INTEGER } from "sequelize";
 import { GeneratedAttributes } from "./interfaces";
 
-export interface UserAttributes extends GeneratedAttributes {
+export interface Attributes extends GeneratedAttributes {
   fName: string;
   lName: string;
   username: string | null;
@@ -11,10 +11,10 @@ export interface UserAttributes extends GeneratedAttributes {
   userType: number;
 }
 
-export type UserInstance = ModelInstance<UserAttributes>;
+export type Instance = ModelInstance<Attributes>;
 
 export default (sequelize: Sequelize) => {
-  const attributes: SequelizeAttributes<UserAttributes> = {
+  const attributes: SequelizeAttributes<Attributes> = {
     id: { type: UUID, primaryKey: true },
     fName: { type: STRING },
     lName: { type: STRING },
@@ -24,5 +24,5 @@ export default (sequelize: Sequelize) => {
     image: { type: TEXT, allowNull: true },
     userType: { type: INTEGER }
   };
-  return sequelize.define<UserInstance, UserAttributes>("user", attributes);
+  return sequelize.define<Instance, Attributes>("user", attributes);
 };
