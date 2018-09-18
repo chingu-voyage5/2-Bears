@@ -1,44 +1,9 @@
 import * as Sequelize from "sequelize";
 import db from "../config/database";
-
+import userFactory from "./User";
 const dbInstance = db.instance;
 
-export interface IUser {
-  fName: string;
-  lName: string;
-  username: string | null;
-  email: string;
-  password: string;
-  image: string;
-  userType: number;
-}
-
-// Table Definitions
-export const User = dbInstance.define<IUser, {}>("user", {
-  fName: {
-    type: Sequelize.STRING
-  },
-  lName: {
-    type: Sequelize.STRING
-  },
-  username: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
-  email: {
-    type: Sequelize.STRING
-  },
-  password: {
-    type: Sequelize.STRING
-  },
-  image: {
-    type: Sequelize.TEXT,
-    allowNull: true
-  },
-  userType: {
-    type: Sequelize.INTEGER
-  }
-});
+export const User = userFactory(dbInstance);
 
 export interface IOrder {
   order_date_ordered: Date;
