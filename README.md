@@ -14,7 +14,7 @@
 
 
 ## DISCLAIMER
-We migrated the code to a sanitized repo here(https://github.com/odelavia/foodbears) for the time being. WiLL update this page with the finished product when finished.
+We migrated the code to a sanitized repo [here](https://github.com/odelavia/foodbears) for the time being. WiLL update this page with the finished product when finished.
 
 ## About
 2 Bears is a free mobile food ordering app that generates a QR Code as a ticket that a server can then pickup and scan to associate your order with you! As an Admin, you can login and change the category names, order items, their price, and more! We worked hard to provide you an immersive experience for your viewing pleasure. The APIs used were provided by [Stripe](https://stripe.com/docs) and [QR Code Generator API (TBD)](#)
