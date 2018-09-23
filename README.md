@@ -1,5 +1,5 @@
 # 2 Bear App
-> A Non-Profit Mobile Food Ordering App
+> A  Mobile Food Ordering Point of Sale App
 
 ## Table of Contents
 * [About](#about)
@@ -12,6 +12,9 @@
 * [Contributors](#contributors)
 * [License](#license)
 
+
+## DISCLAIMER
+We migrated the code to a sanitized repo here(https://github.com/odelavia/foodbears) for the time being. WiLL update this page with the finished product when finished.
 
 ## About
 2 Bears is a free mobile food ordering app that generates a QR Code as a ticket that a server can then pickup and scan to associate your order with you! As an Admin, you can login and change the category names, order items, their price, and more! We worked hard to provide you an immersive experience for your viewing pleasure. The APIs used were provided by [Stripe](https://stripe.com/docs) and [QR Code Generator API (TBD)](#)
@@ -71,9 +74,10 @@ See link below for instructions on how to get your development environment setup
 
 
 ## Contributors
-[Jason Kim](https://github.com/jtk3068)  
-[Lucas Taboada](https://github.com/LucasTaboada)  
-[Oliver De La Via](https://github.com/odelavia)   
+* [Jason Kim](https://github.com/jtk3068)
+* [Lucas Taboada](https://github.com/LucasTaboada)
+* [Oliver De La Via](https://github.com/odelavia)
+* [Karthik G](https://github.com/Karthikgg)
 
 ## License
 This project was created in association with [Chingu Coders](https://github.com/chingu-voyage5) through [Chingu](https://chingu.io/).    
